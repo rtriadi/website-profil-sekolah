@@ -16,7 +16,7 @@ export default async function InstagramPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20 py-12 min-h-[50vh]">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
           <div className="rounded-lg border border-slate-200 bg-white p-8 text-center">
             <svg className="mx-auto h-16 w-16 text-slate-300" fill="currentColor" viewBox="0 0 24 24">

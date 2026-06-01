@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const directLinks = [
   { href: "/", label: "Beranda" }
@@ -18,6 +19,9 @@ const menuGroups = [
       { href: "/struktur-organisasi", label: "Struktur Organisasi" },
       { href: "/programs", label: "Program & Fasilitas" },
       { href: "/regulations", label: "Tata Tertib" },
+      { href: "/kalender-akademik", label: "Kalender Akademik" },
+      { href: "/faq", label: "FAQ Sekolah" },
+      { href: "/kontak", label: "Kontak & Lokasi" },
     ],
   },
   {
@@ -84,112 +88,117 @@ export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
             </span>
           </Link>
 
-          {/* Mobile Menu Toggle button */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-white/10 hover:text-white transition-colors md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            )}
-          </button>
-
-          {/* Desktop Navigation Links with dropdowns */}
-          <nav className="hidden md:flex md:items-center md:gap-2">
-            {/* Direct Links (e.g. Beranda) */}
-            {directLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 ${
-                    isActive
-                      ? "text-white bg-white/10"
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute inset-x-4 -bottom-px mx-auto h-[2px] w-4 rounded-full bg-gradient-to-r from-indigo-400 to-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
-                  )}
-                </Link>
-              );
-            })}
-
-            {/* Dropdown Groups */}
-            {visibleGroups.map((group) => {
-              const isOpen = activeDropdown === group.key;
-              const hasActiveChild = group.items.some((item) => pathname === item.href);
-
-              return (
-                <div
-                  key={group.key}
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown(group.key)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setActiveDropdown(isOpen ? null : group.key)}
-                    className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 ${
-                      hasActiveChild
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Desktop Navigation Links with dropdowns */}
+            <nav className="hidden md:flex md:items-center md:gap-2">
+              {/* Direct Links (e.g. Beranda) */}
+              {directLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 ${
+                      isActive
                         ? "text-white bg-white/10"
                         : "text-slate-300 hover:text-white hover:bg-white/5"
                     }`}
                   >
-                    <span>{group.label}</span>
-                    <svg
-                      className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
-                  </button>
+                    {link.label}
+                    {isActive && (
+                      <span className="absolute inset-x-4 -bottom-px mx-auto h-[2px] w-4 rounded-full bg-gradient-to-r from-indigo-400 to-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                    )}
+                  </Link>
+                );
+              })}
 
-                  {/* Dropdown Content */}
-                  {isOpen && (
-                    <div className="absolute left-0 top-full z-50 pt-2 w-60 origin-top-left">
-                      <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div className="space-y-0.5">
-                          {group.items.map((item) => {
-                            const isActive = pathname === item.href;
-                            return (
-                              <Link
-                                key={item.href}
-                                href={item.href}
-                                className={`block rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 ${
-                                  isActive
-                                    ? "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-sm"
-                                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                                }`}
-                              >
-                                {item.label}
-                              </Link>
-                            );
-                          })}
+              {/* Dropdown Groups */}
+              {visibleGroups.map((group) => {
+                const isOpen = activeDropdown === group.key;
+                const hasActiveChild = group.items.some((item) => pathname === item.href);
+
+                return (
+                  <div
+                    key={group.key}
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown(group.key)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setActiveDropdown(isOpen ? null : group.key)}
+                      className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 ${
+                        hasActiveChild
+                          ? "text-white bg-white/10"
+                          : "text-slate-300 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <span>{group.label}</span>
+                      <svg
+                        className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </button>
+
+                    {/* Dropdown Content */}
+                    {isOpen && (
+                      <div className="absolute left-0 top-full z-50 pt-2 w-60 origin-top-left">
+                        <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
+                          <div className="space-y-0.5">
+                            {group.items.map((item) => {
+                              const isActive = pathname === item.href;
+                              return (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  className={`block rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 ${
+                                    isActive
+                                      ? "bg-indigo-500/10 text-indigo-300"
+                                      : "text-slate-400 hover:bg-white/5 hover:text-white"
+                                  }`}
+                                >
+                                  {item.label}
+                                </Link>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
+                    )}
+                  </div>
+                );
+              })}
+            </nav>
+
+            <ThemeToggle variant="public" />
+
+            {/* Mobile Menu Toggle button */}
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-white/10 hover:text-white transition-colors md:hidden"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Sidebar/Menu overlay */}
@@ -254,7 +263,7 @@ export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
                               href={item.href}
                               className={`block rounded-lg px-4 py-2 text-xs font-semibold tracking-wide transition-all ${
                                 isActive
-                                  ? "text-indigo-300 bg-white/5"
+                                  ? "bg-indigo-500/10 text-indigo-300"
                                   : "text-slate-400 hover:text-white"
                               }`}
                               onClick={() => setMenuOpen(false)}

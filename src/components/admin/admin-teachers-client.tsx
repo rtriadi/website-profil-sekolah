@@ -62,6 +62,10 @@ export function AdminTeachersClient({ teachers }: Props) {
             <input id="position" name="position" defaultValue={editingId ? teachers.find(t => t.id === editingId)?.position : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
           </div>
           <div>
+            <label htmlFor="photoUrl" className="mb-1 block text-sm font-medium text-slate-700">Foto URL (opsional)</label>
+            <input id="photoUrl" name="photoUrl" type="url" placeholder="https://..." defaultValue={editingId ? teachers.find(t => t.id === editingId)?.photoUrl : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
+          </div>
+          <div>
             <label htmlFor="description" className="mb-1 block text-sm font-medium text-slate-700">Keterangan (opsional)</label>
             <textarea id="description" name="description" rows={2} defaultValue={editingId ? teachers.find(t => t.id === editingId)?.description : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
           </div>

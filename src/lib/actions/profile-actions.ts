@@ -43,10 +43,13 @@ export async function updateProfileAction(
       certificateNumber: formData.get("accreditationCertNumber") as string,
       validUntil: formData.get("accreditationValidUntil") as string,
     },
+    heroBadge: (formData.get("heroBadge") as string) || undefined,
+    heroSubtitle: (formData.get("heroSubtitle") as string) || undefined,
   };
 
   saveSchoolProfile(profile);
   revalidatePath("/");
+  revalidatePath("/profile");
   revalidatePath("/admin/profile");
   return { success: true };
 }

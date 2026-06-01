@@ -1,0 +1,63 @@
+[
+  {
+    "address": {
+      "street": "Jalan Yusuf Hasiru No.305",
+      "village": "Kelurahan Bulotada'a Timur",
+      "district": "Kecamatan Sipatana",
+      "city": "Kota Gorontalo",
+      "province": "Provinsi Gorontalo",
+      "postalCode": "96139"
+    },
+    "phone": "082217464238",
+    "whatsapp": "082217464238",
+    "email": "darulkhairatgorontalo715@gmail.com",
+    "mapsEmbedUrl": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6156408358333!2d123.06332780985544!3d0.5775210635704744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32792d8529d5e6a1%3A0xf722e38606886fd1!2sPAUD%20Islam%20Terpadu%20Darul%20Khairat%20Gorontalo!5e0!3m2!1sen!2sid!4v1780293254638!5m2!1sen!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "operatingHours": [
+      {
+        "day": "Senin",
+        "isClosed": false,
+        "open": "07:30",
+        "close": "15:30"
+      },
+      {
+        "day": "Selasa",
+        "isClosed": false,
+        "open": "07:30",
+        "close": "15:30"
+      },
+      {
+        "day": "Rabu",
+        "isClosed": false,
+        "open": "07:30",
+        "close": "15:30"
+      },
+      {
+        "day": "Kamis",
+        "isClosed": false,
+        "open": "07:30",
+        "close": "15:30"
+      },
+      {
+        "day": "Jumat",
+        "isClosed": false,
+        "open": "07:30",
+        "close": "15:30"
+      },
+      {
+        "day": "Sabtu",
+        "isClosed": true,
+        "open": "07:30",
+        "close": "12:00"
+      },
+      {
+        "day": "Minggu",
+        "isClosed": true,
+        "open": "",
+        "close": ""
+      }
+    ],
+    "socialMedia": {
+      "instagram": "https://www.instagram.com/darulkhairat_gtlo/"
+    }
+  }
+]

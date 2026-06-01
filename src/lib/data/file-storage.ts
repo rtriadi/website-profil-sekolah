@@ -15,6 +15,12 @@ export function readJsonFile<T>(filename: string, fallback: T): T {
 }
 
 export function writeJsonFile<T>(filename: string, data: T): void {
+  if (process.env.VERCEL_ENV) {
+    throw new Error(
+      "Cannot write to filesystem on Vercel. " +
+      "Set DATABASE_PROVIDER=supabase and configure SUPABASE_URL + SUPABASE_ANON_KEY."
+    );
+  }
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }

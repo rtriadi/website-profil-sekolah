@@ -25,6 +25,10 @@ const menuLabels: Record<string, { label: string; category: string }> = {
   "/announcements": { label: "Pengumuman", category: "Layanan & Info" },
   "/events": { label: "Acara", category: "Layanan & Info" },
   "/unduhan": { label: "Unduhan Dokumen", category: "Layanan & Info" },
+  "/kalender-akademik": { label: "Kalender Akademik", category: "Profil & Akademik" },
+  "/faq": { label: "FAQ Sekolah", category: "Profil & Akademik" },
+  "/kontak": { label: "Kontak & Lokasi", category: "Profil & Akademik" },
+  "/testimonies": { label: "Testimoni", category: "Kesiswaan & Galeri" },
 };
 
 export function MenuSettingsForm({ initialSettings }: Props) {

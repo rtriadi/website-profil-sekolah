@@ -75,7 +75,7 @@ create table if not exists school_programs (
   name        text not null,
   description text not null default '',
   slug        text not null unique,
-  program_type text not null check (program_type in ('IPA','IPS','Bahasa','Agama','Umum')),
+  program_type text not null default 'Umum',
   icon        text not null default '',
   sort_order  int not null default 0,
   created_at  timestamptz not null default now(),
@@ -91,7 +91,7 @@ create table if not exists facilities (
   name        text not null,
   description text not null default '',
   slug        text not null unique,
-  category    text not null check (category in ('Laboratorium','Perpustakaan','Olahraga','Kesenian','Ibadah','Kesehatan','Lainnya')),
+  category    text not null default 'Lainnya',
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now()
 );
@@ -440,6 +440,38 @@ create table if not exists activity_logs (
 create index idx_activity_logs_created_at on activity_logs(created_at desc);
 
 -- ============================================================
+-- UPDATED_AT TRIGGER
+-- ============================================================
+
+create or replace function update_updated_at()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+do $$ declare
+  tbl text;
+begin
+  for tbl in
+    select unnest(array[
+      'staff','school_profile','school_programs','facilities',
+      'teachers','announcements','school_events',
+      'faq_items','testimonies','achievements',
+      'extracurriculars','regulations','news_articles',
+      'gallery_albums'
+    ])
+  loop
+    execute format('
+      create trigger trigger_%I_updated_at
+        before update on %I
+        for each row execute function update_updated_at();
+    ', tbl, tbl);
+  end loop;
+end $$;
+
+-- ============================================================
 -- ROW LEVEL SECURITY (RLS)
 -- ============================================================
 
@@ -448,7 +480,7 @@ do $$ declare
   tbl text;
 begin
   for tbl in
-    select unest(array[
+    select unnest(array[
       'school_profile','school_narrative','school_programs','facilities',
       'teachers','org_members','ppdb_config','announcements','school_events',
       'school_documents','contact_info','academic_calendars','faq_items',

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Kontak & Lokasi",
+  description: "Hubungi sekolah resmi — alamat, telepon, e-mail, media sosial, dan lokasi peta",
 };
 
 export default async function ContactPage() {
@@ -16,95 +17,95 @@ export default async function ContactPage() {
     .join(", ");
 
   return (
-    <main>
-      <section className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-          <h1 className="text-3xl font-bold text-slate-900">
+    <>
+      <section className="border-b border-slate-200 dark:border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+          <h1 className="text-center text-3xl font-bold text-white font-heading">
             Kontak & Lokasi
           </h1>
-          <p className="mt-2 text-slate-600">
-            Hubungi kami untuk informasi lebih lanjut
+          <p className="mt-2 text-center text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+            Hubungi kami secara langsung atau kunjungi lokasi kampus resmi sekolah kami
           </p>
         </div>
       </section>
 
-      <section className="border-b border-slate-200">
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20 py-12 min-h-[60vh]">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             <div className="space-y-6">
-              <div>
-                <h2 className="text-lg font-semibold text-slate-900">Alamat</h2>
-                <p className="mt-1 text-slate-600">
-                  {fullAddress}
-                  <br />
-                  {a.postalCode && <>Kode Pos {a.postalCode}</>}
+              <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-slate-900/50 p-6 shadow-sm">
+                <h2 className="text-lg font-bold font-heading text-slate-900 dark:text-white mb-2">Alamat Kampus</h2>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  📍 {fullAddress}
+                  {a.postalCode && <><br /><span className="ml-5 text-xs text-slate-400">Kode Pos {a.postalCode}</span></>}
                 </p>
               </div>
 
-              <div>
-                <h2 className="text-lg font-semibold text-slate-900">
-                  Telepon & Email
+              <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-slate-900/50 p-6 shadow-sm">
+                <h2 className="text-lg font-bold font-heading text-slate-900 dark:text-white mb-3">
+                  Telepon & Surel
                 </h2>
-                <div className="mt-1 space-y-1 text-slate-600">
-                  <p>
-                    <span className="font-medium text-slate-700">Telp:</span>{" "}
-                    {contact.phone}
+                <div className="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+                  <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
+                    <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">📞 Telepon</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">{contact.phone}</span>
                   </p>
                   {contact.whatsapp && (
-                    <p>
-                      <span className="font-medium text-slate-700">WA:</span>{" "}
+                    <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
+                      <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">💬 WhatsApp</span>
                       <a
                         href={`https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800"
+                        className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
                       >
                         {contact.whatsapp}
                       </a>
                     </p>
                   )}
                   {contact.email && (
-                    <p>
-                      <span className="font-medium text-slate-700">Email:</span>{" "}
+                    <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
+                      <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">✉️ Surel (Email)</span>
                       <a
                         href={`mailto:${contact.email}`}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
                       >
                         {contact.email}
                       </a>
                     </p>
                   )}
-                  <p>
-                    <span className="font-medium text-slate-700">Website:</span>{" "}
+                  <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
+                    <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">🌐 Situs Resmi</span>
                     <a
                       href={`https://${profile.identity.name.toLowerCase().replace(/\s+/g, "")}.sch.id`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800"
+                      className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
                     >
-                      {profile.identity.name.toLowerCase().replace(/\s+/g, "")}
-                      .sch.id
+                      {profile.identity.name.toLowerCase().replace(/\s+/g, "")}.sch.id
                     </a>
                   </p>
                 </div>
               </div>
 
               {contact.operatingHours.length > 0 && (
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
-                    Jam Operasional
+                <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-slate-900/50 p-6 shadow-sm">
+                  <h2 className="text-lg font-bold font-heading text-slate-900 dark:text-white mb-3">
+                    Jam Layanan Operasional
                   </h2>
-                  <div className="mt-2 divide-y divide-slate-100">
+                  <div className="divide-y divide-slate-100 dark:divide-white/5">
                     {contact.operatingHours.map((h) => (
                       <div
                         key={h.day}
-                        className="flex justify-between py-1.5 text-sm"
+                        className="flex justify-between py-2 text-xs font-semibold uppercase tracking-wider"
                       >
-                        <span className="text-slate-700">{h.day}</span>
-                        <span className="text-slate-500">
-                          {h.isClosed
-                            ? "Libur"
-                            : `${h.open} – ${h.close}`}
+                        <span className="text-slate-500 dark:text-slate-400">{h.day}</span>
+                        <span className="text-slate-800 dark:text-slate-200">
+                          {h.isClosed ? (
+                            <span className="text-red-500 dark:text-red-400">Tutup</span>
+                          ) : (
+                            `${h.open} – ${h.close}`
+                          )}
                         </span>
                       </div>
                     ))}
@@ -115,19 +116,19 @@ export default async function ContactPage() {
               {(contact.socialMedia.instagram ||
                 contact.socialMedia.facebook ||
                 contact.socialMedia.youtube) && (
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
-                    Ikuti Kami
+                <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-slate-900/50 p-6 shadow-sm">
+                  <h2 className="text-lg font-bold font-heading text-slate-900 dark:text-white mb-3">
+                    Media Sosial Resmi
                   </h2>
-                  <div className="mt-2 flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2.5">
                     {contact.socialMedia.instagram && (
                       <a
                         href={contact.socialMedia.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md bg-pink-50 px-4 py-2 text-sm font-medium text-pink-700 hover:bg-pink-100"
+                        className="rounded-xl bg-pink-50 dark:bg-pink-500/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400 border border-pink-100/35 dark:border-pink-500/15 hover:bg-pink-100/60 dark:hover:bg-pink-500/20 active:scale-[0.98] transition-all"
                       >
-                        Instagram
+                        📷 Instagram
                       </a>
                     )}
                     {contact.socialMedia.facebook && (
@@ -135,9 +136,9 @@ export default async function ContactPage() {
                         href={contact.socialMedia.facebook}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100"
+                        className="rounded-xl bg-blue-50 dark:bg-blue-500/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 border border-blue-100/35 dark:border-blue-500/15 hover:bg-blue-100/60 dark:hover:bg-blue-500/20 active:scale-[0.98] transition-all"
                       >
-                        Facebook
+                        👥 Facebook
                       </a>
                     )}
                     {contact.socialMedia.youtube && (
@@ -145,9 +146,9 @@ export default async function ContactPage() {
                         href={contact.socialMedia.youtube}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md bg-red-50 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100"
+                        className="rounded-xl bg-red-50 dark:bg-red-500/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 border border-red-100/35 dark:border-red-500/15 hover:bg-red-100/60 dark:hover:bg-red-500/20 active:scale-[0.98] transition-all"
                       >
-                        YouTube
+                        🎥 YouTube
                       </a>
                     )}
                   </div>
@@ -155,16 +156,16 @@ export default async function ContactPage() {
               )}
             </div>
 
-            <div>
+            <div className="h-full min-h-[400px] rounded-2xl border border-slate-200/80 dark:border-white/10 overflow-hidden bg-white dark:bg-slate-900/50 p-2.5 shadow-sm">
               {contact.mapsEmbedUrl ? (
                 <div
-                  className="overflow-hidden rounded-lg border border-slate-200"
+                  className="w-full h-full min-h-[380px] rounded-xl overflow-hidden shadow-inner border border-slate-100 dark:border-white/5 [&>iframe]:w-full [&>iframe]:h-full"
                   dangerouslySetInnerHTML={{ __html: contact.mapsEmbedUrl }}
                 />
               ) : (
-                <div className="flex h-full min-h-[300px] items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50">
-                  <p className="text-sm text-slate-400">
-                    Peta belum tersedia
+                <div className="flex h-full min-h-[380px] items-center justify-center rounded-xl border border-dashed border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-slate-950/40">
+                  <p className="text-sm text-slate-400 dark:text-slate-500">
+                    Peta lokasi belum tersedia
                   </p>
                 </div>
               )}
@@ -172,6 +173,6 @@ export default async function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }

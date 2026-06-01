@@ -21,7 +21,7 @@ export default async function MealMenuPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
           {sorted.length === 0 ? (
             <p className="text-center text-slate-500">Belum ada menu.</p>

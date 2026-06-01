@@ -21,13 +21,7 @@ function AddProgramForm() {
         <textarea name="description" placeholder="Deskripsi" rows={2} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <select name="type" className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none">
-          <option value="IPA">IPA</option>
-          <option value="IPS">IPS</option>
-          <option value="Bahasa">Bahasa</option>
-          <option value="Agama">Agama</option>
-          <option value="Umum">Umum</option>
-        </select>
+        <input name="type" placeholder="Kategori (mis: Kelompok A, Tahfidz, dll)" className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
         <input name="icon" placeholder="Icon (emoji)" className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
       </div>
       {state?.error && <p className="text-xs text-red-500">{state.error}</p>}

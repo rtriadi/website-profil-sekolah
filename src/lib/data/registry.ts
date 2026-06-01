@@ -1,7 +1,9 @@
 import { registerSingleton, setProvider, getProvider } from "./repository";
 
 export function initializeDatabaseProvider() {
-  const env = process.env.DATABASE_PROVIDER ?? "json";
+  // Auto-detect Vercel — use Supabase in production/preview
+  const onVercel = !!process.env.VERCEL_ENV;
+  const env = process.env.DATABASE_PROVIDER ?? (onVercel ? "supabase" : "json");
   setProvider(env === "supabase" ? "supabase" : "json");
 }
 

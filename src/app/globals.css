@@ -54,6 +54,103 @@
   --ring: 56 189 248;
 }
 
+/* Global Dark Mode Overrides for Hardcoded Light Classes */
+.dark .bg-white {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: rgba(30, 41, 59, 0.4) !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+  color: rgb(248 250 252) !important;
+}
+
+.dark .border-slate-100 {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Text color adaptations */
+.dark .text-slate-900 {
+  color: rgb(248 250 252) !important;
+}
+
+.dark .text-slate-800 {
+  color: rgb(226 232 240) !important;
+}
+
+.dark .text-slate-700 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-600 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+/* Inputs, Selects, Textareas inside Dark mode */
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark select,
+.dark textarea {
+  background-color: rgba(11, 15, 25, 0.8) !important;
+  color: rgb(248 250 252) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: rgb(99 102 241) !important;
+  outline: none !important;
+}
+
+/* Table and list hover effects */
+.dark .hover\:bg-slate-50:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Tag buttons and badge color schemes */
+.dark .bg-pink-50 {
+  background-color: rgba(236, 72, 153, 0.1) !important;
+  color: rgb(244, 114, 182) !important;
+}
+.dark .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: rgb(96, 165, 250) !important;
+}
+.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: rgb(248, 113, 113) !important;
+}
+.dark .bg-slate-900 {
+  background-color: rgb(248 250 252) !important;
+  color: rgb(15 23 42) !important;
+}
+.dark .bg-indigo-100 {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  color: rgb(129, 140, 248) !important;
+}
+
+
 body {
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));

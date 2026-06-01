@@ -98,7 +98,7 @@ export function AdminContactClient({ contact }: Props) {
           {dayNames.map((day) => {
             const h = hours.find((h) => h.day === day) ?? { day, open: "", close: "", isClosed: true };
             return (
-              <div key={day} className="flex items-center gap-3">
+              <div key={day} className="operating-hours-row flex items-center gap-3">
                 <span className="w-20 text-sm font-medium text-slate-700">{day}</span>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -169,7 +169,7 @@ export function AdminContactClient({ contact }: Props) {
           type="submit"
           disabled={pending}
           onClick={() => {
-            const rows = document.querySelectorAll<HTMLElement>(".flex.items-center.gap-3");
+            const rows = document.querySelectorAll<HTMLElement>(".operating-hours-row");
             const hoursData: OperatingHour[] = [];
             rows.forEach((row) => {
               const day = row.querySelector("span")?.textContent ?? "";

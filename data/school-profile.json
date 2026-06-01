@@ -9,23 +9,25 @@
       "status": "Swasta"
     },
     "address": {
-      "street": "Jalan",
-      "village": "Kelurahan Contoh",
-      "district": "Kecamatan Contoh",
-      "city": "Kota Contoh",
-      "province": "Provinsi Contoh",
-      "postalCode": "00000"
+      "street": "Jalan Yusuf Hasiru No.305",
+      "village": "Kelurahan Bulotada'a Timur",
+      "district": "Kecamatan Sipatana",
+      "city": "Kota Gorontalo",
+      "province": "Provinsi Gorontalo",
+      "postalCode": "96139"
     },
     "contact": {
-      "phone": "(0000) 000-0000",
-      "email": "admin@sekolah.sch.id",
+      "phone": "082217464238",
+      "email": "darulkhairatgorontalo715@gmail.com",
       "website": "https://sekolah.sch.id"
     },
     "accreditation": {
-      "rating": "A",
+      "rating": "B",
       "institution": "BAN-S/M",
       "certificateNumber": "000/XX/X/0000",
       "validUntil": "2028-12-31"
-    }
+    },
+    "heroBadge": "Portal Resmi Sekolah",
+    "heroSubtitle": "Membentuk masa depan cemerlang melalui dedikasi akademik, integritas karakter, dan inovasi tanpa batas. Temukan visi luhur dan program unggulan kami."
   }
 ]

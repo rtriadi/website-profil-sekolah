@@ -42,6 +42,8 @@ export interface SchoolProfile {
   address: Address;
   contact: Contact;
   accreditation: Accreditation;
+  heroBadge?: string; // badge text on homepage hero
+  heroSubtitle?: string; // subtitle/description on homepage hero
 }
 
 export interface SchoolNarrative {
@@ -102,7 +104,7 @@ export interface SchoolProgram {
   name: string;
   description: string;
   slug: string;
-  type: "IPA" | "IPS" | "Bahasa" | "Agama" | "Umum";
+  type: string; // free-form text (e.g. "Kelompok A", "Tahfidz", "Seni", etc.)
   icon: string; // emoji or icon name
 }
 

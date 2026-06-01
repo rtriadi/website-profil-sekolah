@@ -23,7 +23,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white min-h-[50vh]">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20 min-h-[50vh]">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
           <GalleryClient items={items} albums={albums} />
         </div>

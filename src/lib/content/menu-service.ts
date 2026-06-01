@@ -20,6 +20,10 @@ export const defaultMenuSettings: MenuSettings = {
   "/announcements": true,
   "/events": true,
   "/unduhan": true,
+  "/kalender-akademik": true,
+  "/faq": true,
+  "/kontak": true,
+  "/testimonies": true,
 };
 
 const repo = getRepository<MenuSettings>("menu-settings");

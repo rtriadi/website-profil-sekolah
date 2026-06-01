@@ -16,6 +16,7 @@ export async function createTeacherAction(
   const subject = formData.get("subject") as string;
   const position = formData.get("position") as string;
   const description = formData.get("description") as string;
+  const photoUrl = formData.get("photoUrl") as string;
 
   const errors: Record<string, string> = {};
   if (!name?.trim()) errors.name = "Nama harus diisi";
@@ -29,6 +30,7 @@ export async function createTeacherAction(
     subject: subject.trim(),
     position: position?.trim() || "Guru",
     description: description?.trim() || undefined,
+    photoUrl: photoUrl?.trim() || undefined,
   });
 
   revalidatePath("/guru");
@@ -46,6 +48,7 @@ export async function updateTeacherAction(
   const subject = formData.get("subject") as string;
   const position = formData.get("position") as string;
   const description = formData.get("description") as string;
+  const photoUrl = formData.get("photoUrl") as string;
 
   const errors: Record<string, string> = {};
   if (!name?.trim()) errors.name = "Nama harus diisi";
@@ -59,6 +62,7 @@ export async function updateTeacherAction(
     subject: subject.trim(),
     position: position?.trim() || "Guru",
     description: description?.trim() || undefined,
+    photoUrl: photoUrl?.trim() || undefined,
   });
 
   revalidatePath("/guru");

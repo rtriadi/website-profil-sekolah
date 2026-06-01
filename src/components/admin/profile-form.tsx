@@ -32,7 +32,7 @@ export function ProfileForm({ profile, action }: Props) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className={labelClass}>Nama Sekolah</label>
-            <input id="name" name="name" defaultValue={p.identity.name} placeholder="Contoh: SMA Unggul Jaya" className={inputClass} />
+            <input id="name" name="name" defaultValue={p.identity.name} placeholder="Contoh: SMA Unggul Jaya…" autoComplete="organization" className={inputClass} />
           </div>
           <div>
             <label htmlFor="shortName" className={labelClass}>Nama Singkat</label>
@@ -42,11 +42,11 @@ export function ProfileForm({ profile, action }: Props) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="npsn" className={labelClass}>NPSN</label>
-            <input id="npsn" name="npsn" defaultValue={p.identity.npsn} placeholder="Masukkan 8 digit NPSN" className={inputClass} />
+            <input id="npsn" name="npsn" defaultValue={p.identity.npsn} placeholder="Masukkan 8 digit NPSN…" autoComplete="off" className={inputClass} />
           </div>
           <div>
             <label htmlFor="principalName" className={labelClass}>Kepala Sekolah</label>
-            <input id="principalName" name="principalName" defaultValue={p.identity.principalName} placeholder="Nama Kepala Sekolah beserta gelar" className={inputClass} />
+            <input id="principalName" name="principalName" defaultValue={p.identity.principalName} placeholder="Nama Kepala Sekolah beserta gelar…" autoComplete="name" className={inputClass} />
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -72,7 +72,7 @@ export function ProfileForm({ profile, action }: Props) {
         </legend>
         <div>
           <label htmlFor="street" className={labelClass}>Nama Jalan & No.</label>
-          <input id="street" name="street" defaultValue={p.address.street} placeholder="Contoh: Jl. Sudirman No. 45" className={inputClass} />
+          <input id="street" name="street" defaultValue={p.address.street} placeholder="Contoh: Jl. Sudirman No. 45…" autoComplete="street-address" className={inputClass} />
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -97,7 +97,7 @@ export function ProfileForm({ profile, action }: Props) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="postalCode" className={labelClass}>Kode Pos</label>
-            <input id="postalCode" name="postalCode" defaultValue={p.address.postalCode} placeholder="Contoh: 10110" className={inputClass} />
+            <input id="postalCode" name="postalCode" defaultValue={p.address.postalCode} placeholder="Contoh: 10110…" autoComplete="postal-code" className={inputClass} />
           </div>
         </div>
       </fieldset>
@@ -111,16 +111,16 @@ export function ProfileForm({ profile, action }: Props) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="phone" className={labelClass}>No. Telepon Kantor</label>
-            <input id="phone" name="phone" defaultValue={p.contact.phone} placeholder="Contoh: (021) 123456" className={inputClass} />
+            <input id="phone" name="phone" defaultValue={p.contact.phone} placeholder="Contoh: (021) 123456…" autoComplete="tel" className={inputClass} />
           </div>
           <div>
             <label htmlFor="email" className={labelClass}>Email Instansi</label>
-            <input id="email" name="email" type="email" defaultValue={p.contact.email} placeholder="admin@sekolah.sch.id" className={inputClass} />
+            <input id="email" name="email" type="email" defaultValue={p.contact.email} placeholder="admin@sekolah.sch.id…" autoComplete="email" spellCheck={false} className={inputClass} />
           </div>
         </div>
         <div>
           <label htmlFor="website" className={labelClass}>Alamat Website</label>
-          <input id="website" name="website" type="url" defaultValue={p.contact.website} placeholder="https://sekolah.sch.id" className={inputClass} />
+          <input id="website" name="website" type="url" defaultValue={p.contact.website} placeholder="https://sekolah.sch.id…" autoComplete="url" spellCheck={false} className={inputClass} />
         </div>
       </fieldset>
 
@@ -152,6 +152,22 @@ export function ProfileForm({ profile, action }: Props) {
         </div>
       </fieldset>
 
+      {/* Hero Section */}
+      <fieldset className="space-y-4 pt-4">
+        <legend className={legendClass}>
+          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-indigo-50 text-xs text-indigo-600 font-bold">5</span>
+          Hero Halaman Depan
+        </legend>
+        <div>
+          <label htmlFor="heroBadge" className={labelClass}>Label Badge</label>
+          <input id="heroBadge" name="heroBadge" defaultValue={p.heroBadge ?? ""} placeholder="Contoh: Portal Resmi Pendidikan" className={inputClass} />
+        </div>
+        <div>
+          <label htmlFor="heroSubtitle" className={labelClass}>Subtitle / Deskripsi</label>
+          <textarea id="heroSubtitle" name="heroSubtitle" defaultValue={p.heroSubtitle ?? ""} rows={3} placeholder="Teks deskripsi yang muncul di hero homepage" className={inputClass} />
+        </div>
+      </fieldset>
+
       {/* Form Submit & Cancel Controls */}
       <div className="flex items-center gap-3 pt-6 border-t border-slate-100">
         <button
@@ -165,7 +181,7 @@ export function ProfileForm({ profile, action }: Props) {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              Menyimpan...
+              Menyimpan…
             </>
           ) : (
             "Simpan Profil"

@@ -20,7 +20,7 @@ export default async function TuitionPage() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
           {data.items.length === 0 ? (
             <p className="text-center text-slate-500">Belum ada informasi biaya.</p>
