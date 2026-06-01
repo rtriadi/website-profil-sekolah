@@ -191,3 +191,241 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulseGlow 8s ease-in-out infinite;
 }
 
+/* ============================================================
+   MULTI-COLOR THEMES SYSTEM (Indigo, Emerald, Rose, Amber, Violet)
+   ============================================================ */
+
+/* Theme Variables mapping */
+:root {
+  --primary-rgb: 79, 70, 229;
+  --secondary-rgb: 56, 189, 248;
+}
+
+[data-color-theme="emerald"] {
+  --primary-rgb: 16, 185, 129;
+  --secondary-rgb: 20, 184, 166;
+}
+
+[data-color-theme="rose"] {
+  --primary-rgb: 225, 29, 72;
+  --secondary-rgb: 236, 72, 153;
+}
+
+[data-color-theme="amber"] {
+  --primary-rgb: 217, 119, 6;
+  --secondary-rgb: 249, 115, 22;
+}
+
+[data-color-theme="violet"] {
+  --primary-rgb: 124, 58, 237;
+  --secondary-rgb: 217, 70, 239;
+}
+
+/* Map variables */
+:root, [data-color-theme] {
+  --primary: var(--primary-rgb);
+  --secondary: var(--secondary-rgb);
+  --ring: var(--primary-rgb);
+}
+
+/* Dynamic theme custom overrides for indigo and sky utilities */
+[data-color-theme] .bg-indigo-600 {
+  background-color: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .bg-indigo-500 {
+  background-color: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .bg-indigo-50 {
+  background-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .dark .bg-indigo-950\/40 {
+  background-color: rgba(var(--primary-rgb), 0.15) !important;
+}
+[data-color-theme] .bg-indigo-500\/10 {
+  background-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .bg-indigo-500\/20 {
+  background-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+
+[data-color-theme] .text-indigo-600 {
+  color: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .text-indigo-400 {
+  color: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+[data-color-theme] .dark .text-indigo-400 {
+  color: rgba(var(--primary-rgb), 0.8) !important;
+}
+[data-color-theme] .group-hover\:text-indigo-300:hover,
+[data-color-theme] .group:hover .group-hover\:text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+[data-color-theme] .group-hover\:text-indigo-400:hover,
+[data-color-theme] .group:hover .group-hover\:text-indigo-400 {
+  color: rgba(var(--primary-rgb), 0.8) !important;
+}
+
+[data-color-theme] .border-indigo-500 {
+  border-color: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .border-indigo-500\/30 {
+  border-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+[data-color-theme] .border-indigo-500\/20 {
+  border-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .border-indigo-500\/10 {
+  border-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .border-indigo-100 {
+  border-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .border-indigo-100\/30 {
+  border-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+
+[data-color-theme] .text-sky-300 {
+  color: rgb(var(--secondary-rgb)) !important;
+}
+[data-color-theme] .text-sky-400 {
+  color: rgb(var(--secondary-rgb)) !important;
+}
+[data-color-theme] .border-sky-500\/30 {
+  border-color: rgba(var(--secondary-rgb), 0.3) !important;
+}
+[data-color-theme] .bg-sky-500\/10 {
+  background-color: rgba(var(--secondary-rgb), 0.1) !important;
+}
+
+[data-color-theme] .from-indigo-500 {
+  --tw-gradient-from: rgb(var(--primary-rgb)) !important;
+  --tw-gradient-to: rgba(var(--primary-rgb), 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+[data-color-theme] .to-sky-400 {
+  --tw-gradient-to: rgb(var(--secondary-rgb)) !important;
+}
+[data-color-theme] .to-sky-300 {
+  --tw-gradient-to: rgb(var(--secondary-rgb)) !important;
+}
+[data-color-theme] .from-indigo-600 {
+  --tw-gradient-from: rgb(var(--primary-rgb)) !important;
+  --tw-gradient-to: rgba(var(--primary-rgb), 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+[data-color-theme] .to-indigo-700 {
+  --tw-gradient-to: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .from-indigo-400 {
+  --tw-gradient-from: rgb(var(--primary-rgb)) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+[data-color-theme] .from-indigo-500\/10 {
+  --tw-gradient-from: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .to-indigo-500\/20 {
+  --tw-gradient-to: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .from-sky-500\/10 {
+  --tw-gradient-from: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .to-sky-500\/20 {
+  --tw-gradient-to: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .from-indigo-500\/10 {
+  --tw-gradient-from: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .to-indigo-500\/20 {
+  --tw-gradient-to: rgba(var(--primary-rgb), 0.2) !important;
+}
+
+[data-color-theme] .shadow-\[0_0_15px_rgba\(99\,102\,241\,0\.2\)\] {
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.25) !important;
+}
+[data-color-theme] .shadow-\[0_0_20px_rgba\(99\,102\,241\,0\.3\)\] {
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.35) !important;
+}
+[data-color-theme] .shadow-\[0_0_30px_rgba\(99\,102\,241\,0\.5\)\] {
+  box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.55) !important;
+}
+[data-color-theme] .hover\:shadow-\[0_8px_30px_rgba\(99\,102\,241\,0\.1\)\]:hover {
+  box-shadow: 0 8px 30px rgba(var(--primary-rgb), 0.15) !important;
+}
+[data-color-theme] .bg-indigo-600\/10 {
+  background-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .bg-sky-500\/10 {
+  background-color: rgba(var(--secondary-rgb), 0.1) !important;
+}
+
+[data-color-theme] .from-indigo-500\/10 {
+  --tw-gradient-from: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .to-indigo-500\/20 {
+  --tw-gradient-to: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .from-sky-500\/10 {
+  --tw-gradient-from: rgba(var(--secondary-rgb), 0.1) !important;
+}
+[data-color-theme] .to-sky-500\/20 {
+  --tw-gradient-to: rgba(var(--secondary-rgb), 0.2) !important;
+}
+[data-color-theme] .bg-indigo-500\/10 {
+  background-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .bg-indigo-500\/20 {
+  background-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .bg-indigo-500\/30 {
+  background-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+[data-color-theme] .from-indigo-500 {
+  --tw-gradient-from: rgb(var(--primary-rgb)) !important;
+}
+[data-color-theme] .to-sky-400 {
+  --tw-gradient-to: rgb(var(--secondary-rgb)) !important;
+}
+[data-color-theme] .border-indigo-500\/30 {
+  border-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+[data-color-theme] .border-indigo-500\/20 {
+  border-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .hover\:border-indigo-500\/30:hover {
+  border-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+[data-color-theme] .hover\:border-indigo-500\/25:hover {
+  border-color: rgba(var(--primary-rgb), 0.25) !important;
+}
+[data-color-theme] .hover\:border-indigo-500\/20:hover {
+  border-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .dark .hover\:border-indigo-500\/30:hover {
+  border-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+[data-color-theme] .group:hover .group-hover\:scale-110 {
+  transform: scale(1.1) !important;
+}
+[data-color-theme] .group:hover .group-hover\:bg-indigo-500\/10 {
+  background-color: rgba(var(--primary-rgb), 0.1) !important;
+}
+[data-color-theme] .group:hover .group-hover\:border-indigo-500\/20 {
+  border-color: rgba(var(--primary-rgb), 0.2) !important;
+}
+[data-color-theme] .text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+[data-color-theme] .dark .text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+[data-color-theme] .group-hover\:text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+[data-color-theme] .dark .group-hover\:text-indigo-300 {
+  color: rgba(var(--primary-rgb), 0.9) !important;
+}
+

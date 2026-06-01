@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const directLinks = [
@@ -51,6 +51,14 @@ const menuGroups = [
   },
 ];
 
+const colorThemes = [
+  { id: "indigo", name: "Space Indigo", primary: "bg-indigo-600", secondary: "bg-sky-400" },
+  { id: "emerald", name: "Forest Emerald", primary: "bg-emerald-600", secondary: "bg-teal-500" },
+  { id: "rose", name: "Elegant Rose", primary: "bg-rose-600", secondary: "bg-pink-500" },
+  { id: "amber", name: "Warm Amber", primary: "bg-amber-600", secondary: "bg-orange-500" },
+  { id: "violet", name: "Royal Violet", primary: "bg-violet-600", secondary: "bg-fuchsia-500" },
+];
+
 interface SiteHeaderProps {
   menuSettings?: Record<string, boolean>;
   schoolName?: string;
@@ -61,6 +69,21 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
+  const [colorTheme, setColorTheme] = useState<string>("indigo");
+  const [colorPickerOpen, setColorPickerOpen] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("school-color-theme") || "indigo";
+    setColorTheme(saved);
+    document.documentElement.setAttribute("data-color-theme", saved);
+  }, []);
+
+  const handleColorThemeChange = (themeId: string) => {
+    setColorTheme(themeId);
+    localStorage.setItem("school-color-theme", themeId);
+    document.documentElement.setAttribute("data-color-theme", themeId);
+    setColorPickerOpen(false);
+  };
 
   const toggleMobileGroup = (key: string) => {
     setMobileExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -179,6 +202,57 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                 );
               })}
             </nav>
+
+            {/* Color Palette Theme Switcher */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setColorPickerOpen(!colorPickerOpen)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
+                aria-label="Ubah tema warna"
+              >
+                <span className="text-xs">🎨</span>
+              </button>
+
+              {colorPickerOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setColorPickerOpen(false)}
+                  />
+                  <div className="absolute right-0 top-full z-50 pt-2 w-48 origin-top-right">
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="space-y-0.5">
+                        <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                          Pilih Tema Warna
+                        </div>
+                        {colorThemes.map((theme) => {
+                          const isActive = colorTheme === theme.id;
+                          return (
+                            <button
+                              key={theme.id}
+                              type="button"
+                              onClick={() => handleColorThemeChange(theme.id)}
+                              className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-semibold tracking-wide transition-all duration-150 focus-visible:outline-none ${
+                                isActive
+                                  ? "bg-white/10 text-white"
+                                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+                              }`}
+                            >
+                              <span className="truncate">{theme.name}</span>
+                              <div className="flex items-center gap-1 shrink-0 ml-2">
+                                <span className={`h-2.5 w-2.5 rounded-full ${theme.primary}`} />
+                                <span className={`h-2.5 w-2.5 rounded-full ${theme.secondary}`} />
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
 
             <ThemeToggle variant="public" />
 

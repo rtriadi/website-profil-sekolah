@@ -19,6 +19,9 @@ const config: Config = {
           DEFAULT: "rgb(var(--primary) / <alpha-value>)",
           foreground: "rgb(var(--primary-foreground) / <alpha-value>)",
         },
+        secondary: {
+          DEFAULT: "rgb(var(--secondary) / <alpha-value>)",
+        },
         card: {
           DEFAULT: "rgb(var(--card) / <alpha-value>)",
           foreground: "rgb(var(--card-foreground) / <alpha-value>)",

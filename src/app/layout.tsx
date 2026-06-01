@@ -44,6 +44,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem("school-color-theme") || "indigo";
+                document.documentElement.setAttribute("data-color-theme", theme);
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <ThemeProvider
           attribute="class"

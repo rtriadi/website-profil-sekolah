@@ -14,32 +14,28 @@ export default async function PublicClassesPage() {
   ]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#070b15] text-slate-100 font-sans pb-24">
-      {/* Background Decorative Mesh Glows */}
-      <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-3xl animate-pulse-glow" />
-      <div className="absolute top-[40%] right-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "-4s" }} />
-
+    <>
       {/* Hero Banner Grid Section */}
-      <section className="relative pt-32 pb-16 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 border-b border-white/5">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 text-center">
           <span className="inline-flex rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-sky-300 shadow-[0_0_15px_rgba(56,189,248,0.2)] mb-4">
             🏫 AKADEMIK
           </span>
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <h1 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Daftar Kelas & Wali Kelas
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400">
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-300">
             Informasi lengkap mengenai pembagian kelas, jumlah siswa, ruangan belajar, serta Wali Kelas yang berdedikasi membimbing putra-putri Anda.
           </p>
         </div>
       </section>
 
       {/* Classes Grid Section */}
-      <section className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20 py-16 min-h-[60vh]">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {classes.length === 0 ? (
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-12 text-center backdrop-blur-md">
-              <p className="text-slate-400 text-sm">Belum ada daftar kelas yang dipublikasikan.</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/50 p-12 text-center shadow-sm">
+              <p className="text-slate-400 dark:text-slate-500 text-sm">Belum ada daftar kelas yang dipublikasikan.</p>
             </div>
           ) : (
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -48,16 +44,16 @@ export default async function PublicClassesPage() {
                 return (
                   <div
                     key={c.id}
-                    className="group relative rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-white/10 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)] flex flex-col justify-between"
+                    className="group relative rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/50 p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
                   >
                     <div>
                       {/* Top Header Card */}
-                      <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                        <h3 className="font-heading text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                      <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-3">
+                        <h3 className="font-heading text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                           {c.name}
                         </h3>
                         {c.studentCount && (
-                          <span className="inline-flex rounded-full bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 text-[10px] font-bold text-indigo-400">
+                          <span className="inline-flex rounded-full bg-indigo-5 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2.5 py-0.5 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
                             👤 {c.studentCount} Siswa
                           </span>
                         )}
@@ -65,21 +61,21 @@ export default async function PublicClassesPage() {
 
                       {/* Main Room Information */}
                       <div className="mt-4 space-y-2">
-                        <p className="flex justify-between text-xs">
-                          <span className="font-bold text-slate-500 uppercase tracking-wider">Ruangan:</span>
-                          <span className="font-semibold text-slate-300">{c.roomName ?? "—"}</span>
-                        </p>
-                        <p className="flex justify-between text-xs">
-                          <span className="font-bold text-slate-500 uppercase tracking-wider">Wali Kelas:</span>
-                          <span className="font-semibold text-slate-300 text-right truncate max-w-[180px]" title={teacher?.name}>
+                        <div className="flex justify-between text-xs">
+                          <span className="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Ruangan:</span>
+                          <span className="font-semibold text-slate-700 dark:text-slate-300">{c.roomName ?? "—"}</span>
+                        </div>
+                        <div className="flex justify-between text-xs">
+                          <span className="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Wali Kelas:</span>
+                          <span className="font-semibold text-slate-700 dark:text-slate-300 text-right truncate max-w-[180px]" title={teacher?.name}>
                             {teacher?.name ?? "—"}
                           </span>
-                        </p>
+                        </div>
                       </div>
 
                       {/* Class Description */}
                       {c.description && (
-                        <p className="mt-4 text-xs text-slate-400 leading-relaxed border-t border-white/5 pt-3">
+                        <p className="mt-4 text-xs text-slate-500 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-white/5 pt-3">
                           {c.description}
                         </p>
                       )}
@@ -87,7 +83,7 @@ export default async function PublicClassesPage() {
 
                     {/* Wali Kelas Photo/Details Indicator */}
                     {teacher && (
-                      <div className="mt-6 flex items-center gap-3 border-t border-white/5 pt-4">
+                      <div className="mt-6 flex items-center gap-3 border-t border-slate-100 dark:border-white/5 pt-4">
                         <div className="h-9 w-9 rounded-full bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-sm font-extrabold text-slate-950 shadow-md">
                           {teacher.photoUrl ? (
                             <img
@@ -100,8 +96,8 @@ export default async function PublicClassesPage() {
                           )}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-[11px] font-bold text-white truncate">{teacher.name}</h4>
-                          <p className="text-[9px] text-slate-500 truncate mt-0.5">{teacher.position || "Guru"}</p>
+                          <h4 className="text-[11px] font-bold text-slate-900 dark:text-white truncate">{teacher.name}</h4>
+                          <p className="text-[9px] text-slate-400 dark:text-slate-500 truncate mt-0.5">{teacher.position || "Guru"}</p>
                         </div>
                       </div>
                     )}
@@ -112,6 +108,6 @@ export default async function PublicClassesPage() {
           )}
         </div>
       </section>
-    </div>
+    </>
   );
 }
