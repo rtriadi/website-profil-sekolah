@@ -47,7 +47,7 @@ export async function updateProfileAction(
     heroSubtitle: (formData.get("heroSubtitle") as string) || undefined,
   };
 
-  saveSchoolProfile(profile);
+  await saveSchoolProfile(profile);
   revalidatePath("/");
   revalidatePath("/profile");
   revalidatePath("/admin/profile");

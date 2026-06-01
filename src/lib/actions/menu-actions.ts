@@ -1,18 +1,27 @@
 "use server";
 
-import { getMenuSettings, saveMenuSettings, type MenuSettings } from "@/lib/content/menu-service";
+import {
+  getMenuSettingsAsync,
+  saveMenuSettingsAsync,
+  defaultMenuSettings,
+  type MenuSettings,
+} from "@/lib/content/menu-service";
 import { revalidatePath } from "next/cache";
 
 export async function updateMenuSettingsAction(formData: FormData) {
-  const current = getMenuSettings();
+  // Build updated settings object from form
   const updated: MenuSettings = {};
-
-  for (const key of Object.keys(current)) {
-    // If the checkbox is checked, it will send a value. If not checked, it won't be in formData.
+  for (const key of Object.keys(defaultMenuSettings)) {
     updated[key] = formData.get(key) === "true";
   }
 
-  saveMenuSettings(updated);
+  // Async save — works in both Supabase (production) and JSON (local) modes
+  await saveMenuSettingsAsync(updated);
+
   revalidatePath("/", "layout");
   return { success: true };
+}
+
+export async function getMenuSettingsAction(): Promise<MenuSettings> {
+  return getMenuSettingsAsync();
 }

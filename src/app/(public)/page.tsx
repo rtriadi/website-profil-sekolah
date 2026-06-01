@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { getSchoolProfile } from "@/lib/content/profile-service";
 import { getAnnouncements, getSpotlightAnnouncement } from "@/lib/content/announcement-service";
-import { getMenuSettings } from "@/lib/content/menu-service";
+import { getMenuSettingsAsync } from "@/lib/content/menu-service";
+
 import { getTestimonies } from "@/lib/content/testimony-service";
 
 function formatDate(iso: string): string {
@@ -172,7 +173,7 @@ export default async function Home() {
     getAnnouncements(),
     getSpotlightAnnouncement(),
     getTestimonies(),
-    getMenuSettings(),
+    getMenuSettingsAsync(),
   ]);
 
   const latest = announcements.slice(0, 3);

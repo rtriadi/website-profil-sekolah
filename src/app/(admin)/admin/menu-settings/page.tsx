@@ -1,8 +1,9 @@
-import { getMenuSettings } from "@/lib/content/menu-service";
+import { getMenuSettingsAsync } from "@/lib/content/menu-service";
 import { MenuSettingsForm } from "@/components/admin/menu-settings-form";
 
-export default function MenuSettingsPage() {
-  const settings = getMenuSettings();
+export default async function MenuSettingsPage() {
+  const settings = await getMenuSettingsAsync();
+
 
   return (
     <div className="space-y-6">
