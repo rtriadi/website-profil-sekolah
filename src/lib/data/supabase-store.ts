@@ -1,32 +1,26 @@
 /**
  * Async Supabase json_store helper.
  *
- * All services that run in Vercel (serverless) MUST use these helpers
- * instead of the synchronous SupabaseRepository (which relied on curl).
+ * - storeGet: reads via anon key (public read RLS)
+ * - storeSet: writes via SERVICE ROLE key (bypasses RLS — server-only)
  *
  * The `json_store` table schema:
- *   filename  text PRIMARY KEY
- *   content   text NOT NULL          -- JSON-serialised payload
+ *   filename   text PRIMARY KEY
+ *   content    text NOT NULL          -- JSON-serialised payload
  *   updated_at timestamptz
  */
 
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
-
-function supabaseHeaders() {
-  return {
-    apikey: SUPABASE_KEY,
-    Authorization: `Bearer ${SUPABASE_KEY}`,
-    "Content-Type": "application/json",
-    Prefer: "resolution=merge-duplicates,return=minimal",
-  };
-}
+const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+// Service role key bypasses RLS — only used server-side in Server Actions
+const SERVICE_KEY =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 
 /**
  * Read a JSON payload from the json_store table.
- * Falls back to `fallback` when not configured or row not found.
+ * Uses anon key (public read is allowed by RLS).
  */
 export async function storeGet<T>(filename: string, fallback: T): Promise<T> {
   if (!isSupabaseConfigured()) return fallback;
@@ -35,14 +29,15 @@ export async function storeGet<T>(filename: string, fallback: T): Promise<T> {
     const url = `${SUPABASE_URL}/rest/v1/json_store?filename=eq.${encodeURIComponent(filename)}&select=content&limit=1`;
     const res = await fetch(url, {
       headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
+        apikey: ANON_KEY,
+        Authorization: `Bearer ${ANON_KEY}`,
       },
       cache: "no-store",
     });
 
     if (!res.ok) {
-      console.error(`[storeGet] HTTP ${res.status} for ${filename}`);
+      const text = await res.text();
+      console.error(`[storeGet] HTTP ${res.status} for ${filename}:`, text);
       return fallback;
     }
 
@@ -59,7 +54,9 @@ export async function storeGet<T>(filename: string, fallback: T): Promise<T> {
 
 /**
  * Write/upsert a JSON payload to the json_store table.
- * Returns true on success.
+ *
+ * Uses SERVICE ROLE key to bypass RLS.
+ * This function MUST only be called from server-side code (Server Actions).
  */
 export async function storeSet<T>(filename: string, data: T): Promise<boolean> {
   if (!isSupabaseConfigured()) return false;
@@ -74,7 +71,12 @@ export async function storeSet<T>(filename: string, data: T): Promise<boolean> {
 
     const res = await fetch(url, {
       method: "POST",
-      headers: supabaseHeaders(),
+      headers: {
+        apikey: SERVICE_KEY,
+        Authorization: `Bearer ${SERVICE_KEY}`,
+        "Content-Type": "application/json",
+        Prefer: "resolution=merge-duplicates,return=minimal",
+      },
       body: JSON.stringify(body),
     });
 
@@ -84,6 +86,7 @@ export async function storeSet<T>(filename: string, data: T): Promise<boolean> {
       return false;
     }
 
+    console.log(`[storeSet] Saved ${filename} to Supabase`);
     return true;
   } catch (err) {
     console.error(`[storeSet] Error writing ${filename}:`, err);
