@@ -98,17 +98,17 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
 
   return (
     <div className="sticky top-4 z-50 w-full px-4 sm:px-6">
-      <header className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-slate-950/75 backdrop-blur-xl shadow-2xl shadow-slate-950/40">
+      <header className="mx-auto max-w-6xl rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-slate-950/75 backdrop-blur-xl shadow-xl shadow-slate-200/40 dark:shadow-slate-950/40">
         <div className="flex items-center justify-between px-6 py-3.5">
           {/* Logo Brand */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-white transition-all hover:scale-[1.01] active:scale-[0.99]"
+            className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-slate-900 dark:text-white transition-all hover:scale-[1.01] active:scale-[0.99]"
           >
             <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-xs text-slate-950 shadow-md">
               🏫
             </span>
-            <span className="bg-gradient-to-r from-white via-indigo-200 to-sky-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-650 dark:from-white dark:via-indigo-200 dark:to-sky-300 bg-clip-text text-transparent">
               {schoolName}
             </span>
           </Link>
@@ -123,15 +123,15 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 ${
+                    className={`relative rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20 ${
                       isActive
-                        ? "text-white bg-white/10"
-                        : "text-slate-300 hover:text-white hover:bg-white/5"
+                        ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
+                        : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute inset-x-4 -bottom-px mx-auto h-[2px] w-4 rounded-full bg-gradient-to-r from-indigo-400 to-sky-300 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                      <span className="absolute inset-x-4 -bottom-px mx-auto h-[2px] w-4 rounded-full bg-indigo-600 dark:bg-gradient-to-r dark:from-indigo-400 dark:to-sky-300 shadow-[0_0_8px_rgba(99,102,241,0.4)] dark:shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
                     )}
                   </Link>
                 );
@@ -152,10 +152,10 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     <button
                       type="button"
                       onClick={() => setActiveDropdown(isOpen ? null : group.key)}
-                      className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 ${
+                      className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20 ${
                         hasActiveChild
-                          ? "text-white bg-white/10"
-                          : "text-slate-300 hover:text-white hover:bg-white/5"
+                          ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
+                          : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                       }`}
                     >
                       <span>{group.label}</span>
@@ -176,7 +176,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     {/* Dropdown Content */}
                     {isOpen && (
                       <div className="absolute left-0 top-full z-50 pt-2 w-60 origin-top-left">
-                        <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-slate-200/50 dark:shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
                           <div className="space-y-0.5">
                             {group.items.map((item) => {
                               const isActive = pathname === item.href;
@@ -186,8 +186,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                                   href={item.href}
                                   className={`block rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 ${
                                     isActive
-                                      ? "bg-indigo-500/10 text-indigo-300"
-                                      : "text-slate-400 hover:bg-white/5 hover:text-white"
+                                      ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300"
+                                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
                                   }`}
                                 >
                                   {item.label}
@@ -208,7 +208,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
               <button
                 type="button"
                 onClick={() => setColorPickerOpen(!colorPickerOpen)}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
                 aria-label="Ubah tema warna"
               >
                 <span className="text-xs">🎨</span>
@@ -221,9 +221,9 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     onClick={() => setColorPickerOpen(false)}
                   />
                   <div className="absolute right-0 top-full z-50 pt-2 w-48 origin-top-right">
-                    <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-slate-200/50 dark:shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
                       <div className="space-y-0.5">
-                        <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                        <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
                           Pilih Tema Warna
                         </div>
                         {colorThemes.map((theme) => {
@@ -235,8 +235,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                               onClick={() => handleColorThemeChange(theme.id)}
                               className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-semibold tracking-wide transition-all duration-150 focus-visible:outline-none ${
                                 isActive
-                                  ? "bg-white/10 text-white"
-                                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+                                  ? "bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white"
+                                  : "text-slate-650 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
                               }`}
                             >
                               <span className="truncate">{theme.name}</span>
@@ -259,7 +259,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
             {/* Mobile Menu Toggle button */}
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-white/10 hover:text-white transition-colors md:hidden"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white transition-colors md:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
               aria-expanded={menuOpen}
@@ -279,7 +279,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
 
         {/* Mobile Sidebar/Menu overlay */}
         {menuOpen && (
-          <nav className="border-t border-white/5 md:hidden max-h-[75vh] overflow-y-auto scrollbar-thin">
+          <nav className="border-t border-slate-200 dark:border-white/5 md:hidden max-h-[75vh] overflow-y-auto scrollbar-thin">
             <div className="space-y-1.5 px-4 pb-5 pt-3">
               {/* Beranda Direct Link */}
               {directLinks.map((link) => {
@@ -290,8 +290,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     href={link.href}
                     className={`block rounded-xl px-4 py-2.5 text-sm font-semibold tracking-wide transition-all ${
                       isActive
-                        ? "text-white bg-white/10"
-                        : "text-slate-300 hover:text-white hover:bg-white/5"
+                        ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
+                        : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >
@@ -311,8 +311,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                       onClick={() => toggleMobileGroup(group.key)}
                       className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold tracking-wide transition-all ${
                         hasActiveChild
-                          ? "text-white bg-white/5"
-                          : "text-slate-300 hover:bg-white/5"
+                          ? "text-slate-900 bg-slate-100/50 dark:text-white dark:bg-white/5"
+                          : "text-slate-650 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5"
                       }`}
                     >
                       <span>{group.label}</span>
@@ -330,7 +330,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     </button>
 
                     {isExpanded && (
-                      <div className="pl-4 space-y-1 border-l border-white/5 ml-4 my-1">
+                      <div className="pl-4 space-y-1 border-l border-slate-200 dark:border-white/5 ml-4 my-1">
                         {group.items.map((item) => {
                           const isActive = pathname === item.href;
                           return (
@@ -339,8 +339,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                               href={item.href}
                               className={`block rounded-lg px-4 py-2 text-xs font-semibold tracking-wide transition-all ${
                                 isActive
-                                  ? "bg-indigo-500/10 text-indigo-300"
-                                  : "text-slate-400 hover:text-white"
+                                  ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300"
+                                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                               }`}
                               onClick={() => setMenuOpen(false)}
                             >

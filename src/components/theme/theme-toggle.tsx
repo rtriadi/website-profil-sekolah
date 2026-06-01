@@ -16,7 +16,7 @@ export function ThemeToggle({ variant = "public" }: { variant?: "public" | "admi
       <button
         className={`relative inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 ${
           variant === "public"
-            ? "bg-white/10 text-white hover:bg-white/20 focus-visible:ring-white/20"
+            ? "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20"
             : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 focus-visible:ring-indigo-500"
         }`}
         aria-label="Toggle theme"
@@ -37,7 +37,7 @@ export function ThemeToggle({ variant = "public" }: { variant?: "public" | "admi
       onClick={cycleTheme}
       className={`relative inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 ${
         variant === "public"
-          ? "bg-white/10 text-white hover:bg-white/20 focus-visible:ring-white/20"
+          ? "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20"
           : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 focus-visible:ring-indigo-500"
       }`}
       aria-label={`Toggle theme (current: ${theme})`}

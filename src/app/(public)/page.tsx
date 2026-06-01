@@ -187,36 +187,36 @@ export default async function Home() {
     .filter((group) => group.items.length > 0);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#070b15] text-slate-100 font-sans pb-24">
+    <div className="relative min-h-screen overflow-hidden bg-slate-50/50 dark:bg-[#070b15] text-slate-900 dark:text-slate-100 font-sans pb-24 transition-colors duration-300">
       {/* Background Decorative Mesh Glows */}
-      <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-3xl animate-pulse-glow" />
-      <div className="absolute top-[40%] right-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "-4s" }} />
+      <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/5 dark:bg-indigo-600/10 blur-3xl animate-pulse-glow" />
+      <div className="absolute top-[40%] right-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/5 dark:bg-sky-500/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "-4s" }} />
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-16">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+        <div className="mx-auto max-w-4xl px-6 text-center animate-in fade-in slide-in-from-top-3 duration-500">
+          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-100 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.05)] dark:shadow-[0_0_15px_rgba(99,102,241,0.2)]">
             <span>✨</span> {profile.heroBadge || "Portal Resmi Pendidikan"}
           </div>
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-white sm:text-6xl sm:leading-none">
-            <span className="bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent">
+          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl sm:leading-none">
+            <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-200 bg-clip-text text-transparent">
               {profile.identity.name}
             </span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
             {profile.heroSubtitle || "Membentuk masa depan cemerlang melalui dedikasi akademik, integritas karakter, dan inovasi tanpa batas. Temukan visi luhur dan program unggulan kami."}
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/profile"
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
+              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(99,102,241,0.2)] dark:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
             >
               Jelajahi Profil 
               <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
             </Link>
             <Link
               href="/ppdb"
-              className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3.5 text-sm font-bold text-slate-700 dark:text-white shadow-sm dark:shadow-none backdrop-blur-md transition-all hover:bg-slate-50 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 active:scale-[0.98]"
             >
               Info PPDB
             </Link>
@@ -228,35 +228,35 @@ export default async function Home() {
       <section className="relative px-6">
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center backdrop-blur-md shadow-lg shadow-black/10 hover:border-indigo-500/20 transition-all group">
-              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-300">
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-6 text-center shadow-sm dark:shadow-lg dark:shadow-black/10 hover:border-indigo-500/20 dark:hover:border-indigo-500/20 transition-all group">
+              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400 dark:from-indigo-400 dark:to-sky-300">
                 {profile.accreditation.rating}
               </div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-2">
                 Akreditasi {profile.accreditation.institution}
               </div>
             </div>
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center backdrop-blur-md shadow-lg shadow-black/10 hover:border-indigo-500/20 transition-all group">
-              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-300">
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-6 text-center shadow-sm dark:shadow-lg dark:shadow-black/10 hover:border-indigo-500/20 dark:hover:border-indigo-500/20 transition-all group">
+              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400 dark:from-indigo-400 dark:to-sky-300">
                 {profile.identity.npsn}
               </div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-2">
                 NPSN Resmi
               </div>
             </div>
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center backdrop-blur-md shadow-lg shadow-black/10 hover:border-indigo-500/20 transition-all group">
-              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-300">
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-6 text-center shadow-sm dark:shadow-lg dark:shadow-black/10 hover:border-indigo-500/20 dark:hover:border-indigo-500/20 transition-all group">
+              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400 dark:from-indigo-400 dark:to-sky-300">
                 {new Date(profile.identity.foundedDate).getFullYear()}
               </div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-2">
                 Tahun Berdiri
               </div>
             </div>
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center backdrop-blur-md shadow-lg shadow-black/10 hover:border-indigo-500/20 transition-all group">
-              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-300">
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-6 text-center shadow-sm dark:shadow-lg dark:shadow-black/10 hover:border-indigo-500/20 dark:hover:border-indigo-500/20 transition-all group">
+              <div className="text-3xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400 dark:from-indigo-400 dark:to-sky-300">
                 {profile.identity.status}
               </div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-2">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-2">
                 Status Sekolah
               </div>
             </div>
@@ -267,27 +267,27 @@ export default async function Home() {
       {/* Spotlight Announcement Section */}
       {spotlight && (
         <section className="relative mt-16 px-6">
-          <div className="mx-auto max-w-4xl rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-transparent to-transparent p-8 backdrop-blur-md shadow-xl shadow-black/25">
+          <div className="mx-auto max-w-4xl rounded-2xl border border-amber-200 dark:border-amber-500/20 bg-white dark:bg-gradient-to-br dark:from-amber-500/10 dark:via-transparent dark:to-transparent p-8 shadow-sm dark:shadow-xl dark:shadow-black/25">
             <div className="flex items-center gap-2 mb-4">
               <span className="flex h-2 w-2 rounded-full bg-amber-500 animate-ping" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
                 Pengumuman Utama
               </span>
             </div>
-            <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="font-heading text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
               {spotlight.title}
             </h2>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-300">
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               {spotlight.summary}
             </p>
             <div className="mt-6 flex items-center gap-4 flex-wrap">
               <Link
                 href={`/announcements/${spotlight.slug}`}
-                className="inline-flex items-center justify-center rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-950 hover:bg-slate-100 transition-colors"
+                className="inline-flex items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-4 py-2 text-xs font-bold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors shadow-md dark:shadow-none active:scale-[0.98]"
               >
                 Baca Selengkapnya
               </Link>
-              <time dateTime={spotlight.publishedAt} className="text-xs text-slate-400 font-medium">
+              <time dateTime={spotlight.publishedAt} className="text-xs text-slate-400 dark:text-slate-500 font-semibold">
                 Diterbitkan pada {formatDate(spotlight.publishedAt)}
               </time>
             </div>
@@ -299,13 +299,13 @@ export default async function Home() {
       <section className="relative mt-24 px-6">
         <div className="mx-auto max-w-4xl space-y-16">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
               Layanan Navigasi Satu Pintu
             </span>
-            <h2 className="font-heading mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+            <h2 className="font-heading mt-2 text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">
               Portal Layanan & Informasi
             </h2>
-            <p className="mt-4 text-sm text-slate-400 leading-relaxed">
+            <p className="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               Jelajahi seluruh menu layanan publik resmi, program sekolah, dokumentasi kesiswaan, dan berita terbaru kami secara transparan.
             </p>
           </div>
@@ -313,15 +313,15 @@ export default async function Home() {
           {visiblePortalGroups.map((group, groupIdx) => (
             <div key={groupIdx} className="relative space-y-6">
               {/* Subtle background glow behind each group */}
-              <div className={`absolute -inset-x-6 -inset-y-4 rounded-3xl ${group.glowColor} opacity-20 blur-xl pointer-events-none`} />
+              <div className={`absolute -inset-x-6 -inset-y-4 rounded-3xl ${group.glowColor} opacity-5 dark:opacity-20 blur-xl pointer-events-none`} />
               
-              <div className="relative border-b border-white/5 pb-3">
+              <div className="relative border-b border-slate-200 dark:border-white/5 pb-3">
                 <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="font-heading text-lg font-bold text-white tracking-wide">
+                  <h3 className="font-heading text-lg font-bold text-slate-900 dark:text-white tracking-wide">
                     {group.title}
                   </h3>
                 </div>
-                <p className="mt-2 text-xs text-slate-400">
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                   {group.description}
                 </p>
               </div>
@@ -331,20 +331,20 @@ export default async function Home() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group relative rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-white/10 hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)] flex flex-col justify-between"
+                    className="group relative rounded-2xl border border-slate-200/80 dark:border-white/5 bg-white dark:bg-white/5 p-4 shadow-sm dark:shadow-none backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:bg-slate-50/50 dark:hover:bg-white/10 hover:shadow-md dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)] flex flex-col justify-between"
                   >
                     <div>
-                      <div className="h-9 w-9 rounded-xl bg-white/5 flex items-center justify-center text-lg shadow-sm border border-white/5 group-hover:scale-110 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/20 transition-all duration-300">
+                      <div className="h-9 w-9 rounded-xl bg-slate-50 dark:bg-white/5 flex items-center justify-center text-lg shadow-sm border border-slate-100 dark:border-white/5 group-hover:scale-110 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/20 transition-all duration-300">
                         {item.icon}
                       </div>
-                      <h4 className="font-heading mt-3 text-xs font-bold text-white group-hover:text-indigo-300 transition-colors">
+                      <h4 className="font-heading mt-3 text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         {item.label}
                       </h4>
-                      <p className="mt-1 text-[10px] text-slate-400 leading-normal line-clamp-2">
+                      <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400 leading-normal line-clamp-2">
                         {item.description}
                       </p>
                     </div>
-                    <div className="mt-3 flex items-center text-[10px] font-bold text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="mt-3 flex items-center text-[10px] font-bold text-indigo-600 dark:text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span>Buka Menu</span>
                       <span className="ml-1 transition-transform group-hover:translate-x-1">&rarr;</span>
                     </div>
@@ -359,26 +359,26 @@ export default async function Home() {
       {/* Latest Announcements List */}
       <section className="relative mt-24 px-6">
         <div className="mx-auto max-w-4xl">
-          <div className="mb-8 flex items-end justify-between border-b border-white/5 pb-4">
+          <div className="mb-8 flex items-end justify-between border-b border-slate-200 dark:border-white/5 pb-4">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
                 Pembaruan Terkini
               </span>
-              <h2 className="font-heading mt-1 text-2xl font-bold text-white">
+              <h2 className="font-heading mt-1 text-2xl font-bold text-slate-900 dark:text-white">
                 Pengumuman & Berita
               </h2>
             </div>
             <Link
               href="/announcements"
-              className="text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1"
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors flex items-center gap-1"
             >
               Lihat Semua &rarr;
             </Link>
           </div>
 
           {latest.length === 0 ? (
-            <div className="rounded-2xl border border-white/5 bg-white/5 p-8 text-center backdrop-blur-md">
-              <p className="text-slate-400 text-sm">Belum ada pengumuman yang diterbitkan.</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-8 text-center shadow-sm">
+              <p className="text-slate-400 dark:text-slate-500 text-sm">Belum ada pengumuman yang diterbitkan.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -386,24 +386,24 @@ export default async function Home() {
                 <Link
                   key={item.slug}
                   href={`/announcements/${item.slug}`}
-                  className="block rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-md shadow-lg shadow-black/10 transition-all hover:bg-white/10 hover:border-indigo-500/25 group"
+                  className="block rounded-2xl border border-slate-200/80 dark:border-white/5 bg-white dark:bg-white/5 p-6 shadow-sm dark:shadow-lg dark:shadow-black/10 transition-all hover:bg-slate-50 dark:hover:bg-white/10 hover:border-indigo-500/25 dark:hover:border-indigo-500/25 group"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <h3 className="font-heading text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                      <h3 className="font-heading text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-xs text-slate-400 line-clamp-2 max-w-2xl leading-relaxed">
+                      <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 max-w-2xl leading-relaxed">
                         {item.summary}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                      <span className="inline-block rounded bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-indigo-400">
+                      <span className="inline-block rounded bg-indigo-55 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                         {item.category}
                       </span>
                       <time
                         dateTime={item.publishedAt}
-                        className="text-[11px] text-slate-500 font-semibold"
+                        className="text-[11px] text-slate-400 dark:text-slate-500 font-semibold"
                       >
                         {formatDate(item.publishedAt)}
                       </time>
@@ -421,13 +421,13 @@ export default async function Home() {
         <section className="relative mt-24 px-6">
           <div className="mx-auto max-w-4xl">
             <div className="mb-12 text-center">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-400">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">
                 Apa Kata Mereka
               </span>
-              <h2 className="font-heading mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+              <h2 className="font-heading mt-2 text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">
                 Testimoni Orang Tua & Siswa
               </h2>
-              <p className="mt-4 text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+              <p className="mt-4 text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
                 Ulasan tulus dari orang tua murid mengenai kualitas pendidikan, pelayanan, dan kenyamanan lingkungan belajar kami.
               </p>
             </div>
@@ -438,12 +438,12 @@ export default async function Home() {
                 .map((testimony) => (
                   <div
                     key={testimony.id}
-                    className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-md shadow-lg shadow-black/10 flex flex-col justify-between hover:border-indigo-500/20 transition-all duration-300"
+                    className="rounded-2xl border border-slate-200/80 dark:border-white/5 bg-white dark:bg-white/5 p-6 shadow-sm dark:shadow-lg dark:shadow-black/10 flex flex-col justify-between hover:border-indigo-500/20 dark:hover:border-indigo-500/20 transition-all duration-300"
                   >
-                    <p className="text-sm italic text-slate-300 leading-relaxed">
+                    <p className="text-sm italic text-slate-600 dark:text-slate-300 leading-relaxed">
                       "{testimony.content}"
                     </p>
-                    <div className="mt-6 flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div className="mt-6 flex items-center gap-3 border-t border-slate-100 dark:border-white/5 pt-4">
                       <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-sm font-extrabold text-slate-950 shadow-md">
                         {testimony.avatarUrl ? (
                           <img
@@ -456,8 +456,8 @@ export default async function Home() {
                         )}
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-white">{testimony.name}</h4>
-                        <p className="text-[10px] text-slate-500 font-medium mt-0.5">{testimony.role}</p>
+                        <h4 className="text-xs font-bold text-slate-900 dark:text-white">{testimony.name}</h4>
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-0.5">{testimony.role}</p>
                       </div>
                     </div>
                   </div>
