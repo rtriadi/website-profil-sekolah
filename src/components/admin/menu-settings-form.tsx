@@ -2,6 +2,7 @@
 
 import { updateMenuSettingsAction } from "@/lib/actions/menu-actions";
 import { useState, useTransition } from "react";
+import { useToast } from "@/components/ui/toast";
 
 interface Props {
   initialSettings: Record<string, boolean>;
@@ -35,18 +36,14 @@ const menuLabels: Record<string, { label: string; category: string }> = {
 export function MenuSettingsForm({ initialSettings }: Props) {
   const [settings, setSettings] = useState(initialSettings);
   const [isPending, startTransition] = useTransition();
-  const [saved, setSaved] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { success, error: toastError } = useToast();
 
   const handleToggle = (key: string) => {
     setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
-    setSaved(false);
-    setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
     startTransition(async () => {
       const formData = new FormData();
       for (const [key, val] of Object.entries(settings)) {
@@ -54,10 +51,9 @@ export function MenuSettingsForm({ initialSettings }: Props) {
       }
       const result = await updateMenuSettingsAction(formData);
       if (result.error) {
-        setError(result.error);
+        toastError(result.error);
       } else {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
+        success("Pengaturan visibilitas menu berhasil disimpan!");
       }
     });
   };
@@ -67,17 +63,7 @@ export function MenuSettingsForm({ initialSettings }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {error && (
-        <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-600 backdrop-blur-md shadow-md animate-in fade-in slide-in-from-top-1 duration-200">
-          ❌ {error}
-        </div>
-      )}
-
-      {saved && (
-        <div className="rounded-xl border border-green-500/20 bg-green-500/10 p-4 text-sm text-green-600 backdrop-blur-md shadow-md animate-in fade-in slide-in-from-top-1 duration-200">
-          ✨ Pengaturan visibilitas menu berhasil disimpan dan diterapkan ke frontend!
-        </div>
-      )}
+      {/* ToastStateWatcher not needed here because we use direct transition calls */}
 
       <div className="space-y-8">
         {categories.map((category) => (

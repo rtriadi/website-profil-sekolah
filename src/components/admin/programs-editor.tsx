@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import { addProgramAction, deleteProgramAction } from "@/lib/actions/profile-actions";
 import type { SchoolProgram } from "@/lib/content/schema";
 
@@ -13,6 +14,7 @@ function AddProgramForm() {
 
   return (
     <form action={formAction} className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+      <ToastStateWatcher state={state} successMessage="Program berhasil ditambahkan!" />
       <h3 className="text-sm font-semibold text-slate-900">Tambah Program</h3>
       <div>
         <input name="name" placeholder="Nama program" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
@@ -24,7 +26,6 @@ function AddProgramForm() {
         <input name="type" placeholder="Kategori (mis: Kelompok A, Tahfidz, dll)" className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
         <input name="icon" placeholder="Icon (emoji)" className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
       </div>
-      {state?.error && <p className="text-xs text-red-500">{state.error}</p>}
       <button type="submit" disabled={pending} className="rounded-lg bg-slate-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">
         {pending ? "Menambah..." : "Tambah"}
       </button>

@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import type { MealEntry } from "@/lib/content/schema";
 import { saveMealMenuAction } from "@/lib/actions/meal-actions";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   items: MealEntry[];
@@ -107,8 +108,7 @@ export function AdminMealMenuClient({ items }: Props) {
         ))}
       </div>
 
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Menu berhasil disimpan!</div>}
+      <ToastStateWatcher state={state} successMessage="Menu berhasil disimpan!" />
 
       <div className="flex justify-end">
         <button

@@ -780,3 +780,11 @@ export const defaultNews: NewsArticle[] = [
     publishedAt: "2025-05-15",
   },
 ];
+
+export interface HeroSlide {
+  id: string;
+  src: string;
+  title: string;
+  description: string;
+  sortOrder: number;
+}

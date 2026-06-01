@@ -4,6 +4,7 @@ import { getAnnouncements, getSpotlightAnnouncement } from "@/lib/content/announ
 import { getMenuSettingsAsync } from "@/lib/content/menu-service";
 import { getTestimonies } from "@/lib/content/testimony-service";
 import { HeroSlider } from "@/components/home/hero-slider";
+import { getHeroSlides } from "@/lib/content/hero-slides-service";
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("id-ID", {
@@ -168,12 +169,13 @@ const portalGroups = [
 ];
 
 export default async function Home() {
-  const [profile, announcements, spotlight, testimonies, menuSettings] = await Promise.all([
+  const [profile, announcements, spotlight, testimonies, menuSettings, slides] = await Promise.all([
     getSchoolProfile(),
     getAnnouncements(),
     getSpotlightAnnouncement(),
     getTestimonies(),
     getMenuSettingsAsync(),
+    getHeroSlides(),
   ]);
 
   const latest = announcements.slice(0, 3);
@@ -228,7 +230,7 @@ export default async function Home() {
 
           {/* Right Column: Dynamic Interactive Image Carousel */}
           <div className="lg:col-span-5 w-full flex justify-center animate-in fade-in slide-in-from-right-4 duration-500">
-            <HeroSlider />
+            <HeroSlider slides={slides} />
           </div>
 
         </div>

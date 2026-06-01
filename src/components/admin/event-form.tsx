@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { SchoolEvent } from "@/lib/content/schema";
 import Link from "next/link";
 
@@ -25,6 +26,7 @@ export function EventForm({ action, initialData }: Props) {
 
   return (
     <form action={formAction} className="space-y-5">
+      <ToastStateWatcher state={state} successMessage="Agenda berhasil disimpan!" />
       <div>
         <label htmlFor="title" className="mb-1 block text-sm font-medium text-slate-700">Judul</label>
         <input id="title" name="title" defaultValue={initialData?.title} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
@@ -62,8 +64,6 @@ export function EventForm({ action, initialData }: Props) {
         <textarea id="description" name="description" rows={4} defaultValue={initialData?.description} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
         {state?.fieldErrors?.description && <p className="mt-1 text-xs text-red-500">{state.fieldErrors.description}</p>}
       </div>
-
-      {state?.error && <p className="text-sm text-red-500">{state.error}</p>}
 
       <div className="flex items-center gap-3">
         <button type="submit" disabled={pending} className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">

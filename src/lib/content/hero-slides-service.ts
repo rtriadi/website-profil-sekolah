@@ -1,0 +1,41 @@
+import { type HeroSlide } from "./schema";
+import { getRepository } from "@/lib/data/repository";
+
+const repo = getRepository<HeroSlide>("hero-slides");
+
+export function getHeroSlides(): HeroSlide[] {
+  const slides = repo.getAll();
+  
+  // If no slides configured, return default placeholder slides
+  if (slides.length === 0) {
+    return [
+      {
+        id: "slide-1",
+        src: "/images/hero-classroom.png",
+        title: "Ruang Belajar Modern",
+        description: "Desain kelas ergonomis dan interaktif untuk kolaborasi belajar maksimal.",
+        sortOrder: 1,
+      },
+      {
+        id: "slide-2",
+        src: "/images/hero-campus.png",
+        title: "Lingkungan Kampus Hijau",
+        description: "Suasana belajar sejuk, asri, dan aman demi kenyamanan siswa.",
+        sortOrder: 2,
+      },
+      {
+        id: "slide-3",
+        src: "/images/hero-activities.png",
+        title: "Inovasi & Kesiswaan",
+        description: "Mengembangkan potensi kreativitas, sains, dan robotika modern.",
+        sortOrder: 3,
+      },
+    ];
+  }
+
+  return slides.sort((a, b) => a.sortOrder - b.sortOrder);
+}
+
+export function saveHeroSlides(slides: HeroSlide[]): void {
+  repo.save(slides);
+}

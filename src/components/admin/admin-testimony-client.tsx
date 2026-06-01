@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import type { Testimony } from "@/lib/content/schema";
 import { saveTestimoniesAction } from "@/lib/actions/testimony-actions";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   items: Testimony[];
@@ -98,8 +99,7 @@ export function AdminTestimonyClient({ items }: Props) {
         <p className="text-sm text-slate-400">Belum ada testimoni.</p>
       )}
 
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Testimoni berhasil disimpan!</div>}
+      <ToastStateWatcher state={state} successMessage="Testimoni berhasil disimpan!" />
 
       <div className="flex justify-end">
         <button

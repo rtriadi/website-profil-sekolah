@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import { uploadDocumentAction, deleteDocumentAction } from "@/lib/actions/document-actions";
 import type { SchoolDocument } from "@/lib/content/schema";
 
@@ -31,6 +32,7 @@ export function AdminDocumentsClient({ documents }: Props) {
       <div className="mb-8 max-w-xl rounded-lg border border-slate-200 bg-white p-6">
         <h2 className="mb-4 text-lg font-semibold text-slate-900">Unggah Dokumen</h2>
         <form action={formAction} className="space-y-4">
+          <ToastStateWatcher state={state} successMessage="Dokumen berhasil diunggah!" />
           <div>
             <label htmlFor="title" className="mb-1 block text-sm font-medium text-slate-700">Judul</label>
             <input id="title" name="title" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
@@ -51,8 +53,6 @@ export function AdminDocumentsClient({ documents }: Props) {
             <label htmlFor="file" className="mb-1 block text-sm font-medium text-slate-700">File (PDF, DOC, DOCX, XLS, XLSX — maks 10MB)</label>
             <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" className="w-full text-sm text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-200" />
           </div>
-          {state?.error && <p className="text-sm text-red-500">{state.error}</p>}
-          {state?.success && <p className="text-sm text-emerald-600">Dokumen berhasil diunggah!</p>}
           <button type="submit" disabled={pending} className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">
             {pending ? "Mengunggah..." : "Unggah"}
           </button>

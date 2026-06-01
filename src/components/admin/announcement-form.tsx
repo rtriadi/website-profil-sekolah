@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { Announcement } from "@/lib/content/schema";
 import Link from "next/link";
 
@@ -21,6 +22,7 @@ export function AnnouncementForm({ action, initialData }: Props) {
 
   return (
     <form action={formAction} className="space-y-6 bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm max-w-4xl">
+      <ToastStateWatcher state={state} successMessage="Pengumuman berhasil disimpan!" />
       <div>
         <label htmlFor="title" className={labelClass}>
           Judul Pengumuman
@@ -145,12 +147,6 @@ export function AnnouncementForm({ action, initialData }: Props) {
           </p>
         )}
       </div>
-
-      {state?.error && (
-        <div className="rounded-xl border border-red-200 bg-red-50/80 p-4 text-sm font-semibold text-red-600 backdrop-blur-sm shadow-sm flex items-center gap-2">
-          <span>⚠️</span> Gagal menyimpan: {state.error}
-        </div>
-      )}
 
       {/* Form Action Controls */}
       <div className="flex items-center gap-3 pt-6 border-t border-slate-100">

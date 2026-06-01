@@ -7,6 +7,7 @@ import {
   updateTeacherAction,
 } from "@/lib/actions/teacher-actions";
 import type { Teacher } from "@/lib/content/schema";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   teachers: Teacher[];
@@ -69,12 +70,10 @@ export function AdminTeachersClient({ teachers }: Props) {
             <label htmlFor="description" className="mb-1 block text-sm font-medium text-slate-700">Keterangan (opsional)</label>
             <textarea id="description" name="description" rows={2} defaultValue={editingId ? teachers.find(t => t.id === editingId)?.description : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
           </div>
-          {activeState?.error && <p className="text-sm text-red-500">{activeState.error}</p>}
-          {activeState?.success && (
-            <p className="text-sm text-emerald-600">
-              {editingId ? "Data guru berhasil diperbarui!" : "Guru berhasil ditambahkan!"}
-            </p>
-          )}
+          <ToastStateWatcher
+            state={activeState}
+            successMessage={editingId ? "Data guru berhasil diperbarui!" : "Guru berhasil ditambahkan!"}
+          />
           <div className="flex items-center gap-3">
             <button type="submit" disabled={activePending} className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">
               {activePending ? "Menyimpan..." : editingId ? "Simpan Perubahan" : "Tambah"}

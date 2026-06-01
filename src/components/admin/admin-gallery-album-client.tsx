@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { GalleryAlbum } from "@/lib/content/gallery-album-service";
 import { saveAlbumsAction } from "@/lib/actions/gallery-album-actions";
 
@@ -44,6 +45,7 @@ export function AdminGalleryAlbumClient({ items }: Props) {
       }}
       className="space-y-4"
     >
+      <ToastStateWatcher state={state} successMessage="Album berhasil disimpan!" />
       <input type="hidden" name="items" />
 
       <div className="flex items-center justify-between">
@@ -82,9 +84,6 @@ export function AdminGalleryAlbumClient({ items }: Props) {
           </div>
         ))}
       </div>
-
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Album berhasil disimpan!</div>}
 
       <div className="flex justify-end">
         <button

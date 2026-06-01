@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { MediaItem } from "@/lib/content/media-service";
 import { uploadMediaAction, deleteMediaAction } from "@/lib/actions/media-actions";
 import type { GalleryAlbum } from "@/lib/content/gallery-album-service";
@@ -10,6 +11,7 @@ function UploadForm({ albums }: { albums: GalleryAlbum[] }) {
 
   return (
     <form action={formAction} className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+      <ToastStateWatcher state={state} successMessage="Media berhasil diunggah!" />
       <h3 className="text-sm font-semibold text-slate-900">Upload Media</h3>
       <div>
         <input
@@ -37,7 +39,6 @@ function UploadForm({ albums }: { albums: GalleryAlbum[] }) {
           ))}
         </select>
       </div>
-      {state?.error && <p className="text-xs text-red-500">{state.error}</p>}
       <button type="submit" disabled={pending} className="rounded-lg bg-slate-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">
         {pending ? "Mengupload..." : "Upload"}
       </button>

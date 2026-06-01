@@ -7,6 +7,7 @@ import {
   updateClassAction,
 } from "@/lib/actions/class-actions";
 import type { SchoolClass, Teacher } from "@/lib/content/schema";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   classes: SchoolClass[];
@@ -140,12 +141,10 @@ export function AdminClassesClient({ classes, teachers }: Props) {
             />
           </div>
 
-          {activeState?.error && <p className="text-sm text-red-500">{activeState.error}</p>}
-          {activeState?.success && (
-            <p className="text-sm text-emerald-600">
-              {editingId ? "Data kelas berhasil diperbarui!" : "Kelas berhasil ditambahkan!"}
-            </p>
-          )}
+          <ToastStateWatcher
+            state={activeState}
+            successMessage={editingId ? "Data kelas berhasil diperbarui!" : "Kelas berhasil ditambahkan!"}
+          />
 
           <div className="flex items-center gap-3 pt-2">
             <button

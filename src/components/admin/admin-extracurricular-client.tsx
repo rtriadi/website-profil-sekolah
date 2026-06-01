@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import type { Extracurricular } from "@/lib/content/schema";
 import { saveExtracurricularsAction } from "@/lib/actions/extracurricular-actions";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   items: Extracurricular[];
@@ -110,8 +111,7 @@ export function AdminExtracurricularClient({ items }: Props) {
         ))}
       </div>
 
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Ekstrakurikuler berhasil disimpan!</div>}
+      <ToastStateWatcher state={state} successMessage="Ekstrakurikuler berhasil disimpan!" />
 
       <div className="flex justify-end">
         <button

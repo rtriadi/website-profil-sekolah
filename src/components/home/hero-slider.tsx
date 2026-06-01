@@ -1,42 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { HeroSlide } from "@/lib/content/schema";
 
-const slides = [
-  {
-    src: "/images/hero-classroom.png",
-    title: "Ruang Belajar Modern",
-    description: "Desain kelas ergonomis dan interaktif untuk kolaborasi belajar maksimal.",
-  },
-  {
-    src: "/images/hero-campus.png",
-    title: "Lingkungan Kampus Hijau",
-    description: "Suasana belajar sejuk, asri, dan aman demi kenyamanan siswa.",
-  },
-  {
-    src: "/images/hero-activities.png",
-    title: "Inovasi & Kesiswaan",
-    description: "Mengembangkan potensi kreativitas, sains, dan robotika modern.",
-  },
-];
+interface HeroSliderProps {
+  slides: HeroSlide[];
+}
 
-export function HeroSlider() {
+export function HeroSlider({ slides }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => {
+    if (slides.length === 0) return;
     setCurrent((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev - 0 + slides.length - 1) % slides.length);
+    if (slides.length === 0) return;
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
+
+  if (slides.length === 0) return null;
 
   return (
     <div className="relative w-full max-w-[480px] aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl dark:shadow-indigo-500/5 border border-slate-200/80 dark:border-white/10">
@@ -50,7 +42,7 @@ export function HeroSlider() {
           const isActive = idx === current;
           return (
             <div
-              key={idx}
+              key={slide.id || idx}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                 isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
               }`}
@@ -73,9 +65,11 @@ export function HeroSlider() {
                 <h3 className="font-heading text-base font-extrabold tracking-tight">
                   {slide.title}
                 </h3>
-                <p className="text-[10px] text-slate-300 font-semibold leading-relaxed mt-1 line-clamp-2">
-                  {slide.description}
-                </p>
+                {slide.description && (
+                  <p className="text-[10px] text-slate-300 font-semibold leading-relaxed mt-1 line-clamp-2">
+                    {slide.description}
+                  </p>
+                )}
               </div>
             </div>
           );
@@ -83,40 +77,44 @@ export function HeroSlider() {
       </div>
 
       {/* Slide Navigation Chevrons */}
-      <button
-        onClick={prevSlide}
-        type="button"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-slate-950/40 hover:bg-slate-950/60 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg border border-white/5"
-        aria-label="Slide sebelumnya"
-      >
-        <span className="text-sm font-bold">&larr;</span>
-      </button>
+      {slides.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            type="button"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-slate-950/40 hover:bg-slate-950/60 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg border border-white/5"
+            aria-label="Slide sebelumnya"
+          >
+            <span className="text-sm font-bold">&larr;</span>
+          </button>
 
-      <button
-        onClick={nextSlide}
-        type="button"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-slate-950/40 hover:bg-slate-950/60 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg border border-white/5"
-        aria-label="Slide berikutnya"
-      >
-        <span className="text-sm font-bold">&rarr;</span>
-      </button>
+          <button
+            onClick={nextSlide}
+            type="button"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-slate-950/40 hover:bg-slate-950/60 text-white flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg border border-white/5"
+            aria-label="Slide berikutnya"
+          >
+            <span className="text-sm font-bold">&rarr;</span>
+          </button>
 
-      {/* Bottom Progress Bar indicators */}
-      <div className="absolute bottom-5 right-5 z-20 flex gap-1.5 bg-slate-950/40 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-md">
-        {slides.map((_, idx) => {
-          const isActive = idx === current;
-          return (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                isActive ? "w-4 bg-indigo-400" : "w-1.5 bg-white/40 hover:bg-white/60"
-              }`}
-              aria-label={`Lihat slide ke-${idx + 1}`}
-            />
-          );
-        })}
-      </div>
+          {/* Bottom Progress Bar indicators */}
+          <div className="absolute bottom-5 right-5 z-20 flex gap-1.5 bg-slate-950/40 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-md">
+            {slides.map((_, idx) => {
+              const isActive = idx === current;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setCurrent(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    isActive ? "w-4 bg-indigo-400" : "w-1.5 bg-white/40 hover:bg-white/60"
+                  }`}
+                  aria-label={`Lihat slide ke-${idx + 1}`}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
 
     </div>
   );

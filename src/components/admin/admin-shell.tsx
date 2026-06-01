@@ -6,6 +6,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { ToastProvider, ToastContainer } from "@/components/ui/toast";
 
 interface Props {
   session: StaffSession;
@@ -87,6 +88,15 @@ const menuGroups = [
           <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.43 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        ),
+      },
+      {
+        href: "/admin/hero-slides",
+        label: "Slider Beranda",
+        icon: (
+          <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008H12V8.25zm.008 0a.75.75 0 11-.008 0 .75.75 0 01.008 0z" />
           </svg>
         ),
       },
@@ -292,186 +302,189 @@ export function AdminShell({ session, children }: Props) {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100">
-      {/* Mobile Sidebar Overlay */}
-      {mobileOpen && (
-        <div
-          onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
-        />
-      )}
-
-      {/* Collapsible Left Sidebar */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 md:relative flex flex-col bg-slate-950 text-slate-200 border-r border-white/5 transition-transform duration-300 ease-in-out md:transition-all ${
-          collapsed ? "md:w-20" : "md:w-64"
-        } w-64 ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
-      >
-        {/* Sidebar Brand Header */}
-        <div className="flex h-16 items-center justify-between px-4 border-b border-white/5">
-          <Link
-            href="/admin"
+    <ToastProvider>
+      <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100">
+        {/* Mobile Sidebar Overlay */}
+        {mobileOpen && (
+          <div
             onClick={() => setMobileOpen(false)}
-            className={`flex items-center gap-2.5 font-heading font-bold transition-opacity hover:opacity-90 overflow-hidden ${
-              collapsed ? "justify-center w-full" : ""
-            }`}
-          >
-            <span className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex flex-shrink-0 items-center justify-center text-sm text-slate-950 shadow-md">
-              ⚡
-            </span>
-            {!collapsed && (
-              <span className="bg-gradient-to-r from-white via-indigo-200 to-sky-200 bg-clip-text text-transparent truncate">
-                Admin Panel
-              </span>
-            )}
-          </Link>
-        </div>
+            className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
+          />
+        )}
 
-        {/* Sidebar Collapse Toggle Button */}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-20 flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-400 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 shadow-md z-30"
-          aria-label="Toggle Sidebar"
+        {/* Collapsible Left Sidebar */}
+        <aside
+          className={`fixed inset-y-0 left-0 z-50 md:relative flex flex-col bg-slate-950 text-slate-200 border-r border-white/5 transition-transform duration-300 ease-in-out md:transition-all ${
+            collapsed ? "md:w-20" : "md:w-64"
+          } w-64 ${
+            mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          }`}
         >
-          {collapsed ? (
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          ) : (
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          )}
-        </button>
-
-        {/* User Quick Info */}
-        <div className="flex items-center gap-3 border-b border-white/5 px-4 py-4 overflow-hidden">
-          <div className="h-9 w-9 flex-shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-sm font-extrabold text-slate-950 shadow-sm">
-            {session.name?.charAt(0).toUpperCase() ?? "A"}
-          </div>
-          {!collapsed && (
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-semibold text-white tracking-wide leading-tight">
-                {session.name}
-              </p>
-              <p className="truncate text-[10px] text-slate-400 mt-0.5">{session.email}</p>
-            </div>
-          )}
-        </div>
-
-        {/* Sidebar Main Navigation */}
-        <div className="flex-1 space-y-4 px-3 py-4 overflow-y-auto max-h-[calc(100vh-12rem)] scrollbar-thin">
-          {/* Dashboard item */}
-          <Link
-            href="/admin"
-            onClick={() => setMobileOpen(false)}
-            className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
-              collapsed ? "justify-center" : "gap-3"
-            } ${
-              isActive("/admin")
-                ? "bg-white/10 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.05)] border-l-2 border-indigo-500"
-                : "text-slate-400 hover:bg-white/5 hover:text-white"
-            }`}
-          >
-            <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-            {!collapsed && <span>Dashboard</span>}
-          </Link>
-
-          {/* Grouped menu items */}
-          {menuGroups.map((group, index) => (
-            <div key={group.title} className="space-y-1.5">
-              {!collapsed ? (
-                <div className="flex items-center px-3 pt-2 text-[9px] font-extrabold uppercase tracking-widest text-slate-500 select-none">
-                  <span>{group.title}</span>
-                  <div className="ml-2 flex-1 h-px bg-white/5" />
-                </div>
-              ) : (
-                <div className="h-px bg-white/10 my-2 mx-1" />
-              )}
-
-              <div className="space-y-0.5">
-                {group.items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    title={collapsed ? item.label : undefined}
-                    className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
-                      collapsed ? "justify-center" : "gap-3"
-                    } ${
-                      isActive(item.href)
-                        ? "bg-white/10 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.05)] border-l-2 border-indigo-500"
-                        : "text-slate-400 hover:bg-white/5 hover:text-white"
-                    }`}
-                  >
-                    {item.icon}
-                    {!collapsed && <span className="truncate">{item.label}</span>}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Sidebar Footer Logout Button */}
-        <div className="border-t border-white/5 px-3 py-3.5 mt-auto">
-          <button
-            onClick={async () => {
-              await logoutAction();
-            }}
-            className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-xs font-semibold tracking-wide text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
-              collapsed ? "justify-center" : ""
-            }`}
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-            </svg>
-            {!collapsed && <span>Keluar</span>}
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Workspace Frame */}
-      <div className="flex flex-1 flex-col overflow-hidden min-h-screen">
-        {/* Top Navbar Header */}
-        <header className="flex h-16 items-center justify-between border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 sm:px-6 shadow-sm z-10 gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            {/* Hamburger button on mobile */}
-            <button
-              type="button"
-              onClick={() => setMobileOpen(true)}
-              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-              aria-label="Buka Menu"
+          {/* Sidebar Brand Header */}
+          <div className="flex h-16 items-center justify-between px-4 border-b border-white/5">
+            <Link
+              href="/admin"
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center gap-2.5 font-heading font-bold transition-opacity hover:opacity-90 overflow-hidden ${
+                collapsed ? "justify-center w-full" : ""
+              }`}
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            </button>
-            <h2 className="font-heading text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide uppercase truncate">
-              {pathname.split("/").slice(2).join(" / ") || "Dashboard"}
-            </h2>
+              <span className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex flex-shrink-0 items-center justify-center text-sm text-slate-950 shadow-md">
+                ⚡
+              </span>
+              {!collapsed && (
+                <span className="bg-gradient-to-r from-white via-indigo-200 to-sky-200 bg-clip-text text-transparent truncate">
+                  Admin Panel
+                </span>
+              )}
+            </Link>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-            <ThemeToggle variant="admin" />
-            <span className="inline-flex items-center gap-1.2 sm:gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2 sm:px-2.5 py-1 text-[10px] sm:text-xs font-semibold text-indigo-600 dark:text-indigo-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
-              <span className="hidden sm:inline">Mode Admin</span>
-              <span className="sm:hidden">Admin</span>
-            </span>
-          </div>
-        </header>
 
-        {/* Main Scrolling Content Area */}
-        <main className="flex-1 overflow-auto bg-[#f8fafc] dark:bg-slate-900 p-4 sm:p-8 scrollbar-thin">
-          <div className="mx-auto max-w-5xl">
-            {children}
+          {/* Sidebar Collapse Toggle Button */}
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="absolute -right-3 top-20 flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-400 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 shadow-md z-30"
+            aria-label="Toggle Sidebar"
+          >
+            {collapsed ? (
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            ) : (
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            )}
+          </button>
+
+          {/* User Quick Info */}
+          <div className="flex items-center gap-3 border-b border-white/5 px-4 py-4 overflow-hidden">
+            <div className="h-9 w-9 flex-shrink-0 rounded-full bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-sm font-extrabold text-slate-950 shadow-sm">
+              {session.name?.charAt(0).toUpperCase() ?? "A"}
+            </div>
+            {!collapsed && (
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-xs font-semibold text-white tracking-wide leading-tight">
+                  {session.name}
+                </p>
+                <p className="truncate text-[10px] text-slate-400 mt-0.5">{session.email}</p>
+              </div>
+            )}
           </div>
-        </main>
+
+          {/* Sidebar Main Navigation */}
+          <div className="flex-1 space-y-4 px-3 py-4 overflow-y-auto max-h-[calc(100vh-12rem)] scrollbar-thin">
+            {/* Dashboard item */}
+            <Link
+              href="/admin"
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                collapsed ? "justify-center" : "gap-3"
+              } ${
+                isActive("/admin")
+                  ? "bg-white/10 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.05)] border-l-2 border-indigo-500"
+                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+              }`}
+            >
+              <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>
+              {!collapsed && <span>Dashboard</span>}
+            </Link>
+
+            {/* Grouped menu items */}
+            {menuGroups.map((group, index) => (
+              <div key={group.title} className="space-y-1.5">
+                {!collapsed ? (
+                  <div className="flex items-center px-3 pt-2 text-[9px] font-extrabold uppercase tracking-widest text-slate-500 select-none">
+                    <span>{group.title}</span>
+                    <div className="ml-2 flex-1 h-px bg-white/5" />
+                  </div>
+                ) : (
+                  <div className="h-px bg-white/10 my-2 mx-1" />
+                )}
+
+                <div className="space-y-0.5">
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      title={collapsed ? item.label : undefined}
+                      className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                        collapsed ? "justify-center" : "gap-3"
+                      } ${
+                        isActive(item.href)
+                          ? "bg-white/10 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.05)] border-l-2 border-indigo-500"
+                          : "text-slate-400 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      {item.icon}
+                      {!collapsed && <span className="truncate">{item.label}</span>}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Sidebar Footer Logout Button */}
+          <div className="border-t border-white/5 px-3 py-3.5 mt-auto">
+            <button
+              onClick={async () => {
+                await logoutAction();
+              }}
+              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-xs font-semibold tracking-wide text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                collapsed ? "justify-center" : ""
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+              </svg>
+              {!collapsed && <span>Keluar</span>}
+            </button>
+          </div>
+        </aside>
+
+        {/* Main Workspace Frame */}
+        <div className="flex flex-1 flex-col overflow-hidden min-h-screen">
+          {/* Top Navbar Header */}
+          <header className="flex h-16 items-center justify-between border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 sm:px-6 shadow-sm z-10 gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              {/* Hamburger button on mobile */}
+              <button
+                type="button"
+                onClick={() => setMobileOpen(true)}
+                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                aria-label="Buka Menu"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
+              <h2 className="font-heading text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide uppercase truncate">
+                {pathname.split("/").slice(2).join(" / ") || "Dashboard"}
+              </h2>
+            </div>
+            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+              <ThemeToggle variant="admin" />
+              <span className="inline-flex items-center gap-1.2 sm:gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2 sm:px-2.5 py-1 text-[10px] sm:text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
+                <span className="hidden sm:inline">Mode Admin</span>
+                <span className="sm:hidden">Admin</span>
+              </span>
+            </div>
+          </header>
+
+          {/* Main Scrolling Content Area */}
+          <main className="flex-1 overflow-auto bg-[#f8fafc] dark:bg-slate-900 p-4 sm:p-8 scrollbar-thin">
+            <div className="mx-auto max-w-5xl">
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+      <ToastContainer />
+    </ToastProvider>
   );
 }

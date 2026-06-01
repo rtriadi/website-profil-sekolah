@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import { saveInstagramAction } from "@/lib/actions/instagram-actions";
 import type { InstagramSettings } from "@/lib/content/instagram-service";
 
@@ -13,6 +14,7 @@ export function SaveInstagramForm({ settings }: Props) {
 
   return (
     <form action={action} className="space-y-4">
+      <ToastStateWatcher state={state} successMessage="Pengaturan disimpan!" />
       <div>
         <label className="block text-sm font-medium text-slate-700">Username Instagram</label>
         <input
@@ -32,9 +34,6 @@ export function SaveInstagramForm({ settings }: Props) {
         />
         <p className="mt-1 text-xs text-slate-400">Kosongi untuk menggunakan URL otomatis</p>
       </div>
-
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Pengaturan disimpan!</div>}
 
       <div className="flex justify-end">
         <button

@@ -108,7 +108,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
             <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-xs text-slate-950 shadow-md">
               🏫
             </span>
-            <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-650 dark:from-white dark:via-indigo-200 dark:to-sky-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-700 dark:from-white dark:via-indigo-200 dark:to-sky-300 bg-clip-text text-transparent">
               {schoolName}
             </span>
           </Link>
@@ -126,7 +126,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     className={`relative rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20 ${
                       isActive
                         ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
-                        : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                   >
                     {link.label}
@@ -155,7 +155,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                       className={`flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-white/20 ${
                         hasActiveChild
                           ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
-                          : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                       }`}
                     >
                       <span>{group.label}</span>
@@ -236,7 +236,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                               className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-semibold tracking-wide transition-all duration-150 focus-visible:outline-none ${
                                 isActive
                                   ? "bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white"
-                                  : "text-slate-650 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
                               }`}
                             >
                               <span className="truncate">{theme.name}</span>
@@ -291,7 +291,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     className={`block rounded-xl px-4 py-2.5 text-sm font-semibold tracking-wide transition-all ${
                       isActive
                         ? "text-slate-900 bg-slate-100 dark:text-white dark:bg-white/10"
-                        : "text-slate-650 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >
@@ -312,7 +312,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                       className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold tracking-wide transition-all ${
                         hasActiveChild
                           ? "text-slate-900 bg-slate-100/50 dark:text-white dark:bg-white/5"
-                          : "text-slate-650 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5"
+                          : "text-slate-600 bg-slate-100/50 dark:text-white dark:bg-white/5"
                       }`}
                     >
                       <span>{group.label}</span>

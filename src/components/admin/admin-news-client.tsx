@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import type { NewsArticle } from "@/lib/content/schema";
 import { saveNewsAction } from "@/lib/actions/news-actions";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   items: NewsArticle[];
@@ -115,8 +116,7 @@ export function AdminNewsClient({ items }: Props) {
         ))}
       </div>
 
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Berita berhasil disimpan!</div>}
+      <ToastStateWatcher state={state} successMessage="Berita berhasil disimpan!" />
 
       <div className="flex justify-end">
         <button

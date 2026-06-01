@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { saveOrgAction } from "@/lib/actions/org-actions";
 import type { OrgNode } from "@/lib/content/schema";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   initialMembers: OrgNode[];
@@ -110,8 +111,7 @@ export function AdminOrgClient({ initialMembers }: Props) {
           {pending ? "Menyimpan..." : "Simpan Perubahan"}
         </button>
       </form>
-      {state?.success && <p className="mt-2 text-sm text-emerald-600 dark:text-emerald-400">Struktur organisasi berhasil disimpan!</p>}
-      {state?.error && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{state.error}</p>}
+      <ToastStateWatcher state={state} successMessage="Struktur organisasi berhasil disimpan!" />
     </div>
   );
 }

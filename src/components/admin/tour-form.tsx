@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import { saveTourAction } from "@/lib/actions/tour-actions";
 
 export function TourForm({ settings }: { settings: { imageUrl: string; title: string } }) {
@@ -12,6 +13,7 @@ export function TourForm({ settings }: { settings: { imageUrl: string; title: st
 
   return (
     <form action={action} className="space-y-4 bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm max-w-lg">
+      <ToastStateWatcher state={state} successMessage="Disimpan!" />
       <div>
         <label className={labelClass}>Judul</label>
         <input
@@ -31,17 +33,6 @@ export function TourForm({ settings }: { settings: { imageUrl: string; title: st
         />
         <p className="mt-1 text-[11px] text-slate-400 font-medium">Gunakan foto panorama 360 (lebar, aspect ratio 2:1)</p>
       </div>
-
-      {state?.error && (
-        <div className="rounded-xl border border-red-200 bg-red-50/80 p-3 text-xs font-semibold text-red-600 backdrop-blur-sm shadow-sm">
-          {state.error}
-        </div>
-      )}
-      {state?.success && (
-        <div className="rounded-xl border border-green-200 bg-green-50/80 p-3 text-xs font-semibold text-green-700 backdrop-blur-sm shadow-sm">
-          Disimpan!
-        </div>
-      )}
 
       <div className="flex justify-end pt-4 border-t border-slate-100 mt-6">
         <button

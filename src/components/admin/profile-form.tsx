@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import type { SchoolProfile } from "@/lib/content/schema";
 import Link from "next/link";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   profile: SchoolProfile;
@@ -195,17 +196,7 @@ export function ProfileForm({ profile, action }: Props) {
         </Link>
       </div>
 
-      {/* Success/Error Alerts */}
-      {state?.success && (
-        <div className="rounded-xl border border-green-200 bg-green-50/80 p-4 text-sm font-semibold text-green-700 backdrop-blur-sm shadow-sm flex items-center gap-2">
-          <span>✅</span> Profil sekolah berhasil diperbarui secara aman!
-        </div>
-      )}
-      {state?.error && (
-        <div className="rounded-xl border border-red-200 bg-red-50/80 p-4 text-sm font-semibold text-red-600 backdrop-blur-sm shadow-sm flex items-center gap-2">
-          <span>⚠️</span> Gagal menyimpan: {state.error}
-        </div>
-      )}
+      <ToastStateWatcher state={state} successMessage="Profil sekolah berhasil diperbarui secara aman!" />
     </form>
   );
 }

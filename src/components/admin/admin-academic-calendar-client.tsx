@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { AcademicCalendar, AcademicCalendarPeriod, AcademicCalendarEvent } from "@/lib/content/schema";
 import { saveAcademicCalendarAction } from "@/lib/actions/academic-calendar-actions";
 
@@ -117,6 +118,7 @@ export function AdminAcademicCalendarClient({ calendar }: Props) {
       }}
       className="space-y-6"
     >
+      <ToastStateWatcher state={state} successMessage="Kalender berhasil disimpan!" />
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="title" className="mb-1 block text-sm font-medium text-slate-700">Judul</label>
@@ -234,13 +236,6 @@ export function AdminAcademicCalendarClient({ calendar }: Props) {
           </div>
         ))}
       </div>
-
-      {state?.error && (
-        <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>
-      )}
-      {state?.success && (
-        <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Kalender berhasil disimpan!</div>
-      )}
 
       <div className="flex justify-end">
         <button

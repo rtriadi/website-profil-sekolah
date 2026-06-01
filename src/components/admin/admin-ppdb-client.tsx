@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { savePPDBConfigAction } from "@/lib/actions/ppdb-actions";
 import type { PPDBConfig, PPDBRequirement, PPDBStep } from "@/lib/content/schema";
+import { ToastStateWatcher } from "@/components/ui/toast";
 
 interface Props {
   config: PPDBConfig;
@@ -129,8 +130,7 @@ export function AdminPPDBClient({ config }: Props) {
           </div>
         </div>
 
-        {state?.error && <p className="text-sm text-red-500">{state.error}</p>}
-        {state?.success && <p className="text-sm text-emerald-600">PPDB settings berhasil disimpan!</p>}
+        <ToastStateWatcher state={state} successMessage="PPDB settings berhasil disimpan!" />
 
         <button type="submit" disabled={pending} className="rounded-lg bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50">
           {pending ? "Menyimpan..." : "Simpan Pengaturan"}

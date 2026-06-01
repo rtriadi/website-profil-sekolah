@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { ToastStateWatcher } from "@/components/ui/toast";
 import type { Achievement } from "@/lib/content/schema";
 import { saveAchievementsAction } from "@/lib/actions/achievement-actions";
 
@@ -51,6 +52,7 @@ export function AdminAchievementClient({ items }: Props) {
       }}
       className="space-y-4"
     >
+      <ToastStateWatcher state={state} successMessage="Prestasi berhasil disimpan!" />
       <input type="hidden" name="items" />
 
       <div className="flex items-center justify-between">
@@ -114,9 +116,6 @@ export function AdminAchievementClient({ items }: Props) {
       {achievements.length === 0 && (
         <p className="text-sm text-slate-400">Belum ada prestasi.</p>
       )}
-
-      {state?.error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{state.error}</div>}
-      {state?.success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">Prestasi berhasil disimpan!</div>}
 
       <div className="flex justify-end">
         <button
