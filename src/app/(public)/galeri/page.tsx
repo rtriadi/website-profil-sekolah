@@ -13,12 +13,21 @@ export default function GalleryPage() {
   const albums = getGalleryAlbums();
 
   return (
-    <div className="py-8">
-      <h1 className="mb-2 text-3xl font-bold text-slate-900">Galeri Sekolah</h1>
-      <p className="mb-8 text-slate-600">
-        Dokumentasi kegiatan, fasilitas, dan momen-momen berharga di sekolah.
-      </p>
-      <GalleryClient items={items} albums={albums} />
-    </div>
+    <>
+      <section className="border-b border-slate-200 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+          <h1 className="text-center text-3xl font-bold text-white">Galeri Sekolah</h1>
+          <p className="mt-2 text-center text-slate-300">
+            Dokumentasi kegiatan, fasilitas, dan momen-momen berharga di sekolah
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white min-h-[50vh]">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+          <GalleryClient items={items} albums={albums} />
+        </div>
+      </section>
+    </>
   );
 }
