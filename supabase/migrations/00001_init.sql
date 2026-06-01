@@ -184,8 +184,8 @@ create table if not exists announcements (
   updated_at   timestamptz not null default now()
 );
 
-create index idx_announcements_published_at on announcements(published_at desc);
-create index idx_announcements_category on announcements(category);
+create index if not exists idx_announcements_published_at on announcements(published_at desc);
+create index if not exists idx_announcements_category on announcements(category);
 
 -- ============================================================
 -- 10. EVENTS
@@ -204,7 +204,7 @@ create table if not exists school_events (
   updated_at  timestamptz not null default now()
 );
 
-create index idx_events_date on school_events(date);
+create index if not exists idx_events_date on school_events(date);
 
 -- ============================================================
 -- 11. DOCUMENTS
@@ -378,7 +378,7 @@ create table if not exists news_articles (
   updated_at   timestamptz not null default now()
 );
 
-create index idx_news_published_at on news_articles(published_at desc);
+create index if not exists idx_news_published_at on news_articles(published_at desc);
 
 -- ============================================================
 -- 22. MEDIA / GALLERY
@@ -395,7 +395,7 @@ create table if not exists media_items (
   uploaded_at timestamptz not null default now()
 );
 
-create index idx_media_album on media_items(album);
+create index if not exists idx_media_album on media_items(album);
 
 -- ============================================================
 -- 23. GALLERY ALBUMS
@@ -453,7 +453,7 @@ create table if not exists activity_logs (
   created_at timestamptz not null default now()
 );
 
-create index idx_activity_logs_created_at on activity_logs(created_at desc);
+create index if not exists idx_activity_logs_created_at on activity_logs(created_at desc);
 
 -- ============================================================
 -- 27. GENERIC JSON STORE (FOR SERVERLESS PERSISTENCE)
