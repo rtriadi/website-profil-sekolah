@@ -11,24 +11,24 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **PROF-01**: Visitor can view school identity details (name, address, contacts, accreditation) on public pages.
 - [x] **PROF-02**: Visitor can view school history, vision, and mission in a dedicated profile section.
-- [ ] **PROF-03**: Visitor can view program/major and facilities information.
+- [x] **PROF-03**: Visitor can view program/major and facilities information.
 
 ### Content
 
-- [ ] **CONT-01**: Visitor can read published announcements/news sorted by recency.
-- [ ] **CONT-02**: Visitor can open announcement detail pages with complete content.
-- [ ] **CONT-03**: Visitor can browse a media/gallery section for school documentation.
+- [x] **CONT-01**: Visitor can read published announcements/news sorted by recency.
+- [x] **CONT-02**: Visitor can open announcement detail pages with complete content.
+- [x] **CONT-03**: Visitor can browse a media/gallery section for school documentation.
 
 ### Admin
 
 - [x] **ADMN-01**: Staff user can sign in to an admin area to manage public content.
-- [ ] **ADMN-02**: Staff user can create, edit, and publish profile and announcement content.
-- [ ] **ADMN-03**: Staff user can upload and manage media used in public pages.
+- [x] **ADMN-02**: Staff user can create, edit, and publish profile and announcement content.
+- [x] **ADMN-03**: Staff user can upload and manage media used in public pages.
 
 ### UX
 
 - [x] **UX-01**: Visitor can use the website effectively on mobile and desktop layouts.
-- [ ] **UX-02**: Core public pages load with stable layout and readable content hierarchy.
+- [x] **UX-02**: Core public pages load with stable layout and readable content hierarchy.
 
 ## v2 Requirements
 
@@ -62,15 +62,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | PROF-01 | Phase 1 | Done |
 | PROF-02 | Phase 1 | Done |
-| PROF-03 | Phase 2 | Pending |
-| CONT-01 | Phase 2 | Pending |
-| CONT-02 | Phase 2 | Pending |
-| CONT-03 | Phase 3 | Pending |
+| PROF-03 | Phase 2 | Done |
+| CONT-01 | Phase 2 | Done |
+| CONT-02 | Phase 2 | Done |
+| CONT-03 | Phase 3 | Done |
 | ADMN-01 | Phase 1 | Done |
-| ADMN-02 | Phase 3 | Pending |
-| ADMN-03 | Phase 3 | Pending |
+| ADMN-02 | Phase 3 | Done |
+| ADMN-03 | Phase 3 | Done |
 | UX-01 | Phase 1 | Done |
-| UX-02 | Phase 2 | Pending |
+| UX-02 | Phase 2 | Done |
 
 **Coverage:**
 - v1 requirements: 11 total
@@ -79,4 +79,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-06-01*
-*Last updated: 2026-06-01 after initial definition*
+*Last updated: 2026-06-01 after Phase 3 execution*

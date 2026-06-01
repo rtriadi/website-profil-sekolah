@@ -28,7 +28,7 @@ export interface AuthConfig {
 
 export const authConfig: AuthConfig = {
   adminPrefix: "/admin",
-  signInPath: "/admin/sign-in",
+  signInPath: "/login",
   defaultRedirect: "/admin/dashboard",
 };
 

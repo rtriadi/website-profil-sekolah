@@ -1,0 +1,29 @@
+{
+  "identity": {
+    "name": "Nama Sekolah",
+    "shortName": "NS",
+    "npsn": "00000001",
+    "foundedDate": "2000-01-01",
+    "principalName": "Nama Kepala Sekolah",
+    "status": "Negeri"
+  },
+  "address": {
+    "street": "Jalan Contoh No. 1",
+    "village": "Kelurahan Contoh",
+    "district": "Kecamatan Contoh",
+    "city": "Kota Contoh",
+    "province": "Provinsi Contoh",
+    "postalCode": "00000"
+  },
+  "contact": {
+    "phone": "(0000) 000-0000",
+    "email": "admin@sekolah.sch.id",
+    "website": "https://sekolah.sch.id"
+  },
+  "accreditation": {
+    "rating": "A",
+    "institution": "BAN-S/M",
+    "certificateNumber": "000/XX/X/0000",
+    "validUntil": "2028-12-31"
+  }
+}

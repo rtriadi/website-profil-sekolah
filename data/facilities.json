@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Laboratorium IPA",
+    "description": "Laboratorium fisika, kimia, dan biologi yang dilengkapi peralatan praktikum modern untuk menunjang kegiatan pembelajaran sains.",
+    "slug": "laboratorium-ipa",
+    "category": "Laboratorium"
+  },
+  {
+    "name": "Laboratorium Komputer",
+    "description": "Ruang komputer dengan 40 unit PC dan koneksi internet berkecepatan tinggi untuk pembelajaran teknologi informasi dan ujian berbasis komputer.",
+    "slug": "laboratorium-komputer",
+    "category": "Laboratorium"
+  },
+  {
+    "name": "Perpustakaan",
+    "description": "Perpustakaan sekolah dengan koleksi lebih dari 5.000 judul buku, ruang baca yang nyaman, dan akses ke perpustakaan digital.",
+    "slug": "perpustakaan",
+    "category": "Perpustakaan"
+  },
+  {
+    "name": "Lapangan Olahraga",
+    "description": "Lapangan serbaguna untuk sepak bola, basket, dan voli yang digunakan untuk kegiatan olahraga dan upacara sekolah.",
+    "slug": "lapangan-olahraga",
+    "category": "Olahraga"
+  },
+  {
+    "name": "Musholla",
+    "description": "Tempat ibadah yang nyaman dan bersih untuk siswa dan guru melaksanakan ibadah sehari-hari serta kegiatan keagamaan.",
+    "slug": "musholla",
+    "category": "Ibadah"
+  }
+]

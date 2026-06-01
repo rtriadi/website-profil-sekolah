@@ -1,0 +1,146 @@
+<h2>Pilih Vibe & Gaya Visual untuk Redesain</h2>
+<p class="subtitle">Pilih gaya desain yang paling mencerminkan kepribadian sekolah Anda. Gaya terpilih akan diterapkan pada area Publik (Frontend) dan Admin (CMS Backend).</p>
+
+<style>
+  .preview-box {
+    height: 120px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+  .preview-a {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #38bdf8;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .preview-b {
+    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+    color: #f59e0b;
+    box-shadow: 0 4px 20px rgba(4,120,87,0.2);
+  }
+  .preview-c {
+    background: #fef08a;
+    color: #000000;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+  }
+  .option:hover .preview-box {
+    transform: scale(1.02);
+  }
+  .tech-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.08);
+    border-radius: 9999px;
+    margin-top: 4px;
+    margin-right: 4px;
+    color: #94a3b8;
+  }
+  .preview-c .tech-pill {
+    background: rgba(0,0,0,0.1);
+    color: #000;
+    border: 1px solid #000;
+  }
+</style>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content" style="width: 100%">
+      <div class="preview-box preview-a">
+        <div style="text-align: center">
+          <div style="font-size: 1.2rem; margin-bottom: 4px">✨ SMA Unggul Jaya</div>
+          <span class="tech-pill" style="color: #38bdf8">Indigo-Slate</span>
+          <span class="tech-pill" style="color: #38bdf8">Glassmorphism</span>
+        </div>
+      </div>
+      <h3>Option A: Slate Modern Premium (Highly Recommended)</h3>
+      <p>Menggunakan palet warna profesional (Deep Slate, Royal Blue, dan Sky Accent) dengan efek glassmorphism, tipografi modern (Inter/Outfit), micro-interactions yang sangat mulus, dan layout card premium. Sangat cocok untuk memberikan citra sekolah formal berstandar internasional yang canggih.</p>
+      <div class="pros-cons" style="margin-top: 12px">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Sangat mewah, bersih, dan profesional</li>
+            <li>Sangat mudah dibaca oleh orang tua & publik</li>
+            <li>Dashboard admin menggunakan mode gelap/terang premium</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Membutuhkan penataan aset foto beresolusi tinggi agar maksimal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content" style="width: 100%">
+      <div class="preview-box preview-b">
+        <div style="text-align: center">
+          <div style="font-size: 1.2rem; margin-bottom: 4px">🌱 SMA Unggul Jaya</div>
+          <span class="tech-pill" style="color: #fbbf24">Emerald Green</span>
+          <span class="tech-pill" style="color: #fbbf24">Warm Academic</span>
+        </div>
+      </div>
+      <h3>Option B: Warm Creative & Academic</h3>
+      <p>Menggunakan warna-warna alam yang ramah dan akademis (Emerald Green, Warm Amber, dan Soft Cream background). Mengedepankan layout kartu yang bersahabat, badge-badge melengkung lembut, dan sentuhan elemen ilustrasi. Sangat cocok untuk sekolah yang mengunggulkan karakter, kreativitas, dan keramahan lingkungan.</p>
+      <div class="pros-cons" style="margin-top: 12px">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Terasa sangat hangat, inklusif, dan bersahabat</li>
+            <li>Sangat cocok untuk sekolah berbasis alam atau karakter</li>
+            <li>Skema warna memiliki kontras alami yang tinggi</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Bisa terasa kurang formal bagi sebagian institusi menengah/atas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content" style="width: 100%">
+      <div class="preview-box preview-c">
+        <div style="text-align: center">
+          <div style="font-size: 1.2rem; margin-bottom: 4px; font-weight: 800; text-transform: uppercase">⚡ SMA Unggul Jaya</div>
+          <span class="tech-pill">Neo-Brutalism</span>
+          <span class="tech-pill">High Energy</span>
+        </div>
+      </div>
+      <h3>Option C: Bold Neo-Brutalist</h3>
+      <p>Gaya kontemporer yang sangat populer saat ini dengan border hitam tebal, warna-warna solid bervibrasi tinggi (Vivid Yellow, Bright Purple, dan White), bayangan 2D tanpa blur, serta layout asimetris berenergi tinggi. Sangat cocok jika sekolah ingin tampil beda, kreatif, dan sangat menonjol di kalangan generasi muda.</p>
+      <div class="pros-cons" style="margin-top: 12px">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Sangat unik, trendi, dan memukau siswa muda</li>
+            <li>Kontras visual sangat berani dan dinamis</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Bisa terasa melelahkan mata jika dibaca terlalu lama</li>
+            <li>Kurang disukai oleh kalangan orang tua/pendidik yang konvensional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Ilmu Pengetahuan Alam",
+    "description": "Program IPA menekankan pemahaman konsep sains, matematika, dan praktikum laboratorium. Siswa dibekali kemampuan analitis dan logis untuk melanjutkan studi di bidang sains, teknologi, kedokteran, dan teknik.",
+    "slug": "ipa",
+    "type": "IPA",
+    "icon": "🔬"
+  },
+  {
+    "name": "Ilmu Pengetahuan Sosial",
+    "description": "Program IPS berfokus pada kajian sosial, ekonomi, geografi, dan sejarah. Siswa dilatih untuk memahami dinamika masyarakat dan siap melanjutkan ke bidang hukum, ekonomi, dan ilmu sosial lainnya.",
+    "slug": "ips",
+    "type": "IPS",
+    "icon": "📊"
+  },
+  {
+    "name": "Bahasa dan Budaya",
+    "description": "Program Bahasa mengembangkan kompetensi linguistik dalam bahasa Indonesia, Inggris, dan bahasa asing lainnya. Siswa dipersiapkan untuk studi di bidang sastra, komunikasi, dan hubungan internasional.",
+    "slug": "bahasa",
+    "type": "Bahasa",
+    "icon": "📖"
+  }
+]

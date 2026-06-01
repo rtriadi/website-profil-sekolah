@@ -1,0 +1,183 @@
+<h2>Perbandingan Layout Dashboard Admin (CMS Backend)</h2>
+<p class="subtitle">Pilih layout navigasi & struktur yang master inginkan untuk mengelola konten sekolah.</p>
+
+<style>
+  .dashboard-mockup {
+    background: #0f172a;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    height: 240px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .sidebar-mock {
+    width: 60px;
+    background: #1e293b;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    gap: 16px;
+  }
+  .sidebar-expanded {
+    width: 140px;
+    align-items: flex-start;
+    padding-left: 12px;
+  }
+  .mock-item {
+    height: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+  }
+  .mock-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #38bdf8;
+    margin-bottom: 8px;
+  }
+  .main-mock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+  }
+  .header-mock {
+    height: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .card-grid-mock {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .card-mock {
+    background: #1e293b;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .table-mock {
+    flex: 1;
+    background: #1e293b;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .option:hover .dashboard-mockup {
+    border-color: #38bdf8;
+  }
+</style>
+
+<div class="options">
+  <div class="option" data-choice="modern-sidebar" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content" style="width: 100%">
+      <div class="dashboard-mockup">
+        <!-- Sidebar Modern -->
+        <div class="sidebar-mock sidebar-expanded">
+          <div class="mock-logo"></div>
+          <div class="mock-item" style="width: 80%; background: #38bdf8"></div>
+          <div class="mock-item" style="width: 70%"></div>
+          <div class="mock-item" style="width: 75%"></div>
+          <div class="mock-item" style="width: 60%"></div>
+        </div>
+        <!-- Main Area -->
+        <div class="main-mock">
+          <div class="header-mock">
+            <div class="mock-item" style="width: 30%"></div>
+            <div class="mock-item" style="width: 15%; background: #38bdf8"></div>
+          </div>
+          <div class="card-grid-mock">
+            <div class="card-mock"><div class="mock-item" style="width: 40%"></div><div class="mock-item" style="width: 80%; margin-top:6px; background:#10b981"></div></div>
+            <div class="card-mock"><div class="mock-item" style="width: 50%"></div><div class="mock-item" style="width: 70%; margin-top:6px; background:#fbbf24"></div></div>
+            <div class="card-mock"><div class="mock-item" style="width: 45%"></div><div class="mock-item" style="width: 60%; margin-top:6px; background:#38bdf8"></div></div>
+          </div>
+          <div class="table-mock">
+            <div class="mock-item" style="width: 90%; background: rgba(255,255,255,0.1)"></div>
+            <div class="mock-item" style="width: 95%"></div>
+            <div class="mock-item" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <h3 style="margin-top: 12px">Option A: Modern Collapsible Sidebar Dashboard (Recommended)</h3>
+      <p>Mengadopsi tata letak ala **shadcn/ui Dashboard Shell** standar industri. Menyediakan sidebar kiri yang fleksibel (bisa di-collapse menjadi ikon untuk menghemat layar), metrik statistik ringkas dalam bentuk barisan kartu di bagian atas, dan area konten utama yang sangat dinamis dengan filter interaktif.</p>
+      <div class="pros-cons" style="margin-top: 12px">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Navigasi terasa sangat intuitif, cepat, dan modern</li>
+            <li>Memaksimalkan ruang kerja pada monitor laptop maupun tablet</li>
+            <li>Sangat cocok untuk CMS dengan banyak menu (Berita, Galeri, Profil, Unduhan)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Memiliki kompleksitas layout responsif (mobile sidebar overlay) yang lebih tinggi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="classic-topbar" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content" style="width: 100%">
+      <div class="dashboard-mockup" style="flex-direction: column">
+        <!-- Top Nav -->
+        <div class="sidebar-mock" style="width: 100%; height: 50px; flex-direction: row; justify-content: space-between; padding: 0 16px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05)">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div class="mock-logo" style="margin-bottom:0"></div>
+            <div class="mock-item" style="width: 80px; background: #38bdf8"></div>
+            <div class="mock-item" style="width: 60px"></div>
+            <div class="mock-item" style="width: 70px"></div>
+          </div>
+          <div class="mock-item" style="width: 40px"></div>
+        </div>
+        <!-- Main Area -->
+        <div class="main-mock" style="padding: 16px">
+          <div class="card-grid-mock" style="grid-template-columns: repeat(4, 1fr)">
+            <div class="card-mock"><div class="mock-item" style="width: 80%"></div></div>
+            <div class="card-mock"><div class="mock-item" style="width: 70%"></div></div>
+            <div class="card-mock"><div class="mock-item" style="width: 90%"></div></div>
+            <div class="card-mock"><div class="mock-item" style="width: 60%"></div></div>
+          </div>
+          <div class="table-mock" style="flex: 1">
+            <div class="mock-item" style="width: 95%"></div>
+            <div class="mock-item" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+      <h3 style="margin-top: 12px">Option B: Topbar Navigation Layout</h3>
+      <p>Menggunakan header bar navigasi horizontal di bagian atas halaman (mirip landing page tradisional). Seluruh halaman CMS melebar secara penuh tanpa adanya pembatas vertikal di kiri, memberikan ruang editing lebar yang masif.</p>
+      <div class="pros-cons" style="margin-top: 12px">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Area pengeditan formulir sangat lebar secara horizontal</li>
+            <li>Sangat mudah dipahami oleh staf sekolah konvensional</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Terasa kurang modern dan memakan ruang vertikal yang berharga</li>
+            <li>Navigasi antar halaman CMS membutuhkan klik lebih banyak</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

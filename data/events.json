@@ -1,0 +1,50 @@
+[
+  {
+    "id": "evt-001",
+    "title": "Penerimaan Raport Semester Genap",
+    "slug": "penerimaan-raport-semester-genap",
+    "date": "2026-06-20",
+    "time": "08:00 - 12:00",
+    "location": "Ruang Kelas Masing-masing",
+    "description": "Orang tua/wali murid diundang untuk mengambil raport semester genap tahun ajaran 2025/2026.",
+    "category": "akademik"
+  },
+  {
+    "id": "evt-002",
+    "title": "Libur Akhir Tahun Ajaran",
+    "slug": "libur-akhir-tahun-ajaran",
+    "date": "2026-06-27",
+    "description": "Libur akhir tahun ajaran 2025/2026. Kegiatan belajar mengajar dimulai kembali pada bulan Juli 2026.",
+    "category": "libur"
+  },
+  {
+    "id": "evt-003",
+    "title": "Masa Pengenalan Lingkungan Sekolah",
+    "slug": "mpls-2026",
+    "date": "2026-07-15",
+    "time": "07:00 - 13:00",
+    "location": "Lapangan Sekolah",
+    "description": "Kegiatan MPLS untuk siswa baru tahun ajaran 2026/2027. Seluruh siswa baru wajib mengikuti.",
+    "category": "akademik"
+  },
+  {
+    "id": "evt-004",
+    "title": "Pentas Seni Akhir Tahun",
+    "slug": "pentas-seni-akhir-tahun",
+    "date": "2026-06-22",
+    "time": "09:00 - 15:00",
+    "location": "Aula Sekolah",
+    "description": "Pentas seni dan budaya yang menampilkan kreativitas siswa dari berbagai ekstrakurikuler.",
+    "category": "non-akademik"
+  },
+  {
+    "id": "evt-005",
+    "title": "Rapat Komite Sekolah",
+    "slug": "rapat-komite-sekolah",
+    "date": "2026-06-18",
+    "time": "09:00 - 11:00",
+    "location": "Ruang Rapat",
+    "description": "Rapat komite sekolah membahas program kerja semester depan dan evaluasi kegiatan.",
+    "category": "rapat"
+  }
+]

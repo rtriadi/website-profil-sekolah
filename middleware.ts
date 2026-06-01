@@ -7,7 +7,7 @@ const SECRET = new TextEncoder().encode(
 );
 
 const ADMIN_PREFIX = "/admin";
-const LOGIN_PATH = "/admin/login";
+const LOGIN_PATH = "/login";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

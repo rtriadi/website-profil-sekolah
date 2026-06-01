@@ -4,18 +4,15 @@ import {
   defaultSchoolProfile,
   defaultSchoolNarrative,
 } from "@/lib/content/schema";
+import { readJsonFile } from "@/lib/data/file-storage";
 
-/**
- * Returns the school profile payload for public rendering.
- *
- * Currently backed by in-memory seed data.  When a database or CMS
- * integration is wired in, swap the source here without changing
- * the public route layer.
- */
+const PROFILE_FILE = "profile.json";
+const NARRATIVE_FILE = "narrative.json";
+
 export async function getSchoolProfile(): Promise<SchoolProfile> {
-  return defaultSchoolProfile;
+  return readJsonFile<SchoolProfile>(PROFILE_FILE, defaultSchoolProfile);
 }
 
 export async function getSchoolNarrative(): Promise<SchoolNarrative> {
-  return defaultSchoolNarrative;
+  return readJsonFile<SchoolNarrative>(NARRATIVE_FILE, defaultSchoolNarrative);
 }

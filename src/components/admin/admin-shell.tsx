@@ -265,6 +265,41 @@ export function AdminShell({ session, children }: Props) {
               {!collapsed && <span>{item.label}</span>}
             </Link>
           ))}
+
+          <div className="h-px bg-white/5 my-2" />
+
+          {/* Additional Content Pages */}
+          {[
+            { href: "/admin/contact", label: "Kontak & Lokasi" },
+            { href: "/admin/academic-calendar", label: "Kalender Akademik" },
+            { href: "/admin/faq", label: "FAQ" },
+            { href: "/admin/testimonies", label: "Testimoni" },
+            { href: "/admin/achievements", label: "Prestasi" },
+            { href: "/admin/gallery/albums", label: "Album Galeri" },
+            { href: "/admin/tuition", label: "Biaya & SPP" },
+            { href: "/admin/meal-menu", label: "Menu Makanan" },
+            { href: "/admin/extracurriculars", label: "Ekstrakurikuler" },
+            { href: "/admin/regulations", label: "Tata Tertib" },
+            { href: "/admin/news", label: "Berita" },
+            { href: "/admin/instagram", label: "Instagram" },
+            { href: "/admin/virtual-tour", label: "Virtual Tour" },
+            { href: "/admin/logs", label: "Log" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all ${
+                isActive(item.href)
+                  ? "bg-white/10 text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.05)] border-l-2 border-indigo-500"
+                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>
+              {!collapsed && <span>{item.label}</span>}
+            </Link>
+          ))}
         </div>
 
         {/* Sidebar Footer Logout Button */}

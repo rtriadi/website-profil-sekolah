@@ -4,9 +4,10 @@ Generated: 2026-06-01
 
 ## Overview
 
-- Phases: 3
+- Phases: 4
 - v1 requirements mapped: 11/11
-- Coverage: Complete ✓
+- v2 requirements mapped: 0/4
+- Coverage: Phase 1-3 complete
 
 ### Phase 1: Foundation & Core Profile
 **Goal:** Establish technical foundation, admin access baseline, and core public identity profile.
@@ -34,6 +35,16 @@ Generated: 2026-06-01
 3. Public gallery is visible and backed by admin-managed assets.
 
 **Requirements:** CONT-03, ADMN-02, ADMN-03
+
+### Phase 4: Engagement & Advanced Content
+**Goal:** Add visitor engagement features (events, downloads) and advanced admin content controls (scheduling, spotlight).
+**Success Criteria**:
+1. Visitor can browse event calendar with category filtering.
+2. Visitor can access downloadable forms/brochures from a dedicated page.
+3. Staff can schedule content publish/unpublish windows.
+4. Staff can configure homepage spotlight modules.
+
+**Requirements:** ENG-01, ENG-02, ADVC-01, ADVC-02
 
 ## Notes
 
