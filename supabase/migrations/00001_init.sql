@@ -490,10 +490,11 @@ begin
     ])
   loop
     execute format('
+      drop trigger if exists trigger_%I_updated_at on %I;
       create trigger trigger_%I_updated_at
         before update on %I
         for each row execute function update_updated_at();
-    ', tbl, tbl);
+    ', tbl, tbl, tbl, tbl);
   end loop;
 end $$;
 
