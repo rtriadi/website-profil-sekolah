@@ -124,23 +124,62 @@ Di halaman konfigurasi:
 | **Output Directory** | `.next` (default) |
 | **Root Directory** | biarkan kosong |
 
-### 4.3 Environment Variables
+### 4.3 Environment Variables (SEKALIGUS — tidak perlu isi satu-satu)
 
-Add these in **Project Settings → Environment Variables**:
+Ada 2 cara untuk mengisi semua env var sekaligus:
 
-| Name | Value | Notes |
+---
+
+#### Cara A: Via Script (CLI, 1x jalan)
+
+Jalankan script PowerShell ini dari terminal:
+
+```powershell
+.\scripts\setup-vercel-env.ps1
+```
+
+Script akan:
+1. Meminta semua nilai satu per satu (dengan default value)
+2. Otomatis generate `SESSION_SECRET` jika dikosongkan
+3. Set semua variable ke Vercel via CLI (`vercel env add`)
+4. Selesai dalam 1-2 menit
+
+> Prasyarat: Install [Vercel CLI](https://vercel.com/docs/cli) dan login (`vercel login`).
+
+---
+
+#### Cara B: Bulk Paste (Via Dashboard)
+
+1. Siapkan file `.env` (copy dari `.env.example` lalu isi nilai sebenarnya):
+
+```ini
+NEXT_PUBLIC_SITE_URL=https://sekolah-anda.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=https://abcdefgh.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIs...
+DATABASE_PROVIDER=supabase
+SESSION_SECRET=generated-32-char-random-string
+ADMIN_EMAIL=admin@sekolah.sch.id
+ADMIN_PASSWORD=password-kuat-disini
+```
+
+2. Di dashboard Vercel: **Project Settings → Environment Variables**
+3. Paste semua isi `.env` sekaligus ke dalam form
+4. Pilih environment **Production**
+5. Klik **Save**
+
+---
+
+#### Daftar Lengkap Variable
+
+| Variable | Fungsi | Cara Generate |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://sekolah-anda.vercel.app` | Domain Vercel (ganti dengan custom domain nanti) |
-| `NEXT_PUBLIC_SUPABASE_URL` | `https://<project>.supabase.co` | Dari settings Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `eyJ...` | anon public key dari Supabase |
-| `DATABASE_PROVIDER` | `supabase` | Memilih Supabase provider |
-| `SESSION_SECRET` | `minimal-32-karakter-random-string` | Untuk encrypt session JWT |
-| `ADMIN_EMAIL` | `admin@sekolah.com` | Email login admin |
-| `ADMIN_PASSWORD` | `password-kuat-minimal-8-karakter` | Password login admin |
-
-> **`SESSION_SECRET`**: Generate dengan: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
->
-> **`DATABASE_PROVIDER`**: Sebenarnya auto-detected di Vercel, tapi lebih aman set eksplisit.
+| `NEXT_PUBLIC_SITE_URL` | Domain untuk sitemap & OG | Domain Vercel Anda |
+| `NEXT_PUBLIC_SUPABASE_URL` | Koneksi ke Supabase | Settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon key Supabase | Settings → API → anon public |
+| `DATABASE_PROVIDER` | Pilih provider database | `supabase` (wajib di Vercel) |
+| `SESSION_SECRET` | Enkripsi session JWT | `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
+| `ADMIN_EMAIL` | Email login admin | Email sekolah Anda |
+| `ADMIN_PASSWORD` | Password login admin | Password kuat minimal 8 karakter |
 
 ### 4.4 Deploy
 
