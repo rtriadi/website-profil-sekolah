@@ -51,11 +51,12 @@ export function saveMenuSettings(settings: MenuSettings): void {
   repo.save([settings]);
 }
 
-/** Async save — writes to Supabase in production, JSON locally */
-export async function saveMenuSettingsAsync(settings: MenuSettings): Promise<void> {
+/** Async save — writes to Supabase in production, JSON locally. Returns true on success. */
+export async function saveMenuSettingsAsync(settings: MenuSettings): Promise<boolean> {
   if (isSupabaseConfigured()) {
-    await storeSet(STORE_KEY, settings);
+    return storeSet(STORE_KEY, settings);
   } else {
     saveMenuSettings(settings);
+    return true;
   }
 }
