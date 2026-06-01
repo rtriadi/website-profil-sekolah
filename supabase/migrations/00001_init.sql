@@ -532,5 +532,7 @@ end $$;
 
 -- Staff table: only authenticated can read, own row can update
 alter table staff enable row level security;
+drop policy if exists "Staff self read" on staff;
 create policy "Staff self read" on staff for select using (auth.role() = 'authenticated');
+drop policy if exists "Staff self update" on staff;
 create policy "Staff self update" on staff for update using (id = auth.uid());
