@@ -15,10 +15,20 @@ export default async function AnnouncementDetailPage({ params }: Props) {
   const announcement = await getAnnouncementBySlug(slug);
 
   return (
-    <main className="min-h-screen bg-white">
-      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
-        <AnnouncementDetail announcement={announcement} />
-      </div>
-    </main>
+    <>
+      <section className="border-b border-slate-200 dark:border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+          <h1 className="text-center text-2xl sm:text-3xl font-bold text-white font-heading">
+            Detail Pengumuman
+          </h1>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-slate-950/20 py-12 min-h-[60vh]">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <AnnouncementDetail announcement={announcement} />
+        </div>
+      </section>
+    </>
   );
 }

@@ -47,10 +47,11 @@ export async function updateProfileAction(
     heroSubtitle: (formData.get("heroSubtitle") as string) || undefined,
   };
 
-  await saveSchoolProfile(profile);
-  revalidatePath("/");
-  revalidatePath("/profile");
-  revalidatePath("/admin/profile");
+  const saved = await saveSchoolProfile(profile);
+  if (!saved) {
+    return { error: "Gagal menyimpan profil ke database. Cek koneksi Supabase." };
+  }
+  revalidatePath("/", "layout");
   return { success: true };
 }
 

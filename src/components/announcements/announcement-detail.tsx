@@ -20,43 +20,47 @@ export function AnnouncementDetail({ announcement }: Props) {
   }
 
   return (
-    <article>
+    <article className="space-y-6">
       <Link
         href="/announcements"
-        className="mb-6 inline-flex text-sm text-blue-600 hover:text-blue-800"
+        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
       >
         &larr; Kembali ke Pengumuman
       </Link>
 
-      <time
-        dateTime={announcement.publishedAt}
-        className="block text-sm text-slate-500"
-      >
-        {formatDate(announcement.publishedAt)}
-      </time>
+      <div className="space-y-2">
+        <time
+          dateTime={announcement.publishedAt}
+          className="block text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500"
+        >
+          {formatDate(announcement.publishedAt)}
+        </time>
 
-      <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-        {announcement.title}
-      </h1>
+        <h1 className="text-2xl font-extrabold font-heading tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          {announcement.title}
+        </h1>
 
-      <p className="mt-2 text-sm text-slate-500">
-        Oleh: {announcement.author}
-      </p>
+        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+          Oleh: <span className="font-bold text-slate-700 dark:text-slate-300">{announcement.author}</span>
+        </p>
+      </div>
 
-      <div className="prose prose-slate mt-8 max-w-none">
+      <div className="border-t border-slate-100 dark:border-white/5 my-6" />
+
+      <div className="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base space-y-4">
         {announcement.content.split("\n\n").map((paragraph, i) => {
           if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
             return (
-              <p key={i} className="font-semibold text-slate-900">
+              <p key={i} className="font-bold text-slate-900 dark:text-white">
                 {paragraph.replace(/\*\*/g, "")}
               </p>
             );
           }
           if (paragraph.startsWith("**")) {
-            return <p key={i} className="text-slate-700">{paragraph}</p>;
+            return <p key={i} className="text-slate-800 dark:text-slate-200">{paragraph}</p>;
           }
           return (
-            <p key={i} className="text-slate-700">
+            <p key={i}>
               {paragraph}
             </p>
           );

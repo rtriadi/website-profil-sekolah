@@ -20,11 +20,12 @@ export async function getSchoolProfile(): Promise<SchoolProfile> {
   return getSchoolProfileSync();
 }
 
-/** Async save — writes to Supabase in production, JSON locally */
-export async function saveSchoolProfile(input: SchoolProfile): Promise<void> {
+/** Async save — writes to Supabase in production, JSON locally. Returns true on success. */
+export async function saveSchoolProfile(input: SchoolProfile): Promise<boolean> {
   if (isSupabaseConfigured()) {
-    await storeSet(STORE_KEY, input);
+    return storeSet(STORE_KEY, input);
   } else {
     repo.save([input]);
+    return true;
   }
 }

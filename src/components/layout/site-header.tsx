@@ -53,9 +53,10 @@ const menuGroups = [
 
 interface SiteHeaderProps {
   menuSettings?: Record<string, boolean>;
+  schoolName?: string;
 }
 
-export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
+export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }: SiteHeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -85,7 +86,7 @@ export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
               🏫
             </span>
             <span className="bg-gradient-to-r from-white via-indigo-200 to-sky-300 bg-clip-text text-transparent">
-              Profil Sekolah
+              {schoolName}
             </span>
           </Link>
 

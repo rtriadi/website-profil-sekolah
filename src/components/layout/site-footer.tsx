@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  schoolName?: string;
+}
+
+export function SiteFooter({ schoolName = "Website Profil Sekolah" }: SiteFooterProps) {
   return (
     <footer className="mt-auto border-t border-white/5 bg-slate-950 text-slate-400">
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -10,7 +14,7 @@ export function SiteFooter() {
               <span className="h-6 w-6 rounded-md bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-[10px]">
                 🏫
               </span>
-              Portal Resmi Sekolah
+              Portal Resmi {schoolName}
             </h3>
             <p className="text-sm leading-relaxed text-slate-400 max-w-xs">
               Mendidik generasi cerdas, berkarakter unggul, dan siap menyongsong masa depan teknologi berlandaskan nilai-nilai luhur bangsa.
@@ -59,7 +63,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-white/5 pt-6 flex flex-col items-center justify-between gap-4 sm:flex-row text-xs">
-          <p>&copy; {new Date().getFullYear()} Website Profil Sekolah. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {schoolName}. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/login" className="hover:text-white transition-colors">
               CMS Admin
