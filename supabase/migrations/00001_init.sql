@@ -114,6 +114,22 @@ create table if not exists teachers (
 );
 
 -- ============================================================
+-- 6.5. CLASSES / KELAS
+-- ============================================================
+
+create table if not exists classes (
+  id            uuid primary key default gen_random_uuid(),
+  name          text not null,
+  teacher_id    uuid references teachers(id) on delete set null,
+  room_name     text not null default '',
+  student_count int,
+  description   text not null default '',
+  sort_order    int not null default 0,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+
+-- ============================================================
 -- 7. ORGANIZATIONAL STRUCTURE
 -- ============================================================
 
@@ -457,7 +473,7 @@ begin
   for tbl in
     select unnest(array[
       'staff','school_profile','school_programs','facilities',
-      'teachers','announcements','school_events',
+      'teachers','classes','announcements','school_events',
       'faq_items','testimonies','achievements',
       'extracurriculars','regulations','news_articles',
       'gallery_albums'
@@ -482,7 +498,7 @@ begin
   for tbl in
     select unnest(array[
       'school_profile','school_narrative','school_programs','facilities',
-      'teachers','org_members','ppdb_config','announcements','school_events',
+      'teachers','classes','org_members','ppdb_config','announcements','school_events',
       'school_documents','contact_info','academic_calendars','faq_items',
       'testimonies','achievements','tuition_data','meal_menus',
       'extracurriculars','regulations','news_articles','media_items',
