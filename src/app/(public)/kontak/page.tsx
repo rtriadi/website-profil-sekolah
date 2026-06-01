@@ -10,7 +10,21 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   const contact = getContactInfo();
   const profile = await getSchoolProfile();
-  const a = contact.address;
+  
+  // Use profile address if available, fallback to contact address
+  const hasProfileAddress = profile.address && (profile.address.street || profile.address.city || profile.address.province);
+  const a = hasProfileAddress ? profile.address : contact.address;
+
+  // Use profile contact if available, fallback to contact
+  const phone = profile.contact?.phone || contact.phone;
+  const email = profile.contact?.email || contact.email;
+  const websiteUrl = profile.contact?.website || "";
+
+  const displayWebsite = websiteUrl
+    .replace(/^https?:\/\//i, "")
+    .replace(/^www\./i, "")
+    .replace(/\/+$/, "") || `${(profile.identity.shortName || profile.identity.name).toLowerCase().replace(/\s+/g, "")}.sch.id`;
+  const linkHref = websiteUrl.startsWith("http") ? websiteUrl : `https://${displayWebsite}`;
 
   const fullAddress = [a.street, a.village, a.district, a.city, a.province]
     .filter(Boolean)
@@ -48,7 +62,7 @@ export default async function ContactPage() {
                 <div className="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
                   <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
                     <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">📞 Telepon</span>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">{contact.phone}</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">{phone}</span>
                   </p>
                   {contact.whatsapp && (
                     <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
@@ -63,26 +77,26 @@ export default async function ContactPage() {
                       </a>
                     </p>
                   )}
-                  {contact.email && (
+                  {email && (
                     <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
                       <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">✉️ Surel (Email)</span>
                       <a
-                        href={`mailto:${contact.email}`}
+                        href={`mailto:${email}`}
                         className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
                       >
-                        {contact.email}
+                        {email}
                       </a>
                     </p>
                   )}
                   <p className="flex justify-between items-center py-1 border-b border-slate-100 dark:border-white/5">
                     <span className="font-bold text-slate-500 text-xs uppercase tracking-wider">🌐 Situs Resmi</span>
                     <a
-                      href={`https://${profile.identity.name.toLowerCase().replace(/\s+/g, "")}.sch.id`}
+                      href={linkHref}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
                     >
-                      {profile.identity.name.toLowerCase().replace(/\s+/g, "")}.sch.id
+                      {displayWebsite}
                     </a>
                   </p>
                 </div>
