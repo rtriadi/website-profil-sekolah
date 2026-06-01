@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getSchoolProfile } from "@/lib/content/profile-service";
 import { getAnnouncements, getSpotlightAnnouncement } from "@/lib/content/announcement-service";
 import { getMenuSettingsAsync } from "@/lib/content/menu-service";
-
 import { getTestimonies } from "@/lib/content/testimony-service";
+import { HeroSlider } from "@/components/home/hero-slider";
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("id-ID", {
@@ -193,34 +193,44 @@ export default async function Home() {
       <div className="absolute top-[40%] right-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/5 dark:bg-sky-500/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "-4s" }} />
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16">
-        <div className="mx-auto max-w-4xl px-6 text-center animate-in fade-in slide-in-from-top-3 duration-500">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-100 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.05)] dark:shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-            <span>✨</span> {profile.heroBadge || "Portal Resmi Pendidikan"}
+      <section className="relative pt-24 pb-16">
+        <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Text & CTA */}
+          <div className="lg:col-span-7 text-left space-y-6 animate-in fade-in slide-in-from-left-4 duration-500">
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-100 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.05)] dark:shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+              <span>✨</span> {profile.heroBadge || "Portal Resmi Pendidikan"}
+            </div>
+            <h1 className="font-heading text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl sm:leading-none">
+              <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-200 bg-clip-text text-transparent">
+                {profile.identity.name}
+              </span>
+            </h1>
+            <p className="max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+              {profile.heroSubtitle || "Membentuk masa depan cemerlang melalui dedikasi akademik, integritas karakter, dan inovasi tanpa batas. Temukan visi luhur dan program unggulan kami."}
+            </p>
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <Link
+                href="/profile"
+                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(99,102,241,0.2)] dark:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
+              >
+                Jelajahi Profil 
+                <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+              </Link>
+              <Link
+                href="/ppdb"
+                className="inline-flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3.5 text-sm font-bold text-slate-700 dark:text-white shadow-sm dark:shadow-none backdrop-blur-md transition-all hover:bg-slate-50 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 active:scale-[0.98]"
+              >
+                Info PPDB
+              </Link>
+            </div>
           </div>
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl sm:leading-none">
-            <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-200 bg-clip-text text-transparent">
-              {profile.identity.name}
-            </span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-            {profile.heroSubtitle || "Membentuk masa depan cemerlang melalui dedikasi akademik, integritas karakter, dan inovasi tanpa batas. Temukan visi luhur dan program unggulan kami."}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/profile"
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(99,102,241,0.2)] dark:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
-            >
-              Jelajahi Profil 
-              <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
-            </Link>
-            <Link
-              href="/ppdb"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3.5 text-sm font-bold text-slate-700 dark:text-white shadow-sm dark:shadow-none backdrop-blur-md transition-all hover:bg-slate-50 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 active:scale-[0.98]"
-            >
-              Info PPDB
-            </Link>
+
+          {/* Right Column: Dynamic Interactive Image Carousel */}
+          <div className="lg:col-span-5 w-full flex justify-center animate-in fade-in slide-in-from-right-4 duration-500">
+            <HeroSlider />
           </div>
+
         </div>
       </section>
 
