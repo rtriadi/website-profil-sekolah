@@ -163,24 +163,26 @@ export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
 
                   {/* Dropdown Content */}
                   {isOpen && (
-                    <div className="absolute left-0 mt-2.5 w-60 origin-top-left rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
-                      <div className="space-y-0.5">
-                        {group.items.map((item) => {
-                          const isActive = pathname === item.href;
-                          return (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className={`block rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 ${
-                                isActive
-                                  ? "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-sm"
-                                  : "text-slate-400 hover:bg-white/5 hover:text-white"
-                              }`}
-                            >
-                              {item.label}
-                            </Link>
-                          );
-                        })}
+                    <div className="absolute left-0 top-full z-50 pt-2 w-60 origin-top-left">
+                      <div className="rounded-2xl border border-white/10 bg-slate-950/95 p-2 backdrop-blur-xl shadow-2xl shadow-black/60 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="space-y-0.5">
+                          {group.items.map((item) => {
+                            const isActive = pathname === item.href;
+                            return (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className={`block rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 ${
+                                  isActive
+                                    ? "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-sm"
+                                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                                }`}
+                              >
+                                {item.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   )}
