@@ -1,13 +1,13 @@
-import { type ContactInfo, defaultContactInfo } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type ContactInfo, defaultContactInfo } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "contact.json";
+const repo = getRepository<ContactInfo>("contact");
 
 export function getContactInfo(): ContactInfo {
-  const data = readJsonFile<ContactInfo | null>(DATA_FILE, null);
-  return data ?? defaultContactInfo;
+  const data = repo.getAll();
+  return data[0] ?? defaultContactInfo;
 }
 
 export function saveContactInfo(input: ContactInfo): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

@@ -1,6 +1,4 @@
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
-
-const DATA_FILE = "virtual-tour.json";
+import { getRepository } from "@/lib/data/repository";
 
 export interface VirtualTourSettings {
   imageUrl: string;
@@ -12,11 +10,13 @@ export const defaultTour: VirtualTourSettings = {
   title: "Virtual Tour Sekolah",
 };
 
+const repo = getRepository<VirtualTourSettings>("virtual-tour");
+
 export function getTourSettings(): VirtualTourSettings {
-  const data = readJsonFile<VirtualTourSettings | null>(DATA_FILE, null);
-  return data ?? defaultTour;
+  const data = repo.getAll();
+  return data[0] ?? defaultTour;
 }
 
 export function saveTourSettings(input: VirtualTourSettings): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

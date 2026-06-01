@@ -1,13 +1,13 @@
-import { type Achievement, defaultAchievements } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type Achievement, defaultAchievements } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "achievements.json";
+const repo = getRepository<Achievement>("achievements");
 
 export function getAchievements(): Achievement[] {
-  const data = readJsonFile<Achievement[] | null>(DATA_FILE, null);
-  return data ?? defaultAchievements;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultAchievements;
 }
 
 export function saveAchievements(input: Achievement[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

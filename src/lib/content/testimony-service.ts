@@ -1,13 +1,13 @@
-import { type Testimony, defaultTestimonies } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type Testimony, defaultTestimonies } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "testimonies.json";
+const repo = getRepository<Testimony>("testimonies");
 
 export function getTestimonies(): Testimony[] {
-  const data = readJsonFile<Testimony[] | null>(DATA_FILE, null);
-  return data ?? defaultTestimonies;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultTestimonies;
 }
 
 export function saveTestimonies(input: Testimony[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

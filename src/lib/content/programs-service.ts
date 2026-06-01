@@ -1,18 +1,15 @@
-import {
-  type SchoolProgram,
-  type Facility,
-  defaultPrograms,
-  defaultFacilities,
-} from "@/lib/content/schema";
-import { readJsonFile } from "@/lib/data/file-storage";
+import { type SchoolProgram, type Facility, defaultPrograms, defaultFacilities } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const PROGRAMS_FILE = "programs.json";
-const FACILITIES_FILE = "facilities.json";
+const programRepo = getRepository<SchoolProgram>("school-programs");
+const facilityRepo = getRepository<Facility>("facilities");
 
 export async function getPrograms(): Promise<SchoolProgram[]> {
-  return readJsonFile<SchoolProgram[]>(PROGRAMS_FILE, defaultPrograms);
+  const data = programRepo.getAll();
+  return data.length > 0 ? data : defaultPrograms;
 }
 
 export async function getFacilities(): Promise<Facility[]> {
-  return readJsonFile<Facility[]>(FACILITIES_FILE, defaultFacilities);
+  const data = facilityRepo.getAll();
+  return data.length > 0 ? data : defaultFacilities;
 }

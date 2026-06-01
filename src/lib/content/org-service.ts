@@ -1,18 +1,13 @@
-import {
-  type OrgStructure,
-  defaultOrgStructure,
-} from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type OrgStructure, defaultOrgStructure } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "org-structure.json";
+const repo = getRepository<OrgStructure>("org-structure");
 
 export function getOrgStructure(): OrgStructure {
-  const data = readJsonFile<OrgStructure | null>(DATA_FILE, null);
-  return data ?? defaultOrgStructure;
+  const data = repo.getAll();
+  return data[0] ?? defaultOrgStructure;
 }
 
-export function saveOrgStructure(
-  input: OrgStructure,
-): void {
-  writeJsonFile(DATA_FILE, input);
+export function saveOrgStructure(input: OrgStructure): void {
+  repo.save([input]);
 }

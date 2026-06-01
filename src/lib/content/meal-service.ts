@@ -1,13 +1,13 @@
-import { type MealEntry, defaultMealMenu } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type MealEntry, defaultMealMenu } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "meal-menu.json";
+const repo = getRepository<MealEntry>("meal-menu");
 
 export function getMealMenu(): MealEntry[] {
-  const data = readJsonFile<MealEntry[] | null>(DATA_FILE, null);
-  return data ?? defaultMealMenu;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultMealMenu;
 }
 
 export function saveMealMenu(input: MealEntry[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

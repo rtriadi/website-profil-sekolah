@@ -1,18 +1,13 @@
-import {
-  type SchoolProfile,
-  type SchoolNarrative,
-  defaultSchoolProfile,
-  defaultSchoolNarrative,
-} from "@/lib/content/schema";
-import { readJsonFile } from "@/lib/data/file-storage";
+import { type SchoolProfile, defaultSchoolProfile } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const PROFILE_FILE = "profile.json";
-const NARRATIVE_FILE = "narrative.json";
+const repo = getRepository<SchoolProfile>("school-profile");
 
-export async function getSchoolProfile(): Promise<SchoolProfile> {
-  return readJsonFile<SchoolProfile>(PROFILE_FILE, defaultSchoolProfile);
+export function getSchoolProfile(): SchoolProfile {
+  const data = repo.getAll();
+  return data[0] ?? defaultSchoolProfile;
 }
 
-export async function getSchoolNarrative(): Promise<SchoolNarrative> {
-  return readJsonFile<SchoolNarrative>(NARRATIVE_FILE, defaultSchoolNarrative);
+export function saveSchoolProfile(input: SchoolProfile): void {
+  repo.save([input]);
 }

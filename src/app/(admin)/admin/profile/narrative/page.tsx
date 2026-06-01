@@ -1,4 +1,4 @@
-import { getSchoolNarrative } from "@/lib/content/profile-service";
+import { getSchoolNarrative } from "@/lib/content/narrative-service";
 import { updateNarrativeAction } from "@/lib/actions/profile-actions";
 
 async function submitNarrative(formData: FormData) {

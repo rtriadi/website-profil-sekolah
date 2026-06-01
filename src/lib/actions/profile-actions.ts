@@ -2,13 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
-import { defaultSchoolProfile, defaultSchoolNarrative, defaultPrograms, defaultFacilities } from "@/lib/content/schema";
+import { saveSchoolProfile } from "@/lib/content/profile-service";
+import { saveSchoolNarrative } from "@/lib/content/narrative-service";
+import { getPrograms, getFacilities } from "@/lib/content/programs-service";
+import { getRepository } from "@/lib/data/repository";
+import { type SchoolProgram, type Facility, defaultPrograms, defaultFacilities } from "@/lib/content/schema";
 
-const PROFILE_FILE = "profile.json";
-const NARRATIVE_FILE = "narrative.json";
-const PROGRAMS_FILE = "programs.json";
-const FACILITIES_FILE = "facilities.json";
+const programRepo = getRepository<SchoolProgram>("school-programs");
+const facilityRepo = getRepository<Facility>("facilities");
 
 export async function updateProfileAction(
   prev: unknown,
@@ -44,7 +45,7 @@ export async function updateProfileAction(
     },
   };
 
-  writeJsonFile(PROFILE_FILE, profile);
+  saveSchoolProfile(profile);
   revalidatePath("/");
   revalidatePath("/admin/profile");
   return { success: true };
@@ -60,7 +61,7 @@ export async function updateNarrativeAction(
     mission: (formData.get("mission") as string).split("\n").filter(Boolean),
   };
 
-  writeJsonFile(NARRATIVE_FILE, narrative);
+  saveSchoolNarrative(narrative);
   revalidatePath("/");
   revalidatePath("/admin/profile/narrative");
   return { success: true };
@@ -81,9 +82,9 @@ export async function addProgramAction(
 
   const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").trim();
 
-  const programs = readJsonFile<typeof defaultPrograms>(PROGRAMS_FILE, defaultPrograms);
+  const programs = programRepo.getAll();
   programs.push({ name, description, slug, type: programType as any, icon: icon || "📚" });
-  writeJsonFile(PROGRAMS_FILE, programs);
+  programRepo.save(programs);
 
   revalidatePath("/programs");
   revalidatePath("/admin/profile/programs");
@@ -93,9 +94,9 @@ export async function addProgramAction(
 export async function deleteProgramAction(
   slug: string,
 ): Promise<void> {
-  const programs = readJsonFile<typeof defaultPrograms>(PROGRAMS_FILE, defaultPrograms);
+  const programs = programRepo.getAll();
   const filtered = programs.filter((p) => p.slug !== slug);
-  writeJsonFile(PROGRAMS_FILE, filtered);
+  programRepo.save(filtered);
   revalidatePath("/programs");
   revalidatePath("/admin/profile/programs");
 }
@@ -114,9 +115,9 @@ export async function addFacilityAction(
 
   const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").trim();
 
-  const facilities = readJsonFile<typeof defaultFacilities>(FACILITIES_FILE, defaultFacilities);
+  const facilities = facilityRepo.getAll();
   facilities.push({ name, description, slug, category: category as any });
-  writeJsonFile(FACILITIES_FILE, facilities);
+  facilityRepo.save(facilities);
 
   revalidatePath("/programs");
   revalidatePath("/admin/profile/facilities");
@@ -126,9 +127,9 @@ export async function addFacilityAction(
 export async function deleteFacilityAction(
   slug: string,
 ): Promise<void> {
-  const facilities = readJsonFile<typeof defaultFacilities>(FACILITIES_FILE, defaultFacilities);
+  const facilities = facilityRepo.getAll();
   const filtered = facilities.filter((f) => f.slug !== slug);
-  writeJsonFile(FACILITIES_FILE, filtered);
+  facilityRepo.save(filtered);
   revalidatePath("/programs");
   revalidatePath("/admin/profile/facilities");
 }

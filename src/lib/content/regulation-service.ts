@@ -1,13 +1,13 @@
-import { type RegulationSection, defaultRegulations } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type RegulationSection, defaultRegulations } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "regulations.json";
+const repo = getRepository<RegulationSection>("regulations");
 
 export function getRegulations(): RegulationSection[] {
-  const data = readJsonFile<RegulationSection[] | null>(DATA_FILE, null);
-  return data ?? defaultRegulations;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultRegulations;
 }
 
 export function saveRegulations(input: RegulationSection[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

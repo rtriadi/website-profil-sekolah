@@ -1,6 +1,4 @@
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
-
-const DATA_FILE = "instagram.json";
+import { getRepository } from "@/lib/data/repository";
 
 export interface InstagramSettings {
   handle: string;
@@ -12,11 +10,13 @@ export const defaultInstagram: InstagramSettings = {
   url: "https://www.instagram.com/sekolahkami/",
 };
 
+const repo = getRepository<InstagramSettings>("instagram");
+
 export function getInstagramSettings(): InstagramSettings {
-  const data = readJsonFile<InstagramSettings | null>(DATA_FILE, null);
-  return data ?? defaultInstagram;
+  const data = repo.getAll();
+  return data[0] ?? defaultInstagram;
 }
 
 export function saveInstagramSettings(input: InstagramSettings): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

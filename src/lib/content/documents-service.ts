@@ -1,18 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
-import { type SchoolDocument } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type SchoolDocument } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "documents.json";
+const repo = getRepository<SchoolDocument>("school-documents");
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "documents");
 
 export function getDocuments(): SchoolDocument[] {
-  return readJsonFile<SchoolDocument[]>(DATA_FILE, []);
+  return repo.getAll();
 }
 
-export function getDocumentsByCategory(
-  category: string,
-): SchoolDocument[] {
+export function getDocumentsByCategory(category: string): SchoolDocument[] {
   return getDocuments().filter((d) => d.category === category);
 }
 
@@ -64,7 +62,7 @@ export async function uploadDocument(
 
   const docs = getDocuments();
   docs.unshift(document);
-  writeJsonFile(DATA_FILE, docs);
+  repo.save(docs);
 
   return { document };
 }
@@ -80,6 +78,6 @@ export function deleteDocument(id: string): boolean {
   }
 
   const filtered = docs.filter((d) => d.id !== id);
-  writeJsonFile(DATA_FILE, filtered);
+  repo.save(filtered);
   return true;
 }

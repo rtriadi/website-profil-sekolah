@@ -1,13 +1,13 @@
-import { type PPDBConfig, defaultPPDBConfig } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type PPDBConfig, defaultPPDBConfig } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "ppdb.json";
+const repo = getRepository<PPDBConfig>("ppdb-config");
 
 export function getPPDBConfig(): PPDBConfig {
-  const data = readJsonFile<PPDBConfig | null>(DATA_FILE, null);
-  return data ?? defaultPPDBConfig;
+  const data = repo.getAll();
+  return data[0] ?? defaultPPDBConfig;
 }
 
 export function savePPDBConfig(input: PPDBConfig): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

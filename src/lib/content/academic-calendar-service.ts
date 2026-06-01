@@ -1,13 +1,13 @@
-import { type AcademicCalendar, defaultAcademicCalendar } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type AcademicCalendar, defaultAcademicCalendar } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "academic-calendar.json";
+const repo = getRepository<AcademicCalendar>("academic-calendar");
 
 export function getAcademicCalendar(): AcademicCalendar {
-  const data = readJsonFile<AcademicCalendar | null>(DATA_FILE, null);
-  return data ?? defaultAcademicCalendar;
+  const data = repo.getAll();
+  return data[0] ?? defaultAcademicCalendar;
 }
 
 export function saveAcademicCalendar(input: AcademicCalendar): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

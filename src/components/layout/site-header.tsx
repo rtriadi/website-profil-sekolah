@@ -46,7 +46,11 @@ const menuGroups = [
   },
 ];
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  menuSettings?: Record<string, boolean>;
+}
+
+export function SiteHeader({ menuSettings = {} }: SiteHeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -55,6 +59,13 @@ export function SiteHeader() {
   const toggleMobileGroup = (key: string) => {
     setMobileExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  const visibleGroups = menuGroups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => menuSettings[item.href] !== false),
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <div className="sticky top-4 z-50 w-full px-4 sm:px-6">
@@ -116,7 +127,7 @@ export function SiteHeader() {
             })}
 
             {/* Dropdown Groups */}
-            {menuGroups.map((group) => {
+            {visibleGroups.map((group) => {
               const isOpen = activeDropdown === group.key;
               const hasActiveChild = group.items.some((item) => pathname === item.href);
 
@@ -203,7 +214,7 @@ export function SiteHeader() {
               })}
 
               {/* Mobile Collapsible Groups */}
-              {menuGroups.map((group) => {
+              {visibleGroups.map((group) => {
                 const isExpanded = !!mobileExpanded[group.key];
                 const hasActiveChild = group.items.some((item) => pathname === item.href);
 

@@ -1,6 +1,4 @@
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
-
-const DATA_FILE = "gallery-albums.json";
+import { getRepository } from "@/lib/data/repository";
 
 export const defaultAlbums = [
   { id: "album-001", name: "Kegiatan Belajar", sortOrder: 1 },
@@ -14,11 +12,13 @@ export interface GalleryAlbum {
   sortOrder: number;
 }
 
+const repo = getRepository<GalleryAlbum>("gallery-albums");
+
 export function getGalleryAlbums(): GalleryAlbum[] {
-  const data = readJsonFile<GalleryAlbum[] | null>(DATA_FILE, null);
-  return data ?? defaultAlbums;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultAlbums;
 }
 
 export function saveGalleryAlbums(input: GalleryAlbum[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

@@ -1,13 +1,13 @@
-import { type FAQItem, defaultFAQItems } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type FAQItem, defaultFAQItems } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "faq.json";
+const repo = getRepository<FAQItem>("faq");
 
 export function getFAQItems(): FAQItem[] {
-  const data = readJsonFile<FAQItem[] | null>(DATA_FILE, null);
-  return data ?? defaultFAQItems;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultFAQItems;
 }
 
 export function saveFAQItems(input: FAQItem[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

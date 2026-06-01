@@ -1,13 +1,13 @@
-import { type NewsArticle, defaultNews } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type NewsArticle, defaultNews } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "news.json";
+const repo = getRepository<NewsArticle>("news");
 
 export function getNews(): NewsArticle[] {
-  const data = readJsonFile<NewsArticle[] | null>(DATA_FILE, null);
-  return data ?? defaultNews;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultNews;
 }
 
 export function saveNews(input: NewsArticle[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

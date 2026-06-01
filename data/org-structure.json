@@ -1,70 +1,70 @@
 {
-  "title": "Struktur Organisasi Sekolah",
-  "description": "Bagan struktur organisasi dan tata kelola sekolah",
-  "members": [
-    {
-      "id": "org-001",
-      "name": "Dr. H. Ahmad Syukri, M.Pd.",
-      "position": "Kepala Sekolah",
-      "parentId": null,
-      "sortOrder": 0
-    },
-    {
-      "id": "org-002",
-      "name": "Drs. Hj. Siti Rahmawati",
-      "position": "Wakil Kepala Sekolah Bidang Kurikulum",
-      "parentId": "org-001",
-      "sortOrder": 1
-    },
-    {
-      "id": "org-003",
-      "name": "H. M. Fauzi Rahman, S.Pd.",
-      "position": "Wakil Kepala Sekolah Bidang Kesiswaan",
-      "parentId": "org-001",
-      "sortOrder": 2
-    },
-    {
-      "id": "org-004",
-      "name": "Dra. Hj. Nurhayati",
-      "position": "Wakil Kepala Sekolah Bidang Sarana & Prasarana",
-      "parentId": "org-001",
-      "sortOrder": 3
-    },
-    {
-      "id": "org-005",
-      "name": "H. Agus Salim, S.Ag., M.Pd.",
-      "position": "Wakil Kepala Sekolah Bidang Humas",
-      "parentId": "org-001",
-      "sortOrder": 4
-    },
-    {
-      "id": "org-006",
-      "name": "Tim Guru",
-      "position": "Dewan Guru",
-      "parentId": "org-002",
-      "sortOrder": 5,
-      "description": "Seluruh tenaga pendidik yang bertanggung jawab dalam pelaksanaan kegiatan belajar mengajar"
-    },
-    {
-      "id": "org-007",
-      "name": "Staf Tata Usaha",
-      "position": "Tenaga Kependidikan",
-      "parentId": "org-001",
-      "sortOrder": 6
-    },
-    {
-      "id": "org-008",
-      "name": "OSIS",
-      "position": "Organisasi Siswa Intra Sekolah",
-      "parentId": "org-003",
-      "sortOrder": 7
-    },
-    {
-      "id": "org-009",
-      "name": "Komite Sekolah",
-      "position": "Badan Pertimbangan & Pengawas",
-      "parentId": "org-001",
-      "sortOrder": 8
-    }
-  ]
+    "title":  "Struktur Organisasi Sekolah",
+    "description":  "Bagan struktur organisasi dan tata kelola sekolah",
+    "members":  [
+                    {
+                        "id":  "org-001",
+                        "name":  "Dr. H. Ahmad Syukri, M.Pd.",
+                        "position":  "Kepala Sekolah",
+                        "parentId":  null,
+                        "sortOrder":  0
+                    },
+                    {
+                        "id":  "org-002",
+                        "name":  "Drs. Hj. Siti Rahmawati",
+                        "position":  "Wakil Kepala Sekolah Bidang Kurikulum",
+                        "parentId":  "org-001",
+                        "sortOrder":  1
+                    },
+                    {
+                        "id":  "org-003",
+                        "name":  "H. M. Fauzi Rahman, S.Pd.",
+                        "position":  "Wakil Kepala Sekolah Bidang Kesiswaan",
+                        "parentId":  "org-001",
+                        "sortOrder":  2
+                    },
+                    {
+                        "id":  "org-004",
+                        "name":  "Dra. Hj. Nurhayati",
+                        "position":  "Wakil Kepala Sekolah Bidang Sarana \u0026 Prasarana",
+                        "parentId":  "org-001",
+                        "sortOrder":  3
+                    },
+                    {
+                        "id":  "org-005",
+                        "name":  "H. Agus Salim, S.Ag., M.Pd.",
+                        "position":  "Wakil Kepala Sekolah Bidang Humas",
+                        "parentId":  "org-001",
+                        "sortOrder":  4
+                    },
+                    {
+                        "id":  "org-006",
+                        "name":  "Tim Guru",
+                        "position":  "Dewan Guru",
+                        "parentId":  "org-002",
+                        "sortOrder":  5,
+                        "description":  "Seluruh tenaga pendidik yang bertanggung jawab dalam pelaksanaan kegiatan belajar mengajar"
+                    },
+                    {
+                        "id":  "org-007",
+                        "name":  "Staf Tata Usaha",
+                        "position":  "Tenaga Kependidikan",
+                        "parentId":  "org-001",
+                        "sortOrder":  6
+                    },
+                    {
+                        "id":  "org-008",
+                        "name":  "OSIS",
+                        "position":  "Organisasi Siswa Intra Sekolah",
+                        "parentId":  "org-003",
+                        "sortOrder":  7
+                    },
+                    {
+                        "id":  "org-009",
+                        "name":  "Komite Sekolah",
+                        "position":  "Badan Pertimbangan \u0026 Pengawas",
+                        "parentId":  "org-001",
+                        "sortOrder":  8
+                    }
+                ]
 }

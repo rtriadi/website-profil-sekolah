@@ -1,6 +1,4 @@
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
-
-const DATA_FILE = "activity-log.json";
+import { getRepository } from "@/lib/data/repository";
 
 export interface LogEntry {
   id: string;
@@ -10,13 +8,14 @@ export interface LogEntry {
   createdAt: string;
 }
 
+const repo = getRepository<LogEntry>("activity-log");
+
 export function getLogs(limit = 50): LogEntry[] {
-  const data = readJsonFile<LogEntry[] | null>(DATA_FILE, null);
-  return (data ?? []).slice(0, limit);
+  return repo.getAll().slice(0, limit);
 }
 
 export function addLog(action: string, section: string, detail: string): void {
-  const logs = readJsonFile<LogEntry[] | null>(DATA_FILE, null) ?? [];
+  const logs = repo.getAll();
   logs.unshift({
     id: `log-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     action,
@@ -24,5 +23,5 @@ export function addLog(action: string, section: string, detail: string): void {
     detail,
     createdAt: new Date().toISOString(),
   });
-  writeJsonFile(DATA_FILE, logs.slice(0, 500));
+  repo.save(logs.slice(0, 500));
 }

@@ -1,13 +1,13 @@
-import { type Extracurricular, defaultExtracurriculars } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type Extracurricular, defaultExtracurriculars } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "extracurriculars.json";
+const repo = getRepository<Extracurricular>("extracurriculars");
 
 export function getExtracurriculars(): Extracurricular[] {
-  const data = readJsonFile<Extracurricular[] | null>(DATA_FILE, null);
-  return data ?? defaultExtracurriculars;
+  const data = repo.getAll();
+  return data.length > 0 ? data : defaultExtracurriculars;
 }
 
 export function saveExtracurriculars(input: Extracurricular[]): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save(input);
 }

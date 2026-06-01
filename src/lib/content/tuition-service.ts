@@ -1,13 +1,13 @@
-import { type TuitionData, defaultTuition } from "@/lib/content/schema";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { type TuitionData, defaultTuition } from "./schema";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "tuition.json";
+const repo = getRepository<TuitionData>("tuition");
 
 export function getTuition(): TuitionData {
-  const data = readJsonFile<TuitionData | null>(DATA_FILE, null);
-  return data ?? defaultTuition;
+  const data = repo.getAll();
+  return data[0] ?? defaultTuition;
 }
 
 export function saveTuition(input: TuitionData): void {
-  writeJsonFile(DATA_FILE, input);
+  repo.save([input]);
 }

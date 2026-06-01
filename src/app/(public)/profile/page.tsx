@@ -1,4 +1,5 @@
-import { getSchoolProfile, getSchoolNarrative } from "@/lib/content/profile-service";
+import { getSchoolProfile } from "@/lib/content/profile-service";
+import { getSchoolNarrative } from "@/lib/content/narrative-service";
 import { IdentitySection } from "@/components/profile/identity-section";
 import { NarrativeSection } from "@/components/profile/narrative-section";
 

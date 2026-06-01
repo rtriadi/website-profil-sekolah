@@ -1,0 +1,63 @@
+{
+    "active":  true,
+    "year":  "2026/2027",
+    "title":  "Penerimaan Peserta Didik Baru",
+    "description":  "Pendaftaran siswa baru untuk tahun ajaran 2026/2027 telah dibuka. Kami mengundang calon siswa untuk bergabung menjadi bagian dari keluarga besar sekolah kami.",
+    "bannerText":  "Pendaftaran PPDB 2026/2027 telah dibuka!",
+    "scheduleText":  "Pendaftaran: 1 Juli - 15 Juli 2026\nVerifikasi Berkas: 16 Juli - 20 Juli 2026\nTes Seleksi: 22 Juli - 23 Juli 2026\nPengumuman: 25 Juli 2026\nDaftar Ulang: 26 Juli - 30 Juli 2026",
+    "contact":  "Panitia PPDB\nTelepon: (0000) 000-0000\nEmail: ppdb@sekolah.sch.id\nWhatsApp: 0812-3456-7890",
+    "registrationLink":  "",
+    "requirements":  [
+                         {
+                             "label":  "Fotokopi Akta Kelahiran",
+                             "description":  "Fotokopi sebanyak 2 lembar"
+                         },
+                         {
+                             "label":  "Fotokopi Kartu Keluarga",
+                             "description":  "Fotokopi sebanyak 2 lembar"
+                         },
+                         {
+                             "label":  "Pas Foto",
+                             "description":  "Pas foto 3x4 sebanyak 4 lembar dengan latar belakang merah"
+                         },
+                         {
+                             "label":  "Fotokopi Ijazah/SKHUN",
+                             "description":  "Fotokopi ijazah atau Surat Keterangan Hasil Ujian Nasional"
+                         },
+                         {
+                             "label":  "Surat Keterangan Sehat",
+                             "description":  "Dari dokter atau puskesmas terdekat"
+                         },
+                         {
+                             "label":  "Surat Rekomendasi (jika ada)",
+                             "description":  "Surat rekomendasi dari sekolah asal atau pihak berwenang"
+                         }
+                     ],
+    "steps":  [
+                  {
+                      "order":  1,
+                      "title":  "Pendaftaran Online",
+                      "description":  "Calon siswa mengisi formulir pendaftaran secara online melalui portal sekolah atau datang langsung ke kantor panitia PPDB"
+                  },
+                  {
+                      "order":  2,
+                      "title":  "Verifikasi Berkas",
+                      "description":  "Panitia memverifikasi kelengkapan dan keabsahan dokumen persyaratan yang telah diserahkan"
+                  },
+                  {
+                      "order":  3,
+                      "title":  "Tes Seleksi",
+                      "description":  "Calon siswa mengikuti tes akademik (matematika, bahasa Indonesia, bahasa Inggris) dan wawancara"
+                  },
+                  {
+                      "order":  4,
+                      "title":  "Pengumuman",
+                      "description":  "Hasil seleksi diumumkan melalui website resmi sekolah dan papan pengumuman"
+                  },
+                  {
+                      "order":  5,
+                      "title":  "Daftar Ulang",
+                      "description":  "Calon siswa yang dinyatakan diterima melakukan daftar ulang dengan melengkapi administrasi dan pembayaran"
+                  }
+              ]
+}

@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { readJsonFile, writeJsonFile } from "@/lib/data/file-storage";
+import { getRepository } from "@/lib/data/repository";
 
-const DATA_FILE = "media.json";
+const repo = getRepository<MediaItem>("media");
 
 export interface MediaItem {
   id: string;
@@ -18,7 +18,7 @@ export interface MediaItem {
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 
 export function getMedia(): MediaItem[] {
-  return readJsonFile<MediaItem[]>(DATA_FILE, []);
+  return repo.getAll();
 }
 
 export async function uploadMedia(
@@ -62,7 +62,7 @@ export async function uploadMedia(
 
   const media = getMedia();
   media.unshift(item);
-  writeJsonFile(DATA_FILE, media);
+  repo.save(media);
 
   return { media: item };
 }
@@ -78,7 +78,7 @@ export function deleteMedia(id: string): boolean {
   }
 
   const filtered = media.filter((m) => m.id !== id);
-  writeJsonFile(DATA_FILE, filtered);
+  repo.save(filtered);
   return true;
 }
 
