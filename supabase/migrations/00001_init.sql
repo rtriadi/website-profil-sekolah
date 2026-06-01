@@ -456,6 +456,16 @@ create table if not exists activity_logs (
 create index idx_activity_logs_created_at on activity_logs(created_at desc);
 
 -- ============================================================
+-- 27. GENERIC JSON STORE (FOR SERVERLESS PERSISTENCE)
+-- ============================================================
+
+create table if not exists json_store (
+  filename   text primary key,
+  content    text not null,
+  updated_at timestamptz not null default now()
+);
+
+-- ============================================================
 -- UPDATED_AT TRIGGER
 -- ============================================================
 
@@ -473,7 +483,7 @@ begin
   for tbl in
     select unnest(array[
       'staff','school_profile','school_programs','facilities',
-      'teachers','classes','announcements','school_events',
+      'teachers','classes','json_store','announcements','school_events',
       'faq_items','testimonies','achievements',
       'extracurriculars','regulations','news_articles',
       'gallery_albums'
@@ -498,7 +508,7 @@ begin
   for tbl in
     select unnest(array[
       'school_profile','school_narrative','school_programs','facilities',
-      'teachers','classes','org_members','ppdb_config','announcements','school_events',
+      'teachers','classes','json_store','org_members','ppdb_config','announcements','school_events',
       'school_documents','contact_info','academic_calendars','faq_items',
       'testimonies','achievements','tuition_data','meal_menus',
       'extracurriculars','regulations','news_articles','media_items',

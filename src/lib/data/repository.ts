@@ -7,6 +7,9 @@
  */
 
 import { readJsonFile, writeJsonFile } from "./file-storage";
+import fs from "node:fs";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 // ── Interface ────────────────────────────────────────────
 export interface Repository<T> {
@@ -60,7 +63,37 @@ export class JsonSingletonRepository<T> implements Repository<T> {
   }
 }
 
-// ── Supabase implementation (stub for migration) ─────────
+// ── Supabase implementation (REST sync via curl child process) ──
+function supabaseSyncRequest(method: "GET" | "POST", pathStr: string, body?: any): string | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+
+  const fullUrl = `${url.replace(/\/$/, "")}/rest/v1/${pathStr}`;
+  const args = [
+    "-s",
+    "-X", method,
+    fullUrl,
+    "-H", `apikey: ${key}`,
+    "-H", `Authorization: Bearer ${key}`,
+  ];
+
+  if (body) {
+    args.push("-H", "Content-Type: application/json");
+    if (method === "POST") {
+      args.push("-H", "Prefer: resolution=merge-duplicates");
+    }
+    args.push("-d", JSON.stringify(body));
+  }
+
+  const result = spawnSync("curl", args, { encoding: "utf-8" });
+  if (result.status !== 0) {
+    console.error("Supabase sync request failed:", result.error || result.stderr);
+    return null;
+  }
+  return result.stdout;
+}
+
 export class SupabaseRepository<T> implements Repository<T> {
   private tableName: string;
 
@@ -68,28 +101,78 @@ export class SupabaseRepository<T> implements Repository<T> {
     this.tableName = tableName;
   }
 
+  private getFilename(): string {
+    return `${this.tableName}.json`;
+  }
+
   getAll(): T[] {
-    return [];
+    const filename = this.getFilename();
+    try {
+      const responseText = supabaseSyncRequest(
+        "GET",
+        `json_store?filename=eq.${filename}&select=content`
+      );
+      if (responseText) {
+        const rows = JSON.parse(responseText);
+        if (rows && rows.length > 0 && rows[0].content) {
+          return JSON.parse(rows[0].content) as T[];
+        }
+      }
+    } catch (e) {
+      console.error(`Failed to read ${filename} from Supabase:`, e);
+    }
+
+    // Fallback: Read local file (read-only filesystem allows this)
+    return readJsonFile<T[]>(filename, []);
   }
 
-  getById(_id: string): T | undefined {
-    return undefined;
+  getById(id: string): T | undefined {
+    return this.getAll().find((item: any) => item.id === id);
   }
 
-  save(_data: T[]): void {
-    // noop — will implement during migration
+  save(data: T[]): void {
+    const filename = this.getFilename();
+    try {
+      const body = {
+        filename: filename,
+        content: JSON.stringify(data),
+        updated_at: new Date().toISOString()
+      };
+      const responseText = supabaseSyncRequest("POST", "json_store", body);
+      if (responseText !== null) {
+        return; // Success
+      }
+    } catch (e) {
+      console.error(`Failed to save ${filename} to Supabase:`, e);
+    }
+
+    // Fallback: If Supabase write fails, try writing to /tmp directory as local cache so it doesn't crash
+    try {
+      const tmpPath = path.join("/tmp", filename);
+      fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch (e) {
+      console.error("Fallback /tmp write failed:", e);
+    }
   }
 }
 
 // ── Provider ─────────────────────────────────────────────
-let provider: "json" | "supabase" = "json";
+let provider: "json" | "supabase" | null = null;
+
+function ensureProviderInitialized() {
+  if (provider !== null) return;
+  const onVercel = typeof process !== "undefined" && !!process.env?.VERCEL_ENV;
+  const env = typeof process !== "undefined" && (process.env?.DATABASE_PROVIDER ?? (onVercel ? "supabase" : "json"));
+  provider = env === "supabase" ? "supabase" : "json";
+}
 
 export function setProvider(p: "json" | "supabase") {
   provider = p;
 }
 
 export function getProvider(): "json" | "supabase" {
-  return provider;
+  ensureProviderInitialized();
+  return provider ?? "json";
 }
 
 const singletonDefaults: Record<string, unknown> = {};
@@ -99,6 +182,7 @@ export function registerSingleton(tableName: string, defaultValue: unknown) {
 }
 
 export function getRepository<T>(tableName: string): Repository<T> {
+  ensureProviderInitialized();
   if (provider === "supabase") {
     return new SupabaseRepository<T>(tableName);
   }
