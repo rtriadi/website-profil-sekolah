@@ -55,7 +55,7 @@ export default function TeachersPage() {
                       <span className="font-semibold text-slate-800 dark:text-slate-200">{t.nip || "—"}</span>
                     </p>
                     <p className="flex justify-between">
-                      <span className="font-bold text-slate-500 dark:text-slate-500 text-xs uppercase tracking-wider">Mata Pelajaran:</span> 
+                      <span className="font-bold text-slate-500 dark:text-slate-500 text-xs uppercase tracking-wider">Kelas:</span> 
                       <span className="font-semibold text-slate-800 dark:text-slate-200 text-right truncate max-w-[160px]" title={t.subject}>{t.subject || "—"}</span>
                     </p>
                     {t.description && (

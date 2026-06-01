@@ -16,6 +16,7 @@ const menuGroups = [
     items: [
       { href: "/profile", label: "Profil Sekolah" },
       { href: "/guru", label: "Guru & Staf" },
+      { href: "/kelas", label: "Daftar Kelas" },
       { href: "/struktur-organisasi", label: "Struktur Organisasi" },
       { href: "/programs", label: "Program & Fasilitas" },
       { href: "/regulations", label: "Tata Tertib" },

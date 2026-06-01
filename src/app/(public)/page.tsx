@@ -95,6 +95,12 @@ const portalGroups = [
         icon: "👨‍🏫",
       },
       {
+        href: "/kelas",
+        label: "Daftar Kelas",
+        description: "Daftar susunan kelas, ruangan belajar, serta wali kelas masing-masing.",
+        icon: "🚪",
+      },
+      {
         href: "/struktur-organisasi",
         label: "Struktur Organisasi",
         description: "Bagan struktur pimpinan sekolah, yayasan, dan komite.",

@@ -52,7 +52,7 @@ export function AdminTeachersClient({ teachers }: Props) {
               <input id="nip" name="nip" defaultValue={editingId ? teachers.find(t => t.id === editingId)?.nip : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
             </div>
             <div>
-              <label htmlFor="subject" className="mb-1 block text-sm font-medium text-slate-700">Bidang Studi</label>
+              <label htmlFor="subject" className="mb-1 block text-sm font-medium text-slate-700">Kelas</label>
               <input id="subject" name="subject" defaultValue={editingId ? teachers.find(t => t.id === editingId)?.subject : ""} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-900 focus:outline-none" />
               {activeState?.fieldErrors?.subject && <p className="mt-1 text-xs text-red-500">{activeState.fieldErrors.subject}</p>}
             </div>
@@ -97,7 +97,7 @@ export function AdminTeachersClient({ teachers }: Props) {
               <tr>
                 <th className="px-4 py-3 text-left font-medium text-slate-500">Nama</th>
                 <th className="px-4 py-3 text-left font-medium text-slate-500">NIP</th>
-                <th className="px-4 py-3 text-left font-medium text-slate-500">Bidang Studi</th>
+                <th className="px-4 py-3 text-left font-medium text-slate-500">Kelas</th>
                 <th className="px-4 py-3 text-left font-medium text-slate-500">Jabatan</th>
                 <th className="px-4 py-3 text-right font-medium text-slate-500">Aksi</th>
               </tr>

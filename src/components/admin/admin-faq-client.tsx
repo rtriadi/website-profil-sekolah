@@ -76,29 +76,34 @@ export function AdminFAQClient({ items }: Props) {
       <div className="space-y-3">
         {faqItems.map((item) => (
           <div key={item.id} className="rounded-lg border border-slate-200 p-3">
-            <div className="mb-2 flex items-start justify-between gap-2">
-              <input
-                value={item.question}
-                onChange={(e) => updateItem(item.id, "question", e.target.value)}
-                placeholder="Pertanyaan"
-                className="flex-1 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium"
-              />
-              <select
-                value={item.category}
-                onChange={(e) => updateItem(item.id, "category", e.target.value)}
-                className="rounded-md border border-slate-300 px-2 py-1.5 text-sm"
-              >
-                {Object.entries(categoryLabels).map(([k, v]) => (
-                  <option key={k} value={k}>{v}</option>
-                ))}
-              </select>
-              <button
-                type="button"
-                onClick={() => removeItem(item.id)}
-                className="rounded-md p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
+            <div className="mb-2 flex flex-col gap-2">
+              <div className="flex items-center justify-between gap-2">
+                <input
+                  value={item.question}
+                  onChange={(e) => updateItem(item.id, "question", e.target.value)}
+                  placeholder="Pertanyaan"
+                  className="flex-1 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.id)}
+                  className="rounded-md p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 flex-shrink-0"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Kategori:</span>
+                <select
+                  value={item.category}
+                  onChange={(e) => updateItem(item.id, "category", e.target.value)}
+                  className="rounded-md border border-slate-300 px-2 py-1 text-xs bg-white text-slate-700"
+                >
+                  {Object.entries(categoryLabels).map(([k, v]) => (
+                    <option key={k} value={k}>{v}</option>
+                  ))}
+                </select>
+              </div>
             </div>
             <textarea
               value={item.answer}

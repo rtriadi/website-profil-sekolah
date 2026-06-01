@@ -20,7 +20,7 @@ export async function createTeacherAction(
 
   const errors: Record<string, string> = {};
   if (!name?.trim()) errors.name = "Nama harus diisi";
-  if (!subject?.trim()) errors.subject = "Bidang studi harus diisi";
+  if (!subject?.trim()) errors.subject = "Kelas harus diisi";
 
   if (Object.keys(errors).length > 0) return { fieldErrors: errors };
 
@@ -52,7 +52,7 @@ export async function updateTeacherAction(
 
   const errors: Record<string, string> = {};
   if (!name?.trim()) errors.name = "Nama harus diisi";
-  if (!subject?.trim()) errors.subject = "Bidang studi harus diisi";
+  if (!subject?.trim()) errors.subject = "Kelas harus diisi";
 
   if (Object.keys(errors).length > 0) return { fieldErrors: errors };
 

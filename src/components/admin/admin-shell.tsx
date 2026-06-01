@@ -141,6 +141,15 @@ const menuGroups = [
         ),
       },
       {
+        href: "/admin/classes",
+        label: "Daftar Kelas",
+        icon: (
+          <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 7.5h6m-6 4h6m-6 4h6" />
+          </svg>
+        ),
+      },
+      {
         href: "/admin/org-structure",
         label: "Struktur Organisasi",
         icon: (
@@ -276,6 +285,7 @@ const menuGroups = [
 
 export function AdminShell({ session, children }: Props) {
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
   // Active link helper
@@ -283,16 +293,27 @@ export function AdminShell({ session, children }: Props) {
 
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100">
+      {/* Mobile Sidebar Overlay */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
+        />
+      )}
+
       {/* Collapsible Left Sidebar */}
       <aside
-        className={`relative z-20 flex flex-col bg-slate-950 text-slate-200 border-r border-white/5 transition-all duration-300 ease-in-out ${
-          collapsed ? "w-20" : "w-64"
+        className={`fixed inset-y-0 left-0 z-50 md:relative flex flex-col bg-slate-950 text-slate-200 border-r border-white/5 transition-transform duration-300 ease-in-out md:transition-all ${
+          collapsed ? "md:w-20" : "md:w-64"
+        } w-64 ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
         {/* Sidebar Brand Header */}
         <div className="flex h-16 items-center justify-between px-4 border-b border-white/5">
           <Link
             href="/admin"
+            onClick={() => setMobileOpen(false)}
             className={`flex items-center gap-2.5 font-heading font-bold transition-opacity hover:opacity-90 overflow-hidden ${
               collapsed ? "justify-center w-full" : ""
             }`}
@@ -345,7 +366,7 @@ export function AdminShell({ session, children }: Props) {
           {/* Dashboard item */}
           <Link
             href="/admin"
-            title={collapsed ? "Dashboard" : undefined}
+            onClick={() => setMobileOpen(false)}
             className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
               collapsed ? "justify-center" : "gap-3"
             } ${
@@ -377,6 +398,7 @@ export function AdminShell({ session, children }: Props) {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setMobileOpen(false)}
                     title={collapsed ? item.label : undefined}
                     className={`flex items-center rounded-lg px-3 py-2 text-xs font-semibold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
                       collapsed ? "justify-center" : "gap-3"
@@ -416,23 +438,35 @@ export function AdminShell({ session, children }: Props) {
       {/* Main Workspace Frame */}
       <div className="flex flex-1 flex-col overflow-hidden min-h-screen">
         {/* Top Navbar Header */}
-        <header className="flex h-16 items-center justify-between border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-950 px-6 shadow-sm z-10">
-          <div>
-            <h2 className="font-heading text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide uppercase">
+        <header className="flex h-16 items-center justify-between border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 sm:px-6 shadow-sm z-10 gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Hamburger button on mobile */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+              aria-label="Buka Menu"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+            <h2 className="font-heading text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 tracking-wide uppercase truncate">
               {pathname.split("/").slice(2).join(" / ") || "Dashboard"}
             </h2>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             <ThemeToggle variant="admin" />
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2.5 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+            <span className="inline-flex items-center gap-1.2 sm:gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 px-2 sm:px-2.5 py-1 text-[10px] sm:text-xs font-semibold text-indigo-600 dark:text-indigo-400">
               <span className="h-1.5 w-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
-              Mode Admin
+              <span className="hidden sm:inline">Mode Admin</span>
+              <span className="sm:hidden">Admin</span>
             </span>
           </div>
         </header>
 
         {/* Main Scrolling Content Area */}
-        <main className="flex-1 overflow-auto bg-[#f8fafc] dark:bg-slate-900 p-8 scrollbar-thin">
+        <main className="flex-1 overflow-auto bg-[#f8fafc] dark:bg-slate-900 p-4 sm:p-8 scrollbar-thin">
           <div className="mx-auto max-w-5xl">
             {children}
           </div>

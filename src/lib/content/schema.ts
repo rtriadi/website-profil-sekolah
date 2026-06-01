@@ -337,6 +337,39 @@ export interface Teacher {
 
 export const defaultTeachers: Teacher[] = [];
 
+/* ── Phase 5: Classes / Kelas ───────────────────────────── */
+
+export interface SchoolClass {
+  id: string;
+  name: string;
+  teacherId?: string;
+  roomName?: string;
+  studentCount?: number;
+  description?: string;
+  sortOrder: number;
+}
+
+export const defaultClasses: SchoolClass[] = [
+  {
+    id: "cls-001",
+    name: "Kelas 1A",
+    teacherId: "",
+    roomName: "Ruang Bougenville",
+    studentCount: 25,
+    description: "Kelas untuk siswa tingkat pertama dengan fokus pengenalan lingkungan dan budi pekerti.",
+    sortOrder: 1,
+  },
+  {
+    id: "cls-002",
+    name: "Kelas 1B",
+    teacherId: "",
+    roomName: "Ruang Anggrek",
+    studentCount: 24,
+    description: "Kelas paralel tingkat pertama penunjang kreativitas dan motorik dasar.",
+    sortOrder: 2,
+  },
+];
+
 /* ── Phase 5: Organizational Structure ───────────────── */
 
 export interface OrgNode {

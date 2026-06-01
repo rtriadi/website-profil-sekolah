@@ -29,6 +29,7 @@ const menuLabels: Record<string, { label: string; category: string }> = {
   "/faq": { label: "FAQ Sekolah", category: "Profil & Akademik" },
   "/kontak": { label: "Kontak & Lokasi", category: "Profil & Akademik" },
   "/testimonies": { label: "Testimoni", category: "Kesiswaan & Galeri" },
+  "/kelas": { label: "Daftar Kelas", category: "Profil & Akademik" },
 };
 
 export function MenuSettingsForm({ initialSettings }: Props) {

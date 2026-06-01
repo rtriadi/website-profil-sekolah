@@ -24,6 +24,7 @@ export const defaultMenuSettings: MenuSettings = {
   "/faq": true,
   "/kontak": true,
   "/testimonies": true,
+  "/kelas": true,
 };
 
 const repo = getRepository<MenuSettings>("menu-settings");
