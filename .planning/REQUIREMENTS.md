@@ -9,8 +9,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Profile
 
-- [ ] **PROF-01**: Visitor can view school identity details (name, address, contacts, accreditation) on public pages.
-- [ ] **PROF-02**: Visitor can view school history, vision, and mission in a dedicated profile section.
+- [x] **PROF-01**: Visitor can view school identity details (name, address, contacts, accreditation) on public pages.
+- [x] **PROF-02**: Visitor can view school history, vision, and mission in a dedicated profile section.
 - [ ] **PROF-03**: Visitor can view program/major and facilities information.
 
 ### Content
@@ -21,13 +21,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Admin
 
-- [ ] **ADMN-01**: Staff user can sign in to an admin area to manage public content.
+- [x] **ADMN-01**: Staff user can sign in to an admin area to manage public content.
 - [ ] **ADMN-02**: Staff user can create, edit, and publish profile and announcement content.
 - [ ] **ADMN-03**: Staff user can upload and manage media used in public pages.
 
 ### UX
 
-- [ ] **UX-01**: Visitor can use the website effectively on mobile and desktop layouts.
+- [x] **UX-01**: Visitor can use the website effectively on mobile and desktop layouts.
 - [ ] **UX-02**: Core public pages load with stable layout and readable content hierarchy.
 
 ## v2 Requirements
@@ -60,16 +60,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PROF-01 | Phase 1 | Pending |
-| PROF-02 | Phase 1 | Pending |
+| PROF-01 | Phase 1 | Done |
+| PROF-02 | Phase 1 | Done |
 | PROF-03 | Phase 2 | Pending |
 | CONT-01 | Phase 2 | Pending |
 | CONT-02 | Phase 2 | Pending |
 | CONT-03 | Phase 3 | Pending |
-| ADMN-01 | Phase 1 | Pending |
+| ADMN-01 | Phase 1 | Done |
 | ADMN-02 | Phase 3 | Pending |
 | ADMN-03 | Phase 3 | Pending |
-| UX-01 | Phase 1 | Pending |
+| UX-01 | Phase 1 | Done |
 | UX-02 | Phase 2 | Pending |
 
 **Coverage:**
