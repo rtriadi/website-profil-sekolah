@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/layout/site-header";
+﻿import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -24,8 +24,9 @@ export default async function PublicLayout({
       <SiteHeader menuSettings={menuSettings} schoolName={schoolName} />
       <Breadcrumbs />
       <main className="flex-1">{children}</main>
-      <SiteFooter schoolName={schoolName} />
+      <SiteFooter />
       <WhatsAppButton />
     </>
   );
 }
+

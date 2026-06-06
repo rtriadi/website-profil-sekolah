@@ -28,8 +28,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "sans-serif"],
-        sans: ["var(--font-body)", "sans-serif"],
+        heading: ["var(--font-heading)", "Georgia", "serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
     },
   },

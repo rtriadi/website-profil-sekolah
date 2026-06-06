@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { School, Palette, ChevronDown, X, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -105,8 +106,8 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
             href="/"
             className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-slate-900 dark:text-white transition-all hover:scale-[1.01] active:scale-[0.99]"
           >
-            <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-xs text-slate-950 shadow-md">
-              🏫
+            <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-xs text-white shadow-md">
+              <School className="h-4 w-4" />
             </span>
             <span className="bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-700 dark:from-white dark:via-indigo-200 dark:to-sky-300 bg-clip-text text-transparent">
               {schoolName}
@@ -160,9 +161,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                     >
                       <span>{group.label}</span>
                       <svg
-                        className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
+                        className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -211,7 +210,7 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
                 aria-label="Ubah tema warna"
               >
-                <span className="text-xs">🎨</span>
+                <Palette className="h-4 w-4" />
               </button>
 
               {colorPickerOpen && (
@@ -360,3 +359,5 @@ export function SiteHeader({ menuSettings = {}, schoolName = "Profil Sekolah" }:
     </div>
   );
 }
+
+

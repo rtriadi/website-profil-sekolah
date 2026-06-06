@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import type { HeroSlide } from "@/lib/content/schema";
 
 interface HeroSliderProps {
@@ -48,13 +49,15 @@ export function HeroSlider({ slides }: HeroSliderProps) {
               }`}
             >
               {/* Image element with modern zoom effect */}
-              <img
+              <Image
                 src={slide.src}
                 alt={slide.title}
-                className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-out ${
+                fill
+                className={`object-cover transition-transform duration-[6000ms] ease-out ${
                   isActive ? "scale-105" : "scale-100"
                 }`}
-                loading="eager"
+                loading={idx === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 768px) 100vw, 480px"
               />
 
               {/* Elegant Glassmorphic Bottom Caption */}
